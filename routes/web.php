@@ -14,8 +14,8 @@ use App\Http\Controllers\AuthenticationController;
 |
 */
 
-Route::middleware(['web'])->group(function(){
-    Route::middleware([])->group(function(){
+Route::middleware(['web', 'disableBackButton'])->group(function(){
+    Route::middleware(['authenticated'])->group(function(){
         Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
         Route::post('/post-login', [AuthenticationController::class, 'postLogin'])->name('post-login');
     });
@@ -24,13 +24,13 @@ Route::middleware(['web'])->group(function(){
 });
 
 Route::prefix('superadmin')->name('superadmin.')->group(function(){
-    Route::middleware(['auth:web'])->group(function(){
+    Route::middleware(['auth:web', 'disableBackButton', 'superadmin'])->group(function(){
         Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
     });
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
-    Route::middleware(['auth:web'])->group(function(){
+    Route::middleware(['auth:web', 'disableBackButton', 'admin'])->group(function(){
         Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
     });
 });
