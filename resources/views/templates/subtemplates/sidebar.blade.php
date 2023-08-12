@@ -27,6 +27,7 @@
     <div class="collapse navbar-collapse" id="sidebar-menu">
       <ul class="navbar-nav pt-lg-3">
         <li class="nav-item"><a class="nav-link" href="{{ route('superadmin.dashboard') }}"><span class="nav-link-title">Dashboard</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('superadmin.project') }}"><span class="nav-link-title">Project</span></a></li>
       </ul>
     </div>
   </div>
