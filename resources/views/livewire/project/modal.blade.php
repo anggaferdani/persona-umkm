@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#" wire:click="closeModal" class="btn" data-bs-dismiss="modal">Cancel</a>
+        <button type="button" wire:click="closeModal" class="btn" data-bs-dismiss="modal">Cancel</button>
         <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal">Submit</button>
       </div>
     </form>
@@ -45,7 +45,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#" wire:click="closeModal" class="btn" data-bs-dismiss="modal">Cancel</a>
+        <button type="button" wire:click="closeModal" class="btn" data-bs-dismiss="modal">Cancel</button>
       </div>
     </form>
   </div>
@@ -71,7 +71,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#" wire:click="closeModal" class="btn" data-bs-dismiss="modal">Cancel</a>
+        <button type="button" wire:click="closeModal" class="btn" data-bs-dismiss="modal">Cancel</button>
         <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal">Submit</button>
       </div>
     </form>
@@ -91,7 +91,7 @@
       <div class="modal-footer">
         <div class="w-100">
           <div class="row">
-            <div class="col"><a href="#" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</a></div>
+            <div class="col"><button type="button" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</button></div>
             <div class="col"><button type="submit" class="btn btn-danger w-100" data-bs-dismiss="modal">Delete</button></div>
           </div>
         </div>
@@ -113,7 +113,7 @@
       <div class="modal-footer">
         <div class="w-100">
           <div class="row">
-            <div class="col"><a href="#" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</a></div>
+            <div class="col"><button type="button" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</button></div>
             <div class="col"><button type="submit" class="btn btn-danger w-100" data-bs-dismiss="modal">Delete</button></div>
           </div>
         </div>
@@ -135,7 +135,7 @@
       <div class="modal-footer">
         <div class="w-100">
           <div class="row">
-            <div class="col"><a href="#" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</a></div>
+            <div class="col"><button type="button" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</button></div>
             <div class="col"><button type="submit" class="btn btn-success w-100" data-bs-dismiss="modal">Restore</button></div>
           </div>
         </div>
@@ -157,7 +157,7 @@
       <div class="modal-footer">
         <div class="w-100">
           <div class="row">
-            <div class="col"><a href="#" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</a></div>
+            <div class="col"><button type="button" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</button></div>
             <div class="col"><button type="submit" class="btn btn-danger w-100" data-bs-dismiss="modal">Delete permanently</button></div>
           </div>
         </div>
@@ -179,7 +179,7 @@
       <div class="modal-footer">
         <div class="w-100">
           <div class="row">
-            <div class="col"><a href="#" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</a></div>
+            <div class="col"><button type="button" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</button></div>
             <div class="col"><button type="submit" class="btn btn-success w-100" data-bs-dismiss="modal">Restore</button></div>
           </div>
         </div>
@@ -201,7 +201,7 @@
       <div class="modal-footer">
         <div class="w-100">
           <div class="row">
-            <div class="col"><a href="#" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</a></div>
+            <div class="col"><button type="button" wire:click="closeModal" class="btn w-100" data-bs-dismiss="modal">Cancel</button></div>
             <div class="col"><button type="submit" class="btn btn-danger w-100" data-bs-dismiss="modal">Delete</button></div>
           </div>
         </div>

@@ -6,7 +6,7 @@
           <h2 class="page-title">Project</h2>
         </div>
         <div class="col-auto ms-auto d-print-none">
-          <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Create</a>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Create</button>
         </div>
       </div>
     </div>
