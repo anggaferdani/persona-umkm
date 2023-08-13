@@ -18,8 +18,34 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#" wire:click="closeModal" class="btn btn-link link-secondary" data-bs-dismiss="modal">Cancel</a>
+        <a href="#" wire:click="closeModal" class="btn" data-bs-dismiss="modal">Cancel</a>
         <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div wire:ignore.self class="modal modal-blur fade" id="showModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <form action="" wire:submit.prevent="" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Show project</h5>
+        <button type="button" wire:click="closeModal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label required">Project name</label>
+          <input disabled type="text" wire:model="project_name" class="form-control" name="" placeholder="Project name">
+          @error('project_name')<div class="text-danger">{{ $message }}</div>@enderror
+        </div>
+        <div class="">
+          <label class="form-label required">Project description</label>
+          <textarea disabled wire:model="project_description" class="form-control" rows="6" placeholder="Project description"></textarea>
+          @error('project_description')<div class="text-danger">{{ $message }}</div>@enderror
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" wire:click="closeModal" class="btn" data-bs-dismiss="modal">Cancel</a>
       </div>
     </form>
   </div>
@@ -45,7 +71,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#" wire:click="closeModal" class="btn btn-link link-secondary" data-bs-dismiss="modal">Cancel</a>
+        <a href="#" wire:click="closeModal" class="btn" data-bs-dismiss="modal">Cancel</a>
         <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal">Submit</button>
       </div>
     </form>

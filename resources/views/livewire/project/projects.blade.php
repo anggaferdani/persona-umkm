@@ -7,7 +7,6 @@
         </div>
         <div class="col-auto ms-auto d-print-none">
           <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Create</a>
-          <a href="#" class="btn btn-danger">Deleted</a>
         </div>
       </div>
     </div>
@@ -18,14 +17,28 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body border-bottom py-3">
-              <div class="d-flex align-items-center">
-                <div class="btn-list flex-nowrap me-2 me-md-0">
+              <div class="d-flex flex-column flex-md-row align-items-center gap-2 gap-md-0 justify-content-between">
+                <div class="btn-list w-100 flex-nowrap">
                   <button type="button" @if($bulkDisabled)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#deleteSelectedModal">Delete {{ count($selectedProjects) }} selected record</button>
                 </div>
-                <div class="ms-auto text-muted">
-                  Search :
-                  <div class="d-inline-block">
-                    <input type="text" wire:model="search" class="form-control form-control-sm" aria-label="Search invoice">
+                <div class="row justify-content-end">
+                  <div class="col col-md-4 px-1">
+                    <select wire:model="sortBy" name="" class="form-select">
+                      <option value="DESC">DESC</option>
+                      <option value="ASC">ASC</option>
+                    </select>
+                  </div>
+                  <div class="col col-md-3 px-1">
+                    <select wire:model="pageLength" name="" class="form-select">
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+                  <div class="col col-md-5 px-1">
+                    <input type="text" wire:model="search" class="form-control" placeholder="Search" aria-label="Search invoice">
                   </div>
                 </div>
               </div>
@@ -39,6 +52,7 @@
                     <th>Action</th>
                     <th>Project Name</th>
                     <th>Project Description</th>
+                    <th>Created At</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -48,17 +62,18 @@
                       <td>{{ $projects->firstItem() + $loop->index }}</td>
                       <td>
                         <div class="btn-list flex-nowrap">
-                          <a href="#" class="btn">Show</a>
+                          <button type="button" wire:click="editProject({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#showModal">Show</button>
                           <button type="button" wire:click="editProject({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
                           <a href="#" wire:click="deleteProject({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
                         </div>
                       </td>
-                      <td>{{ $project->project_name }}</td>
-                      <td>{{ $project->project_description }}</td>
+                      <td class="small">{{ $project->project_name }}</td>
+                      <td class="small">{{ $project->project_description }}</td>
+                      <td class="small">{{ $project->created_at }}</td>
                     </tr>
                   @empty
                   <tr>
-                    <td class="text-center" colspan="5">No records found</td>
+                    <td class="text-center" colspan="6">No records found</td>
                   </tr>
                   @endforelse
                 </tbody>

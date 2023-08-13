@@ -22,6 +22,10 @@ class Projects extends Component
 
     public $selectedProjects = [];
     
+    public $pageLength = 5;
+
+    public $sortBy = 'DESC';
+
     public $selectAll = false;
     public $bulkDisabled = true;
 
@@ -116,7 +120,7 @@ class Projects extends Component
 
     public function render()
     {
-        $projects = Project::where('project_name', 'like', '%'.$this->search.'%')->where('status', 1)->orderBy('id', 'DESC')->paginate(5);
+        $projects = Project::where('project_name', 'like', '%'.$this->search.'%')->where('status', 1)->orderBy('id', $this->sortBy)->paginate($this->pageLength);
         $this->bulkDisabled = count($this->selectedProjects) < 1;
 
         return view('livewire.project.projects', [
