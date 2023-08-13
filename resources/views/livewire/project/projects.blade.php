@@ -18,17 +18,22 @@
           <div class="card">
             <div class="card-body border-bottom py-3">
               <div class="d-flex flex-column flex-md-row align-items-center gap-2 gap-md-0 justify-content-between">
-                <div class="btn-list w-100 flex-nowrap">
-                  <button type="button" @if($bulkDisabled)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#deleteSelectedModal">Delete {{ count($selectedProjects) }} selected record</button>
+                <div class="btn-list w-100">
+                  @if($displayByStatus == 1)
+                    <button type="button" @if($bulkDisabled)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#deleteSelectedModal">Delete {{ count($selectedProjects) }} selected</button>
+                  @elseif($displayByStatus == 2)
+                    <button type="button" @if($bulkDisabled2)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#restoreSelectedModal">Restore {{ count($selectedProjects2) }} selected</button>
+                    <button type="button" @if($bulkDisabled2)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#deleteSelectedModalPermanently">Delete {{ count($selectedProjects2) }} selected permanently</button>
+                  @endif
                 </div>
-                <div class="row justify-content-end">
-                  <div class="col col-md-4 px-1">
+                <div class="d-flex w-100 flex-md-row flex-column gap-2 justify-content-end">
+                  <div class="col-md-3">
                     <select wire:model="sortBy" name="" class="form-select">
                       <option value="DESC">DESC</option>
                       <option value="ASC">ASC</option>
                     </select>
                   </div>
-                  <div class="col col-md-3 px-1">
+                  <div class="col-md-3">
                     <select wire:model="pageLength" name="" class="form-select">
                       <option value="5">5</option>
                       <option value="10">10</option>
@@ -37,7 +42,13 @@
                       <option value="100">100</option>
                     </select>
                   </div>
-                  <div class="col col-md-5 px-1">
+                  <div class="col-md-3">
+                    <select wire:model="displayByStatus" name="" class="form-select">
+                      <option value="1">Active</option>
+                      <option value="2">Inactive</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
                     <input type="text" wire:model="search" class="form-control" placeholder="Search" aria-label="Search invoice">
                   </div>
                 </div>
@@ -47,7 +58,13 @@
               <table class="table table-vcenter card-table datatable">
                 <thead>
                   <tr>
-                    <th><input type="checkbox" wire:model="selectAll" class="form-check-input m-0 align-middle" aria-label="Select all invoices"></th>
+                    <th>
+                      @if($displayByStatus == 1)
+                        <input type="checkbox" wire:model="selectAll" class="form-check-input m-0 align-middle" aria-label="Select all invoices">
+                      @elseif($displayByStatus == 2)
+                        <input type="checkbox" wire:model="selectAll2" class="form-check-input m-0 align-middle" aria-label="Select all invoices">
+                      @endif
+                    </th>
                     <th>No.</th>
                     <th>Action</th>
                     <th>Project Name</th>
@@ -58,13 +75,24 @@
                 <tbody>
                   @forelse($projects as $project)
                     <tr>
-                      <td><input type="checkbox" wire:model="selectedProjects" value="{{ $project->id }}" class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
+                      <td>
+                        @if($displayByStatus == 1)
+                          <input type="checkbox" wire:model="selectedProjects" value="{{ $project->id }}" class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice">
+                        @elseif($displayByStatus == 2)
+                          <input type="checkbox" wire:model="selectedProjects2" value="{{ $project->id }}" class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice">
+                        @endif
+                      </td>
                       <td>{{ $projects->firstItem() + $loop->index }}</td>
                       <td>
                         <div class="btn-list flex-nowrap">
-                          <button type="button" wire:click="editProject({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#showModal">Show</button>
-                          <button type="button" wire:click="editProject({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                          <a href="#" wire:click="deleteProject({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
+                          <button type="button" wire:click="selectProjectId({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#showModal">Show</button>
+                          @if($displayByStatus == 1)
+                            <button type="button" wire:click="selectProjectId({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+                            <button type="button" wire:click="selectProjectId({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                          @elseif($displayByStatus == 2)
+                            <button type="button" wire:click="selectProjectId({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#restoreModal">Restore</button>
+                            <button type="button" wire:click="selectProjectId({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#deletePermanentlyModal">Delete permanently</button>
+                          @endif
                         </div>
                       </td>
                       <td class="small">{{ $project->project_name }}</td>
