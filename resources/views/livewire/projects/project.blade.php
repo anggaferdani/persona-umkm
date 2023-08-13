@@ -122,9 +122,9 @@
     </div>
   </div>
 
-  @include('livewire.project.modal')
-
+  @include('livewire.projects.modal')
 </div>
+
 @push('scripts')
 <script type="text/javascript">
   Livewire.on('close-modal', postId => {

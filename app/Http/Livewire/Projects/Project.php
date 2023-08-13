@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Project;
+namespace App\Http\Livewire\Projects;
 
-use App\Models\Project;
+use App\Models\Project as ProjectModel;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Projects extends Component
+class Project extends Component
 {
     use WithPagination;
 
@@ -46,14 +46,14 @@ class Projects extends Component
     public function createProject(){
         $request = $this->validate();
 
-        Project::create($request);
+        ProjectModel::create($request);
 
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');
     }
 
     public function selectProjectId($project_id){
-        $project = Project::find($project_id);
+        $project = ProjectModel::find($project_id);
 
         if($project){
             $this->project_id = $project->id;
@@ -67,7 +67,7 @@ class Projects extends Component
     public function updateProject(){
         $request = $this->validate();
 
-        Project::where('id', $this->project_id)->update([
+        ProjectModel::where('id', $this->project_id)->update([
             'project_name' => $request['project_name'],
             'project_description' => $request['project_description'],
         ]);
@@ -77,7 +77,7 @@ class Projects extends Component
     }
 
     public function deleteProject(){
-        Project::where('id', $this->project_id)->update([
+        ProjectModel::where('id', $this->project_id)->update([
             'status' => 2,
         ]);
 
@@ -85,7 +85,7 @@ class Projects extends Component
     }
 
     public function deleteSelectedProject(){
-        Project::whereIn('id', $this->selectedProjects)->update([
+        ProjectModel::whereIn('id', $this->selectedProjects)->update([
             'status' => 2,
         ]);
 
@@ -96,14 +96,14 @@ class Projects extends Component
 
     public function updatedSelectAll($value){
         if($value){
-            $this->selectedProjects = Project::where('status', 1)->pluck('id');
+            $this->selectedProjects = ProjectModel::where('status', 1)->pluck('id');
         }else{
             $this->selectedProjects = [];
         }
     }
 
     public function restoreProject(){
-        Project::where('id', $this->project_id)->update([
+        ProjectModel::where('id', $this->project_id)->update([
             'status' => 1,
         ]);
 
@@ -111,13 +111,13 @@ class Projects extends Component
     }
 
     public function deletePermanently(){
-        Project::where('id', $this->project_id)->delete();
+        ProjectModel::where('id', $this->project_id)->delete();
 
         $this->dispatchBrowserEvent('close-modal');
     }
 
     public function restoreSelectedProject(){
-        Project::whereIn('id', $this->selectedProjects2)->update([
+        ProjectModel::whereIn('id', $this->selectedProjects2)->update([
             'status' => 1,
         ]);
 
@@ -127,7 +127,7 @@ class Projects extends Component
     }
 
     public function deleteSelectedProjectPermanently(){
-        Project::whereIn('id', $this->selectedProjects2)->delete();
+        ProjectModel::whereIn('id', $this->selectedProjects2)->delete();
 
         $this->selectedProjects2 = [];
         $this->selectAll2 = false;
@@ -136,7 +136,7 @@ class Projects extends Component
 
     public function updatedSelectAll2($value){
         if($value){
-            $this->selectedProjects2 = Project::where('status', 2)->pluck('id');
+            $this->selectedProjects2 = ProjectModel::where('status', 2)->pluck('id');
         }else{
             $this->selectedProjects2 = [];
         }
@@ -153,11 +153,11 @@ class Projects extends Component
 
     public function render()
     {
-        $projects = Project::where('project_name', 'like', '%'.$this->search.'%')->where('status', $this->displayByStatus)->orderBy('id', $this->sortBy)->paginate($this->pageLength);
+        $projects = ProjectModel::where('project_name', 'like', '%'.$this->search.'%')->where('status', $this->displayByStatus)->orderBy('id', $this->sortBy)->paginate($this->pageLength);
         $this->bulkDisabled = count($this->selectedProjects) < 1;
         $this->bulkDisabled2 = count($this->selectedProjects2) < 1;
 
-        return view('livewire.project.projects', [
+        return view('livewire.projects.project', [
             'projects' => $projects,
         ]);
     }
