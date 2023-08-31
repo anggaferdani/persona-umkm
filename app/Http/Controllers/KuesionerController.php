@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class KuesionerController extends Controller
 {
     public function index(){
-        return view('pages.projects.index');
+        return view('pages.kuesioners.index');
     }
 }

@@ -3,10 +3,7 @@
     <div class="container-xl">
       <div class="row g-2 align-items-center">
         <div class="col">
-          <h2 class="page-title">Project</h2>
-        </div>
-        <div class="col-auto ms-auto d-print-none">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Create</button>
+          <h2 class="page-title">Kuesioner</h2>
         </div>
       </div>
     </div>
@@ -16,14 +13,14 @@
       <div class="row row-cards">
         <div class="col-12">
           <div class="card">
-            <div class="card-body border-bottom py-3">
+            <div class="card-body py-3">
               <div class="d-flex flex-column flex-md-row align-items-center gap-2 gap-md-0 justify-content-between">
                 <div class="btn-list w-100">
                   @if($displayByStatus == 1)
-                    <button type="button" @if($bulkDisabled)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#deleteSelectedModal">Delete {{ count($selectedProjects) }} selected</button>
+                    <button type="button" @if($bulkDisabled)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#deleteSelectedModal">Delete {{ count($selectedKuesioners) }} selected</button>
                   @elseif($displayByStatus == 2)
-                    <button type="button" @if($bulkDisabled2)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#restoreSelectedModal">Restore {{ count($selectedProjects2) }} selected</button>
-                    <button type="button" @if($bulkDisabled2)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#deleteSelectedModalPermanently">Delete {{ count($selectedProjects2) }} selected permanently</button>
+                    <button type="button" @if($bulkDisabled2)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#restoreSelectedModal">Restore {{ count($selectedKuesioners2) }} selected</button>
+                    <button type="button" @if($bulkDisabled2)@disabled(true)@endif class="btn" data-bs-toggle="modal" data-bs-target="#deleteSelectedModalPermanently">Delete {{ count($selectedKuesioners2) }} selected permanently</button>
                   @endif
                 </div>
                 <div class="d-flex w-100 flex-md-row flex-column gap-2 justify-content-end">
@@ -35,7 +32,6 @@
                   </div>
                   <div class="col-md-3">
                     <select wire:model="pageLength" name="" class="form-select">
-                      <option value="5">5</option>
                       <option value="10">10</option>
                       <option value="25">25</option>
                       <option value="50">50</option>
@@ -54,6 +50,18 @@
                 </div>
               </div>
             </div>
+            <div class="card-body border-bottom py-3">
+              <label class="form-label required">Penggunaan Digital Marketing oleh UKM (Jawaban).xlsx</label>
+              <form action="" wire:submit.prevent="importKuesioner" class="row mb-0 g-0 g-md-2 gap-2 gap-md-0" enctype="multipart/form-data">
+                <div class="col-md-11">
+                  <input type="file" wire:model="penggunaan_digital_marketing_oleh_ukm" class="form-control @error('penggunaan_digital_marketing_oleh_ukm') is-invalid @enderror" placeholder="" aria-label="">
+                </div>
+                <div class="col-md-1 mt-auto">
+                  <button type="submit" class="btn btn-primary">Import</button>
+                </div>
+              </form>
+              @error('penggunaan_digital_marketing_oleh_ukm')<div class="text-danger">{{ $message }}</div>@enderror
+            </div>
             <div class="table-responsive">
               <table class="table table-vcenter card-table datatable">
                 <thead>
@@ -67,37 +75,37 @@
                     </th>
                     <th>No.</th>
                     <th>Action</th>
-                    <th>Project Name</th>
-                    <th>Project Description</th>
-                    <th>Created At</th>
+                    <th>Produk UKM Anda</th>
+                    <th>UKM Anda berdomisili di</th>
+                    <th>Nomor ponsel Anda</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @forelse($projects as $project)
+                  @forelse($kuesioners as $kuesioner)
                     <tr>
                       <td>
                         @if($displayByStatus == 1)
-                          <input type="checkbox" wire:model="selectedProjects" value="{{ $project->id }}" class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice">
+                          <input type="checkbox" wire:model="selectedKuesioners" value="{{ $kuesioner->id }}" class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice">
                         @elseif($displayByStatus == 2)
-                          <input type="checkbox" wire:model="selectedProjects2" value="{{ $project->id }}" class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice">
+                          <input type="checkbox" wire:model="selectedKuesioners2" value="{{ $kuesioner->id }}" class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice">
                         @endif
                       </td>
-                      <td>{{ $projects->firstItem() + $loop->index }}</td>
+                      <td>{{ $kuesioners->firstItem() + $loop->index }}</td>
                       <td>
                         <div class="btn-list flex-nowrap">
-                          <button type="button" wire:click="selectProjectId({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#showModal">Show</button>
+                          <button type="button" wire:click="selectKuesionerId({{ $kuesioner->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#showModal">Show</button>
                           @if($displayByStatus == 1)
-                            <button type="button" wire:click="selectProjectId({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                            <button type="button" wire:click="selectProjectId({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                            <button type="button" wire:click="selectKuesionerId({{ $kuesioner->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+                            <button type="button" wire:click="selectKuesionerId({{ $kuesioner->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                           @elseif($displayByStatus == 2)
-                            <button type="button" wire:click="selectProjectId({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#restoreModal">Restore</button>
-                            <button type="button" wire:click="selectProjectId({{ $project->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#deletePermanentlyModal">Delete permanently</button>
+                            <button type="button" wire:click="selectKuesionerId({{ $kuesioner->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#restoreModal">Restore</button>
+                            <button type="button" wire:click="selectKuesionerId({{ $kuesioner->id }})" class="btn" data-bs-toggle="modal" data-bs-target="#deletePermanentlyModal">Delete permanently</button>
                           @endif
                         </div>
                       </td>
-                      <td class="small">{{ $project->project_name }}</td>
-                      <td class="small">{{ $project->project_description }}</td>
-                      <td class="small">{{ $project->created_at }}</td>
+                      <td class="small">{{ $kuesioner->produk_ukm }}</td>
+                      <td class="small">{{ $kuesioner->domisili_ukm }}</td>
+                      <td class="small">{{ $kuesioner->nomor_ponsel }}</td>
                     </tr>
                   @empty
                   <tr>
@@ -109,8 +117,8 @@
             </div>
             <div class="card-footer d-flex align-items-center">
               <ul class="pagination m-0 ms-auto">
-                @if($projects->hasPages())
-                  {{ $projects->links() }}
+                @if($kuesioners->hasPages())
+                  {{ $kuesioners->links() }}
                 @else
                   <li class="page-item">No more records</li>
                 @endif
@@ -122,13 +130,12 @@
     </div>
   </div>
 
-  @include('livewire.projects.modal')
+  @include('livewire.kuesioners.modal')
 </div>
 
 @push('scripts')
 <script type="text/javascript">
   Livewire.on('close-modal', postId => {
-    $('#createModal').modal('hide');
     $('#editModal').modal('hide');
     $('#deleteModal').modal('hide');
   });

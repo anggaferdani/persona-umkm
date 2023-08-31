@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\KuesionerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ Route::middleware(['web', 'disableBackButton'])->group(function(){
 Route::prefix('superadmin')->name('superadmin.')->group(function(){
     Route::middleware(['auth:web', 'disableBackButton', 'superadmin'])->group(function(){
         Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
-        Route::get('/project', [ProjectController::class, 'index'])->name('project');
+        Route::get('/kuesioner', [KuesionerController::class, 'index'])->name('kuesioner');
     });
 });
 

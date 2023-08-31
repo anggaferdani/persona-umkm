@@ -10,6 +10,7 @@
     <link href="{{ asset('tabler/dist/css/tabler-payments.min.css?1684106062') }}" rel="stylesheet"/>
     <link href="{{ asset('tabler/dist/css/tabler-vendors.min.css?1684106062') }}" rel="stylesheet"/>
     <link href="{{ asset('tabler/dist/css/demo.min.css?1684106062') }}" rel="stylesheet"/>
+    <link href="{{ asset('jquery-plugin-for-animated-stackable-toast-messages-toast/dist/jquery.toast.min.css') }}" rel="stylesheet"/>
     @stack('stylesheets')
     @livewireStyles
     <style>
@@ -48,6 +49,33 @@
     <script src="{{ asset('tabler/dist/js/tabler.min.js?1684106062') }}" defer></script>
     <script src="{{ asset('tabler/dist/js/demo.min.js?1684106062') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('jquery-plugin-for-animated-stackable-toast-messages-toast/dist/jquery.toast.min.js') }}" defer></script>
+    <script src="{{ asset('jquery-plugin-for-animated-stackable-toast-messages-toast/src/jquery.toast.js') }}" defer></script>
+
+    <script type="text/javascript">
+      document.addEventListener("livewire:load", function(){
+        Livewire.on('success', postId => {
+          $.toast({
+            text: "Lorem ipsum dolor sit amet consectetur adipiscing elit aptent netus penatibus cum nam",
+            position: "top-right",
+            bgColor:'#2fb344',
+          });
+        });
+      });
+    </script>
+
+    <script type="text/javascript">
+      document.addEventListener("livewire:load", function(){
+        Livewire.on('error', postId => {
+          $.toast({
+            text: "Lorem ipsum dolor sit amet consectetur adipiscing elit aptent netus penatibus cum nam",
+            position: "top-right",
+            bgColor:'#d63939',
+          });
+        });
+      });
+    </script>
+
     @stack('scripts')
     @livewireScripts
   </body>

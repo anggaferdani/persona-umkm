@@ -5,7 +5,7 @@
     </button>
     <h1 class="navbar-brand navbar-brand-autodark">
       <a href=".">
-        <img src="{{ asset('tabler/static/logo.svg') }}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+        <h1 class="mb-0">Persona <span class="text-primary">UMKM</span></h1>
       </a>
     </h1>
     <div class="navbar-nav flex-row d-lg-none">
@@ -26,8 +26,12 @@
     </div>
     <div class="collapse navbar-collapse" id="sidebar-menu">
       <ul class="navbar-nav pt-lg-3">
-        <li class="nav-item"><a class="nav-link" href="{{ route('superadmin.dashboard') }}"><span class="nav-link-title">Dashboard</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('superadmin.project') }}"><span class="nav-link-title">Project</span></a></li>
+        <li class="nav-item {{ str_contains(Route::currentRouteName(), 'superadmin.dashboard') ? 'active' : '' }}"><a class="nav-link" href="{{ route('superadmin.dashboard') }}"><span class="nav-link-title">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0"></path><path d="M4 6v6a8 3 0 0 0 16 0v-6"></path><path d="M4 12v6a8 3 0 0 0 16 0v-6"></path></svg>
+          Dashboard</span></a></li>
+        <li class="nav-item {{ str_contains(Route::currentRouteName(), 'superadmin.kuesioner') ? 'active' : '' }}"><a class="nav-link" href="{{ route('superadmin.kuesioner') }}"><span class="nav-link-title">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-news" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11"></path><path d="M8 8l4 0"></path><path d="M8 12l4 0"></path><path d="M8 16l4 0"></path></svg>
+          Kuesioner</span></a></li>
       </ul>
     </div>
   </div>

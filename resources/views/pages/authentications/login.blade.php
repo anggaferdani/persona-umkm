@@ -3,7 +3,7 @@
 @section('content')
 <div class="container container-tight py-4">
   <div class="text-center mb-4">
-    <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{ asset('tabler/static/logo.svg') }}" height="36" alt=""></a>
+    <a href="." class="navbar-brand navbar-brand-autodark"><h1 class="mb-0">Persona <span class="text-primary">UMKM</span></h1></a>
   </div>
   <div class="card card-md">
     <div class="card-body">
