@@ -225,7 +225,7 @@ class Kuesioner extends Component
             $this->akan_merekomendasikan_kepada_kawan_untuk_menggunakan_e_commerce = $kuesioner->akan_merekomendasikan_kepada_kawan_untuk_menggunakan_e_commerce;
             $this->melihat_keuntungan_ketika_menggunakan_e_commerce = $kuesioner->melihat_keuntungan_ketika_menggunakan_e_commerce;
         }else{
-            return redirect()->route('superadmin.kueasioner');
+            return redirect()->route('superadmin.kuesioner');
         }
     }
 
