@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KuesionerController;
 
 /*
@@ -28,6 +29,7 @@ Route::prefix('superadmin')->name('superadmin.')->group(function(){
     Route::middleware(['auth:web', 'disableBackButton', 'superadmin'])->group(function(){
         Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
         Route::get('/kuesioner', [KuesionerController::class, 'index'])->name('kuesioner');
+        Route::get('/customer', [CustomerController::class, 'index'])->name('customer');
     });
 });
 

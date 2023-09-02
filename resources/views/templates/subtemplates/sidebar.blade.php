@@ -3,9 +3,9 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <h1 class="navbar-brand navbar-brand-autodark">
+    <h1 class="navbar-brand navbar-brand-autodark pt-lg-4">
       <a href=".">
-        <h1 class="mb-0">Persona <span class="text-primary">UMKM</span></h1>
+        <img src="{{ asset('logo.png') }}" width="130" height="" alt="" class="">
       </a>
     </h1>
     <div class="navbar-nav flex-row d-lg-none">
@@ -32,6 +32,9 @@
         <li class="nav-item {{ str_contains(Route::currentRouteName(), 'superadmin.kuesioner') ? 'active' : '' }}"><a class="nav-link" href="{{ route('superadmin.kuesioner') }}"><span class="nav-link-title">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-news" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11"></path><path d="M8 8l4 0"></path><path d="M8 12l4 0"></path><path d="M8 16l4 0"></path></svg>
           Kuesioner</span></a></li>
+        <li class="nav-item {{ str_contains(Route::currentRouteName(), 'superadmin.customer') ? 'active' : '' }}"><a class="nav-link" href="{{ route('superadmin.customer') }}"><span class="nav-link-title">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg>
+          Customer</span></a></li>
       </ul>
     </div>
   </div>
