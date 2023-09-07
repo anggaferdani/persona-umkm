@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BrandPersonalityAakerController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KuesionerController;
 
@@ -15,6 +16,8 @@ use App\Http\Controllers\KuesionerController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/brand-personality-aaker', [BrandPersonalityAakerController::class, 'index'])->name('brand-personality-aaker');
 
 Route::middleware(['web', 'disableBackButton'])->group(function(){
     Route::middleware(['authenticated'])->group(function(){
