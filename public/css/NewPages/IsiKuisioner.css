@@ -1,0 +1,30 @@
+.header{
+    background-color: #2388FF;
+    height: 22.5rem;
+}
+.header .container{
+    transform: translateY(7rem);
+}
+.header .container:nth-child(2){
+    transform: translateY(10rem);
+}
+.card{
+    text-align: center;
+}
+.card img{
+    text-align: center;
+    width: 25%;
+}
+.soal{
+    height: max-content;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .header .container{
+        transform: translateY(2rem);
+    }
+    .header .container:nth-child(2){
+        transform: translateY(5rem);
+    }
+}

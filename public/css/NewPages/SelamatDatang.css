@@ -1,0 +1,22 @@
+.btn-isi a{
+    border-radius: 50px;
+}
+#object{
+    width: 40%;
+}
+.objectLeft{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.objectRight{
+    position: absolute;
+    Right: 0;
+    bottom: 0;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #object{
+        width: 50%;
+    }
+}

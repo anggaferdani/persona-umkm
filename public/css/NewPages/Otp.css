@@ -1,0 +1,58 @@
+#containerOtp{
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+	align-items: space-around;
+	justify-content: center;
+}
+
+
+input{
+	height: 50px;
+	width: 40px;
+	border: none;
+	border-radius: 5px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.2rem;
+    border: 1px solid #c5c5c5;
+}
+
+.otp-bx{
+	display: flex;
+	justify-content: center;
+}
+.disabled{
+	opacity: .5;
+}
+
+h1{
+	text-align: center;
+	font-family: arimo;
+	color: honeydew;
+}
+
+.btn-isi a{
+    border-radius: 50px;
+}
+
+
+  #object{
+    width: 40%;
+}
+.objectLeft{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.objectRight{
+    position: absolute;
+    Right: 0;
+    bottom: 0;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #object{
+        width: 50%;
+    }
+}

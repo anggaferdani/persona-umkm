@@ -1,0 +1,57 @@
+#object{
+    width: 40%;
+}
+.objectLeft{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.objectRight{
+    position: absolute;
+    Right: 0;
+    bottom: 0;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #object{
+        width: 50%;
+    }
+}
+
+
+.registrasiContent{
+    /* height: 100vh; */
+    display: grid;
+    place-items: center;
+}
+.content{
+    width: 100%;
+}
+
+.form-input-container input{
+    padding: .75rem 2rem;
+    border-radius: 50px;
+}
+.form-input-container input::placeholder{
+        font-size: calc(75% + .5vmin) !important;
+        margin-bottom: 0 !important;
+}
+.btn-regist{
+    padding: .75rem 5rem;
+    border-radius: 50px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .form-input-container input{
+        padding: .4rem 2rem;
+        border-radius: 50px;
+    }
+    .btn-regist{
+        padding: .4rem 5rem;
+        border-radius: 50px;
+    }
+    .btn-regist p{
+        font-size: calc(60% + .5vmin) !important;
+    }
+}

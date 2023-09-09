@@ -1,0 +1,132 @@
+.parent{
+    padding-top: 0 !important;
+    height: 0 !important;
+}
+.mySlides {
+    margin: auto;
+    height: 75vh;
+    display:none;
+}
+.divActive{
+    display: block;
+}
+.divOff{
+    display: none;
+}
+/* .mySlideContent img{
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+} */
+.hasilContent{
+    height: 90vh;
+}
+.contentFlex{
+    height: max-content;
+}
+.w3-center{
+    width: 100vw !important;
+    /* height: 10%; */
+}
+.mySlideContent{
+    width: 75%;
+    border: 1px solid rgb(218, 214, 214);
+    border-radius: 10px;
+    height: max-content;
+    margin: auto;
+}
+.mySlideContent .title{
+    border-radius: 5px 5px 0 0;
+}
+.imageCover img{
+    height: 15rem;
+    width: 100%;
+    object-fit: contain;
+}
+@media only screen and (max-width: 768px) {
+    .imageCover{
+        display: flex;
+        justify-content: center;
+    }
+    .imageCover img{
+        height: 5rem;
+        width: 100%;
+    }
+}
+.w3-section{
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+}
+.buttonNp{
+    display: flex;
+    justify-content: center;
+}
+.dots-button{
+    border: none;
+    background: none !important;
+}
+/* .w3-section .w3-button{
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    background-color: #2388FF;
+    border: none !important;
+    color: white;
+} */
+
+
+
+.carousel-container {
+    position: relative;
+    /* max-width: 600px; */
+    margin: auto;
+  }
+  
+  .carousel {
+    /* display: flex; */
+    overflow: hidden;
+  }
+  
+  .carousel-item {
+    height: 90vh;
+    flex: 0 0 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-item h1 {
+    width: 100%;
+  }
+  
+  .carousel-prev,
+  .carousel-next,
+  .carousel-done {
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    background-color: #2388FF;
+    border: none !important;
+    color: white;
+
+    position: absolute;
+    bottom: 5%;
+    /* transform: translateY(-50%); */
+    /* padding: 10px; */
+    /* border: none; */
+    /* background-color: #333; */
+    /* color: #fff; */
+    cursor: pointer;
+  }
+  
+  .carousel-prev {
+    left: 5%;
+  }
+  
+  .carousel-next {
+    right: 5%;
+    display: block;
+  }
+  .carousel-done {
+    right: 5%;
+    display: none;
+  }
+  
+  

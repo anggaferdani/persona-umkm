@@ -1,0 +1,105 @@
+.header img:nth-child(1){
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+.flex-column{
+    position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 80;
+}
+
+.hr-beranda {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: .1em 0 0 0;
+    padding: 0;
+}
+.hr-jumbo {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-radius: 50px;
+    border-top: 10px solid #e0dfdf;
+    margin: 1rem 0;
+    padding: 0;
+}
+.tpcImage img{
+    width: 100%;
+    height: auto;
+}
+.apkImg img{
+    width: 100%;
+    height: auto;
+}
+.apk{
+    border: 1px solid rgb(211, 206, 206);
+    border-radius: 10px;
+}
+#navNTabs{
+    border: none !important;
+    display: flex;
+    gap: 10%;
+}
+
+#navNTabs li a{
+    font-weight: bold;
+}
+.responsive-tab-content{
+    width: 75%;
+}
+.card-precentage{
+    border: 1px solid rgb(211, 206, 206);
+    border-radius: 10px;
+}
+.parentImageHasil img{
+    width: 100%;
+    height: auto;
+}
+.headerNavTabs{
+    outline: 1px solid #2388FF;
+    border-radius: 10px 10px 0 0;
+    background-color: #2388FF;
+    color: white;
+}
+.nav-item a{
+    color: black !important;
+}
+.responsive-tab-menu ul{
+    border-radius: 10px;
+    border: 1px solid rgb(173, 171, 171);
+}
+.responsive-tab-menu .nav-pills .nav-link.active,
+.responsive-tab-menu .nav-pills .show>.nav-link {
+    background-color: transparent !important;
+    color: #2388FF !important;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #navNTabs{
+        gap: 0 !important;
+    }
+    #navNTabs .nav-item .nav-link{
+        padding: .5rem !important;
+    }
+    .nav-tabs-dropdown .nav-item .nav-link{
+        padding: .5rem !important;
+    }
+    .headerNavTabs{
+        padding: .5rem !important;
+    }
+}
+@media only screen and (max-width: 576px) {
+    .tpcImage img{
+        width: 25%;
+    }
+    .apkImg img{
+        width: 25%;
+    }
+    .marketerIcon img{
+        width: 100%;
+    }
+}
