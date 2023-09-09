@@ -1,0 +1,25 @@
+nav{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+.navbar-nav{
+    width: 100% !important;
+}
+.menu{
+    width: 100%;
+    text-align: center;
+}
+.fa-bell{
+    color: gold;
+}
+
+
+.logoPersona{
+    width: 25%;
+    height: auto;
+    object-fit: contain;
+}
+@media only screen and (max-width: 768px) {
+    .navbar-brand{
+        width: 80%;
+    }
+}

@@ -1,0 +1,61 @@
+.loginPage{
+    width: 30vw;
+}
+.forgot{
+    text-decoration: none;
+    color: grey;
+    float: right;
+}
+.mendaftar{
+    color: black;
+}
+
+.password-input-container {
+    position: relative;
+}
+.password-input {
+    padding-right: 32px;
+}
+.toggle-password {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .loginPage{
+        width: 75vw;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .loginPage{
+        width: 50vw;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .loginPage{
+        width: 40vw;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .loginPage{
+        width: 30vw;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .loginPage{
+        width: 30vw;
+    }
+}
