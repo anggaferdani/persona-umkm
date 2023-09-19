@@ -43,6 +43,7 @@ return new class extends Migration
             $table->text('average_excitement');
             $table->text('average_sophistication');
             $table->text('average_ruggedness');
+            $table->string('gender');
             $table->integer('status')->default(1);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

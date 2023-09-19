@@ -46,6 +46,7 @@ class BrandPersonalityAaker extends Model
         'average_excitement',
         'average_sophistication',
         'average_ruggedness',
+        'gender',
         'status',
         'created_by',
         'updated_by',
