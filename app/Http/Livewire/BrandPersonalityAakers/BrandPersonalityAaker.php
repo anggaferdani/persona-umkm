@@ -34,6 +34,7 @@ class BrandPersonalityAaker extends Component
     public $ruggedness_mandiri;
     public $ruggedness_berani;
     public $ruggedness_tidak_takut_mengambil_risiko;
+    public $gender;
 
     public function createBrandPersonalityAaker(){
         try{
@@ -63,6 +64,7 @@ class BrandPersonalityAaker extends Component
                 'ruggedness_mandiri' => 'required',
                 'ruggedness_berani' => 'required',
                 'ruggedness_tidak_takut_mengambil_risiko' => 'required',
+                'gender' => 'required',
             ]);
     
             $sincerity = [
@@ -146,6 +148,7 @@ class BrandPersonalityAaker extends Component
                 'average_excitement' => $average_excitement,
                 'average_sophistication' => $average_sophistication,
                 'average_ruggedness' => $average_ruggedness,
+                'gender' => $this->gender,
             ]);
     
             $results = [
@@ -212,6 +215,7 @@ class BrandPersonalityAaker extends Component
         $this->ruggedness_mandiri = '';
         $this->ruggedness_berani = '';
         $this->ruggedness_tidak_takut_mengambil_risiko = '';
+        $this->gender = '';
     }
 
     public function clearSessionVariable(){

@@ -286,6 +286,13 @@
             <label class="form-check form-check-inline"><input class="form-check-input" type="radio" wire:model.defer="ruggedness_tidak_takut_mengambil_risiko" name="ruggedness_tidak_takut_mengambil_risiko" value="5"><span class="form-check-label">5</span></label>
           </div>
         </div>
+        <div class="mb-3">
+          <div class="form-label">Gender</div>
+          <select class="form-select" wire:model.defer="gender">
+            <option value="men">Men</option>
+            <option value="women">Women</option>
+          </select>
+        </div>
       </div>
       <div class="card-footer text-end">
         <button type="submit" class="btn btn-primary">Submit</button>
