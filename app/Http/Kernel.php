@@ -68,5 +68,7 @@ class Kernel extends HttpKernel
         'authenticated' => \App\Http\Middleware\Authenticated::class,
         'superadmin' => \App\Http\Middleware\Superadmin::class,
         'admin' => \App\Http\Middleware\Admin::class,
+        'user' => \App\Http\Middleware\isUser::class,
+        'PreventBack' => \App\Http\Middleware\PreventBack::class,
     ];
 }

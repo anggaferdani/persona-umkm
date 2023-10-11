@@ -11,7 +11,7 @@
   <body>
     
     @include('NewPagesTemplate.Navbar')
-
+    @include('sweetalert::alert')
    <div class="parentNc">
     <div class="contentNavbarJustLogoNc">
       @yield('contentNoCenter')

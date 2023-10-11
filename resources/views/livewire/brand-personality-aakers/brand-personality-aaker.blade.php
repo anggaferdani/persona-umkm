@@ -1,8 +1,3 @@
-<div>
-  <div class="container container-tight py-4">
-    <div class="text-center mb-3">
-      <img src="{{ asset('logo.png') }}" width="150" height="" alt="" class="">
-    </div>
 
     @if(Session('error'))
       <div class="card mb-3">

@@ -10,25 +10,29 @@
       <p class=" text-center">kami telah mengirimkan kode <br>
         akses melalui email untuk verifikasi</p>
 
+        <form action="{{url('/otp/submit', $user->id)}}" method="post">
+          @csrf
      <div class="otp-bx mt-4 gap-sm-3 gap-2">
-      <input type="text" maxlength="1">
-      <input type="text" maxlength="1">
-      <input type="text" maxlength="1">
-      <input type="text" maxlength="1">
-      <input type="text" maxlength="1">
-      <input type="text" maxlength="1">
+       <input class="no-spinner" type="number" name="otp[]" maxlength="1">
+       <input class="no-spinner" type="number" name="otp[]" maxlength="1">
+       <input class="no-spinner" type="number" name="otp[]" maxlength="1">
+       <input class="no-spinner" type="number" name="otp[]" maxlength="1">
+       <input class="no-spinner" type="number" name="otp[]" maxlength="1">
+       <input class="no-spinner" type="number" name="otp[]" maxlength="1">
+      
      </div>
 
       <div class="btn-isi d-flex justify-content-center mt-4">
-        <a class="btn bg-blue d-flex align-items-center gap-2 justify-content-center w-50" href="/welcome" role="button">
+        <button type="submit" class="btn bg-blue d-flex align-items-center gap-2 justify-content-center w-50" role="button">
             <p class="fw-bold">LANJUT</p>
             <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
             <p></p>
-        </a>
+        </button>
       </div>
-      <p class="text-center text-danger mt-4">00:00:59</p>
+      </form>
+      <p id="timer" class="text-center text-danger mt-4"></p>
       <p class="fw-bold text-center mt-4">Tidak Menerima Kode OTP?</p>
-      <p class="text-blue text-center">Kirim Ulang Kode</p>
+      <button class="btn" type="submit" id="resent-otp" style="border: none"><p class="text-blue text-center">Kirim Ulang Kode</p></button>
     </div>
 
     {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script> --}}
@@ -82,6 +86,30 @@
         });
         console.log(otp);
       }
-    
+
+      let timeInSeconds = 60;
+
+    // Get a reference to the timer element
+    const timerElement = document.getElementById("timer");
+
+    // Function to update the timer display
+    function updateTimer() {
+      timerElement.textContent = `00:00:${timeInSeconds}`;
+
+      // If time is up, stop the countdown
+      if (timeInSeconds === 0) {
+        clearInterval(interval);
+        timerElement.textContent = "Time's up!";
+      } else {
+        timeInSeconds--; // Decrement the time
+      }
+    }
+
+    // Call updateTimer() every second
+    const interval = setInterval(updateTimer, 1000);
+
+    // Initial call to set up the timer display
+    updateTimer();
+      
     </script>
 @endsection
