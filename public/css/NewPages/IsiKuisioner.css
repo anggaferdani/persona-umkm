@@ -27,4 +27,7 @@
     .header .container:nth-child(2){
         transform: translateY(5rem);
     }
+    .form-select{
+        font-size: .7rem!important;
+    }
 }

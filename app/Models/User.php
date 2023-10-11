@@ -47,4 +47,12 @@ class User extends Authenticatable
             $model->updated_by = Auth::id();
         });
     }
+
+    public function bpa(){
+        return $this->hasMany(BrandPersonalityAaker::class, 'created_by', 'updated_by');
+    }
+
+    public function bpar(){
+        return $this->hasMany(BrandPersonalityAakerResult::class, 'created_by', 'updated_by');
+    }
 }

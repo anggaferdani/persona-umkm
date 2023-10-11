@@ -41,332 +41,368 @@
             </div>
         </div>
        </div>
-
-       <div class="container">
-        <div class="bar-progress d-flex align-items-center gap-2">
-            <p class="fw-bold">50%</p>
-            <div class="progress w-100" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-blue" style="width: 50%"></div>
-        </div>
-        </div>
-        <div class="soal">
-            <div class="row mt-4 foreach">
-                <div class="col-12">
-                    <p class="fw-bold">1. Bagaimana Bapak/Ibu memproduksi barang yang akan dijual ?</p>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-a" id="flexRadioDefault1" value="jawaban-a">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                           <p> Manual dengan tenaga manusia</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-b" id="flexRadioDefault1" value="jawaban-b">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan alat produksi manual</p>
-                        </label>
+      
+       <form action="{{ url('/kuisioner/store') }}" method="post">
+        @csrf
+            <div class="container">
+                <div class="bar-progress d-flex align-items-center gap-2">
+                    <p class="fw-bold">0%</p>
+                    <div class="progress w-100" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-blue" style="width: 0%"></div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-c" id="flexRadioDefault1" value="jawaban-c">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi dan alat produksi manual</p>
-                        </label>
+                <div class="soal">
+                    <div class="row mt-4 foreach">
+                        <div class="col-12">
+                            <p class="fw-bold">1. Sincerity: Merek ini...</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Hangat dan ramah<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio"  name="sincerity_hangat_dan_ramah" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio"  name="sincerity_hangat_dan_ramah" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio"  name="sincerity_hangat_dan_ramah" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio"  name="sincerity_hangat_dan_ramah" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio"  name="sincerity_hangat_dan_ramah" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Penuh kasih sayang<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_penuh_kasih_sayang" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_penuh_kasih_sayang" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_penuh_kasih_sayang" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_penuh_kasih_sayang" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_penuh_kasih_sayang" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Tulus<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_tulus" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_tulus" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_tulus" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_tulus" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_tulus" value="5"><span class="form-check-label">5</span></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Jujur<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_jujur" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_jujur" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_jujur" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_jujur" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_jujur" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Dapat dipercaya<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_dapat_dipercaya" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_dapat_dipercaya" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_dapat_dipercaya" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_dapat_dipercaya" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sincerity_dapat_dipercaya" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-d" id="flexRadioDefault1" value="jawaban-d">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi</p>
-                        </label>
+                    <div class="row mt-4 foreach">
+                        <div class="col-12">
+                            <p class="fw-bold">2. Competence: Merek ini...</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Andal<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_andal" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_andal" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_andal" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_andal" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_andal" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Terpercaya<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_terpercaya" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_terpercaya" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_terpercaya" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_terpercaya" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_terpercaya" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Memiliki reputasi yang baik<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_memiliki_reputasi_yang_baik" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_memiliki_reputasi_yang_baik" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_memiliki_reputasi_yang_baik" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_memiliki_reputasi_yang_baik" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_memiliki_reputasi_yang_baik" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Berkinerja baik<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_berkinerja_baik" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_berkinerja_baik" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_berkinerja_baik" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_berkinerja_baik" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="competence_berkinerja_baik" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Memberikan nilai<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio"  name="competence_memberikan_nilai" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio"  name="competence_memberikan_nilai" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio"  name="competence_memberikan_nilai" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio"  name="competence_memberikan_nilai" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio"  name="competence_memberikan_nilai" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
                     </div>
+                    <div class="row mt-4 foreach">
+                        <div class="col-12">
+                            <p class="fw-bold">3. Excitement: Merek ini...</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Inovatif<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_inovatif" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_inovatif" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_inovatif" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_inovatif" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_inovatif" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Menarik<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_menarik" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_menarik" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_menarik" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_menarik" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_menarik" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Penuh semangat<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_penuh_semangat" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_penuh_semangat" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_penuh_semangat" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_penuh_semangat" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_penuh_semangat" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Menyenangkan<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_menyenangkan" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_menyenangkan" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_menyenangkan" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_menyenangkan" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_menyenangkan" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Selalu ada yang baru<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_selalu_ada_yang_baru" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_selalu_ada_yang_baru" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_selalu_ada_yang_baru" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_selalu_ada_yang_baru" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="excitement_selalu_ada_yang_baru" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4 foreach">
+                        <div class="col-12">
+                            <p class="fw-bold">4. Sophistication: Merek ini...</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Elegan<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_elegan" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_elegan" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_elegan" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_elegan" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_elegan" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Berkelas<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_berkelas" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_berkelas" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_berkelas" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_berkelas" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_berkelas" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Bergaya<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_bergaya" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_bergaya" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_bergaya" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_bergaya" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_bergaya" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Canggih<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_canggih" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_canggih" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_canggih" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_canggih" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_canggih" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Mewah<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_mewah" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_mewah" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_mewah" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_mewah" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sophistication_mewah" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4 foreach">
+                        <div class="col-12">
+                            <p class="fw-bold">5. Ruggedness: Merek ini...</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Tangguh<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_tangguh" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_tangguh" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_tangguh" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_tangguh" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_tangguh" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Berkelas<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_berkelas" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_berkelas" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_berkelas" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_berkelas" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_berkelas" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Mandiri<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_mandiri" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_mandiri" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_mandiri" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_mandiri" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_mandiri" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Berani<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_berani" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_berani" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_berani" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_berani" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_berani" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-4 mt-2">
+                                <p class="form-label required">Tidak takut mengambil risiko<span class="text-danger">*</span></p>
+                            </div>
+                            <div class="col-sm-6 col-8">
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_tidak_takut_mengambil_risiko" value="1"><span class="form-check-label">1</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_tidak_takut_mengambil_risiko" value="2"><span class="form-check-label">2</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_tidak_takut_mengambil_risiko" value="3"><span class="form-check-label">3</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_tidak_takut_mengambil_risiko" value="4"><span class="form-check-label">4</span></p>
+                                <p class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ruggedness_tidak_takut_mengambil_risiko" value="5"><span class="form-check-label">5</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-6 col-sm-7 col-10 text-center">
+                        <p class="fw-bold">Jenis Kelamin</p>
+                        <p>Ini akan menentukan avatar Anda di layar hasil</p>
+                        <select name="gender" class="form-select p-sm-3 p-1 my-3 mx-auto" aria-label="Default select example">
+                            <option selected>Pilih kelamin Anda</option>
+                            <option value="men">Laki-Laki</option>
+                            <option value="women">Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+                @if (session('error'))
+                    <div class="text-danger text-center">
+                        Isi Data Dengan Lengkap
+                    </div>
+                @endif
+                <div class="btn-next d-flex justify-content-center mt-5">
+                    <button type="submit" class="btn bg-blue d-flex align-items-center gap-2 justify-content-center py-sm-3 py-2 px-5" role="button">
+                        <p>Lihat Hasil</p>
+                        <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+                        <p></p>
+                    </button>
                 </div>
             </div>
-            <div class="row mt-4 foreach">
-                <div class="col-12">
-                    <p class="fw-bold">1. Bagaimana Bapak/Ibu memproduksi barang yang akan dijual ?</p>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-a" id="flexRadioDefault1" value="jawaban-a">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                           <p> Manual dengan tenaga manusia</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-b" id="flexRadioDefault1" value="jawaban-b">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan alat produksi manual</p>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-c" id="flexRadioDefault1" value="jawaban-c">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi dan alat produksi manual</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-d" id="flexRadioDefault1" value="jawaban-d">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi</p>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 foreach">
-                <div class="col-12">
-                    <p class="fw-bold">1. Bagaimana Bapak/Ibu memproduksi barang yang akan dijual ?</p>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-a" id="flexRadioDefault1" value="jawaban-a">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                           <p> Manual dengan tenaga manusia</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-b" id="flexRadioDefault1" value="jawaban-b">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan alat produksi manual</p>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-c" id="flexRadioDefault1" value="jawaban-c">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi dan alat produksi manual</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-d" id="flexRadioDefault1" value="jawaban-d">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi</p>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 foreach">
-                <div class="col-12">
-                    <p class="fw-bold">1. Bagaimana Bapak/Ibu memproduksi barang yang akan dijual ?</p>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-a" id="flexRadioDefault1" value="jawaban-a">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                           <p> Manual dengan tenaga manusia</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-b" id="flexRadioDefault1" value="jawaban-b">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan alat produksi manual</p>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-c" id="flexRadioDefault1" value="jawaban-c">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi dan alat produksi manual</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-d" id="flexRadioDefault1" value="jawaban-d">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi</p>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 foreach">
-                <div class="col-12">
-                    <p class="fw-bold">1. Bagaimana Bapak/Ibu memproduksi barang yang akan dijual ?</p>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-a" id="flexRadioDefault1" value="jawaban-a">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                           <p> Manual dengan tenaga manusia</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-b" id="flexRadioDefault1" value="jawaban-b">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan alat produksi manual</p>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-c" id="flexRadioDefault1" value="jawaban-c">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi dan alat produksi manual</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-d" id="flexRadioDefault1" value="jawaban-d">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi</p>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 foreach">
-                <div class="col-12">
-                    <p class="fw-bold">1. Bagaimana Bapak/Ibu memproduksi barang yang akan dijual ?</p>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-a" id="flexRadioDefault1" value="jawaban-a">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                           <p> Manual dengan tenaga manusia</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-b" id="flexRadioDefault1" value="jawaban-b">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan alat produksi manual</p>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-c" id="flexRadioDefault1" value="jawaban-c">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi dan alat produksi manual</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-d" id="flexRadioDefault1" value="jawaban-d">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi</p>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 foreach">
-                <div class="col-12">
-                    <p class="fw-bold">1. Bagaimana Bapak/Ibu memproduksi barang yang akan dijual ?</p>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-a" id="flexRadioDefault1" value="jawaban-a">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                           <p> Manual dengan tenaga manusia</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-b" id="flexRadioDefault1" value="jawaban-b">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan alat produksi manual</p>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-c" id="flexRadioDefault1" value="jawaban-c">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi dan alat produksi manual</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-d" id="flexRadioDefault1" value="jawaban-d">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi</p>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 foreach">
-                <div class="col-12">
-                    <p class="fw-bold">1. Bagaimana Bapak/Ibu memproduksi barang yang akan dijual ?</p>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-a" id="flexRadioDefault1" value="jawaban-a">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                           <p> Manual dengan tenaga manusia</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-b" id="flexRadioDefault1" value="jawaban-b">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan alat produksi manual</p>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-c" id="flexRadioDefault1" value="jawaban-c">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi dan alat produksi manual</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-d" id="flexRadioDefault1" value="jawaban-d">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi</p>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 foreach">
-                <div class="col-12">
-                    <p class="fw-bold">1. Bagaimana Bapak/Ibu memproduksi barang yang akan dijual ?</p>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-a" id="flexRadioDefault1" value="jawaban-a">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                           <p> Manual dengan tenaga manusia</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-b" id="flexRadioDefault1" value="jawaban-b">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan alat produksi manual</p>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-c" id="flexRadioDefault1" value="jawaban-c">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi dan alat produksi manual</p>
-                        </label>
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="jawaban-d" id="flexRadioDefault1" value="jawaban-d">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <p>Dengan mesin produksi</p>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6 col-sm-7 col-10 text-center">
-                <p class="fw-bold">Jenis Kelamin</p>
-                <p>Ini akan menentukan avatar Anda di layar hasil</p>
-                <select class="form-select p-sm-3 p-1 my-3 mx-auto" aria-label="Default select example">
-                    <option selected>Pilih kelamin Anda</option>
-                    <option value="1">Laki-Laki</option>
-                    <option value="2">Perempuan</option>
-                  </select>
-            </div>
-        </div>
-        <div class="btn-next d-flex justify-content-center mt-5">
-            <a class="btn bg-blue d-flex align-items-center gap-2 justify-content-center py-sm-3 py-2 px-5" href="/hasil" role="button">
-                <p>Lihat Hasil</p>
-                <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
-                <p></p>
-            </a>
-        </div>
-    </div>
+        </form>
     <div class="FooterKuisioner" style="padding-top: 12.5rem;">
         @include('NewPagesTemplate.Footer')
     </div>

@@ -12,7 +12,24 @@
             <div class="row justify-content-center">
               <div class="col-10">
                 <p>Persona Brand Anda:</p>
-                <p class="fw-bold text-blue">SINCERITY</p>
+                <p class="fw-bold text-blue">
+                  @switch($bpamax->brand_personality_aaker)
+                    @case('average_sincerity')
+                      SINCERITY
+                      @break
+                    @case('average_competence')
+                     COMPETENCE
+                     @break
+                    @case('average_excitement')
+                      EXCITEMENT
+                     @break
+                    @case('average_sophistication')
+                     SOPHISTICATION
+                     @break
+                     @default
+                     RUGGEDNESS
+                  @endswitch
+                </p>
                 <div class="row justify-content-center">
                   <div class="col-md-4 col-10"> 
                     <div class="imageCover">
@@ -20,8 +37,23 @@
                     </div>
                   </div>
                 </div>
-                <p><span class="text-blue">SINCERITY</span> adalah orang yang sangat tulus,
-                  siap mengambil tindakan untuk melakukan apa yang mereka rasa benar.</p>
+                <p>@switch($bpamax->brand_personality_aaker)
+                    @case('average_sincerity')
+                    <span class="text-blue">SINCERITY</span>  adalah orang yang Ramah, Dapat Dipercaya, dan Menyenangkan
+                      @break
+                    @case('average_competence')
+                     <span class="text-blue">COMPETENCE</span>  adalah orang yang Handal, Bertanggung Jawab, Cerdas, dan Efisien
+                     @break
+                    @case('average_excitement')
+                      <span class="text-blue">EXCITEMENT</span>  adalah orang yang Suka Berimajinasi, Suka Hal Baru, Inspiratif, dan Bersemangat
+                     @break
+                    @case('average_sophistication')
+                     <span class="text-blue">SOPHISTICATION</span>  adalah orang yang Romantis, Memiliki Daya Tarik, Menawan, dan Mempesona
+                     @break
+                     @default
+                     <span class="text-blue">RUGGEDNESS</span>  adalah orang yang Maskulin, Terbuka, Aktif, dan Tangguh
+                  @endswitch
+                  </p>
               </div>
             </div>
           </div>

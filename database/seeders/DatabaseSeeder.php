@@ -18,12 +18,23 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Superadmin',
                 'email' => 'superadmin@gmail.com',
                 'password' => bcrypt(12345678),
+                'otp' => 1,
+                'verification' => 'verified',
                 'role' => 1,
             ], [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt(12345678),
+                'otp' => 2,
+                'verification' => 'verified',
                 'role' => 2,
+            ],[
+                'name' => 'User',
+                'email' => 'user@gmail.com',
+                'password' => bcrypt(12345678),
+                'otp' => 3,
+                'verification' => 'verified',
+                'role' => 3,
             ],
         ];
 

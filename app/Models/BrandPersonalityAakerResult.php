@@ -38,4 +38,8 @@ class BrandPersonalityAakerResult extends Model
     public function brand_personality_aakers(){
         return $this->belongsTo(BrandPersonalityAaker::class, 'bpa_id');
     }
+
+    public function user(){
+        return $this->belongsTo(BrandPersonalityAaker::class, 'created_by', 'updated_by');
+    }
 }

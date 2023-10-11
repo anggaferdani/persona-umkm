@@ -66,4 +66,8 @@ class BrandPersonalityAaker extends Model
     public function brand_personality_aaker_results(){
         return $this->hasMany(BrandPersonalityAakerResult::class);
     }
+    
+    public function user(){
+        return $this->belongsTo(User::class, 'created_by', 'updated_by');
+    }
 }

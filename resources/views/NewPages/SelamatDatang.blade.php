@@ -7,7 +7,7 @@
     <img class="objectRight" id="object" src="{{asset('../../images/objectRight.png')}}">
 <div class="selamatDatangContent text-center">
     <p>Selamat Datang !</p>
-    <p class="text-blue fw-bold">GALIH ALDIO PUTRA</p>
+    <p class="text-blue fw-bold">{{Auth::user()->name}}</p>
     <p class="mt-5">Ayo mulai dan Tentukan Persona Brandmu
         disini dengan mengisi kuisoner yang ada</p>
 

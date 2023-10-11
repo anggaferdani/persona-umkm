@@ -8,7 +8,7 @@
     <img class="objectRight" id="object" src="{{asset('../../images/objectRight.png')}}">
 <div class="registrasiContent">
     <div class="content">
-        <h3 class="fw-bold text-center">REGISTRASI</h3>
+        <h3 class="fw-bold text-center">RESET PASSWORD</h3>
         <p class="text-blue text-center">PERSONA BRAND</p>
     <div class="form">
         <div class="form-group my-3">

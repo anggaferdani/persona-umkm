@@ -5,7 +5,12 @@
 	align-items: space-around;
 	justify-content: center;
 }
-
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0; /* Remove the margin for Firefox */
+}
 
 input{
 	height: 50px;
