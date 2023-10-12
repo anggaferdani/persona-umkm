@@ -173,7 +173,7 @@
             </div>
             <div class="row justify-content-center py-sm-5 py-3">
               <div class="col-md-4 col-10 imageCover">
-                <img src="{{asset('../../images/taktik.png')}}">
+                <img src="{{asset('../../images/taktik2.png')}}">
               </div>
               <div class="col-md-6 col-10">
                 <div class="card-precentage p-3 mt-3">
