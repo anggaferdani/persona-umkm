@@ -107,7 +107,7 @@ class LoginController extends Controller
 
     public function otp($id) {
         $user = User::find($id);
-        return view('NewPages.otp', compact('user'));
+        return view('NewPages.Otp', compact('user'));
     }
 
     public function otpsubmit(Request $request, $id){

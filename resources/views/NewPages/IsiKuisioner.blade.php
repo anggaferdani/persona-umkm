@@ -2,6 +2,54 @@
 @section('judul_tab','Kuisioner Kemendikbud')
 
 @section('contentNoCenter')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    var itemsPerPage = 3;
+    var $contentContainer = $('#content-container');
+    var $pagination = $('#pagination');
+    var $percentageLabel = $('#percentage-label');
+    var $content = $contentContainer.find('.content');
+
+    var numItems = $content.length;
+    var numPages = Math.ceil(numItems / itemsPerPage);
+
+    // Initialize the pagination links
+    for (var i = 1; i <= numPages; i++) {
+        $pagination.append('<a href="#" class="page-link">' + i + '</a>');
+    }
+
+    // Show the first page of content
+    $content.slice(0, itemsPerPage).show();
+
+    // Display the percentage label
+    updatePercentageLabel(1, numPages);
+
+    // Handle pagination click event
+    $pagination.on('click', '.page-link', function(event) {
+        event.preventDefault();
+        var page = $(this).text();
+        $content.hide();
+        var startIndex = (page - 1) * itemsPerPage;
+        var endIndex = startIndex + itemsPerPage;
+        $content.slice(startIndex, endIndex).show();
+        updatePercentageLabel(page, numPages);
+    });
+
+   
+    
+    // Function to update the percentage label
+    function updatePercentageLabel(currentPage, totalPages) {
+        let percentage = ((currentPage / totalPages) * 100);
+        
+        console.log(percentage)
+        $percentageLabel.text( '(' + percentage + '%)' );
+        $(".percentage-bro").text( percentage + '%') ;
+        document.getElementById('progress-bar-top').style.width = percentage + '%';
+    }
+});
+
+</script>
 <link rel="stylesheet" href=" {{ asset('../css/NewPages/IsiKuisioner.css')}}">
 
 <div class="isiKuisionerContent">
@@ -46,13 +94,16 @@
         @csrf
             <div class="container">
                 <div class="bar-progress d-flex align-items-center gap-2">
-                    <p class="fw-bold">0%</p>
+                    <p class="fw-bold percentage-bro">
+                    
+                    </p>
                     <div class="progress w-100" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-blue" style="width: 0%"></div>
+                        <div class="progress-bar bg-blue" id="progress-bar-top"></div>
                     </div>
                 </div>
                 <div class="soal">
-                    <div class="row mt-4 foreach">
+                <div id="content-container">
+                    <div class="content row mt-4 foreach">
                         <div class="col-12">
                             <p class="fw-bold">1. Sincerity: Merek ini...</p>
                         </div>
@@ -117,7 +168,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4 foreach">
+                    <div class="content row mt-4 foreach">
                         <div class="col-12">
                             <p class="fw-bold">2. Competence: Merek ini...</p>
                         </div>
@@ -182,7 +233,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4 foreach">
+                    <div class="content row mt-4 foreach">
                         <div class="col-12">
                             <p class="fw-bold">3. Excitement: Merek ini...</p>
                         </div>
@@ -247,7 +298,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4 foreach">
+                    <div class="content row mt-4 foreach">
                         <div class="col-12">
                             <p class="fw-bold">4. Sophistication: Merek ini...</p>
                         </div>
@@ -312,7 +363,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4 foreach">
+                    <div class="content row mt-4 foreach">
                         <div class="col-12">
                             <p class="fw-bold">5. Ruggedness: Merek ini...</p>
                         </div>
@@ -377,8 +428,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row justify-content-center mt-5">
+                    <div class="content">
+                    <div class="row justify-content-center mt-5">
                     <div class="col-md-6 col-sm-7 col-10 text-center">
                         <p class="fw-bold">Jenis Kelamin</p>
                         <p>Ini akan menentukan avatar Anda di layar hasil</p>
@@ -401,6 +452,14 @@
                         <p></p>
                     </button>
                 </div>
+                    </div>
+                </div>
+                <div id="pagination" class="d-flex gap-3">
+                   
+                </div>
+                    
+                </div>
+                
             </div>
         </form>
     <div class="FooterKuisioner" style="padding-top: 12.5rem;">
@@ -409,3 +468,6 @@
     </div>
 </div>
 @endsection
+
+
+

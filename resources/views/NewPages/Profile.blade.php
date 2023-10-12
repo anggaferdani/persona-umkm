@@ -12,7 +12,7 @@
         <div class="row justify-content-md-start justify-content-center">
             <div class="col-md-4 col-6 p-2 ">
                 <img class="orang" src="{{asset('../images/profile.png')}}" alt="orang">
-                <a class="btn w-100 mt-1 ms-auto text-white" href="#" role="button" style="background-color: #2388FF;">LOG OUT</a>
+                <a class="btn w-100 mt-1 ms-auto text-white" href="/logout" role="button" style="background-color: #2388FF;">LOG OUT</a>
             </div>
             <div class="col-md-8 p-2 my-md-auto" id="descProfile">
                 <h1 class="text-md-start text-center">JOHN DOE</h1>

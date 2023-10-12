@@ -160,6 +160,44 @@ class PersonalityController extends Controller
     public function hasil($id){
         $bparesult = BrandPersonalityAakerResult::where('created_by', $id)->get();
         $bpamax = BrandPersonalityAakerResult::where('created_by', $id)->orderby('result', 'DESC')->first();
-        return view('NewPages.Hasil', compact('bparesult', 'bpamax'));
+
+        $bpasince = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_sincerity')->first();
+        $bpasincepercent = $bpasince->result * 20;
+
+        $bpacompe = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_competence')->first();
+        $bpacompepercent = $bpacompe->result * 20;
+
+        $bpaexci = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_excitement')->first();
+        $bpaexcipercent = $bpaexci->result * 20;
+
+        $bpasophis = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_sophistication')->first();
+        $bpasophispercent = $bpasophis->result * 20;
+
+        $bparug = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_ruggedness')->first();
+        $bparugpercent = $bparug->result * 20;
+        return view('NewPages.Hasil', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent'));
+    }
+
+    public function beranda(){
+        $user = Auth::user()->id;
+        $bparesult = BrandPersonalityAakerResult::where('created_by', $user)->get();
+        $bpamax = BrandPersonalityAakerResult::where('created_by', $user)->orderby('result', 'DESC')->first();
+
+        $bpasince = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_sincerity')->first();
+        $bpasincepercent = $bpasince->result * 20;
+
+        $bpacompe = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_competence')->first();
+        $bpacompepercent = $bpacompe->result * 20;
+
+        $bpaexci = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_excitement')->first();
+        $bpaexcipercent = $bpaexci->result * 20;
+
+        $bpasophis = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_sophistication')->first();
+        $bpasophispercent = $bpasophis->result * 20;
+
+        $bparug = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_ruggedness')->first();
+        $bparugpercent = $bparug->result * 20;
+
+        return view('NewPages.Beranda', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent'));
     }
 }
