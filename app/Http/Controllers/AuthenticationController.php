@@ -42,6 +42,6 @@ class AuthenticationController extends Controller
 
     public function logout(){
         Auth::guard('web')->logout();
-        return redirect()->route('login')->with('fail', 'You have been logged out');
+        return redirect()->route('user.login')->with('fail', 'You have been logged out');
     }
 }

@@ -48,152 +48,178 @@
                     </div>
                     <div class="col-sm-10 col-11">
                         <p class="fw-bold">Persona Brand Anda :</p>
-                        <h3 class="text-blue fw-bolder">SINCERITY</h3>
-                        <p class="mt-3">SINCERITY adalah orang yang sangat tulus, siap mengambil
-                            tindakan untuk melakukan apa yang mereka rasa benar.</p>
-
+                        @switch($bpamax->brand_personality_aaker)
+                            @case('average_sincerity')
+                            <h3 class="text-blue fw-bolder">SINCERITY</h3>
+                            <p class="mt-3">SINCERITY adalah orang yang sangat tulus, siap mengambil
+                                    tindakan untuk melakukan apa yang mereka rasa benar.</p>
+                            @break
+                            @case('average_competence')
+                            <h3 class="text-blue fw-bolder">COMPETENCE</h3>
+                            <p class="mt-3">COMPETENCE adalah orang yang Handal, Bertanggung Jawab, Cerdas, dan Efisien.</p>
+                            @break
+                            @case('average_excitement')
+                            <h3 class="text-blue fw-bolder">EXCITEMENT</h3>
+                            <p class="mt-3">EXCITEMENT adalah orang yang Suka Berimajinasi, Suka Hal Baru, Inspiratif, dan Bersemangat.</p>
+                            @break
+                            @case('average_sophistication')
+                            <h3 class="text-blue fw-bolder">SOPHISTICATION</h3>
+                            <p class="mt-3">SOPHISTICATION adalah orang yang Romantis, Memiliki Daya Tarik, Menawan, dan Mempesona.</p>
+                            @break
+                            @default
+                            <h3 class="text-blue fw-bolder">RUGGEDNESS</h3>
+                            <p class="mt-3">RUGGEDNESS adalah orang yang Maskulin, Terbuka, Aktif, dan Tangguh.</p>
+                        @endswitch
                         <div class="card-precentage p-3 mt-3">
-                            <p class="text-primary fw-bold mb-2">78% EXTROVERT</p>
+                            <p class="text-primary fw-bold mb-2">{{$bpasophispercent}}% EXTROVERT</p>
                             <div class="progress mb-3">
-                                <div class="progress-bar bg-primary" style="width: 78%" aria-valuenow="78"
-                                    aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-primary" style="width: {{$bpasophispercent}}%" aria-valuenow="{{$bpasophispercent}}"
+                          aria-valuemin="0" aria-valuemax="100">
                                 </div>
-                                <div class="progress-bar bg-secondary" style="width: 22%" aria-valuenow="22"
-                                    aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-secondary" style="width: {{100 - $bpasophispercent}}%" aria-valuenow="{{100 - $bpasophispercent}}"
+                          aria-valuemin="0" aria-valuemax="100">
                                 </div>
                             </div>
                             <div class="precentage d-flex justify-content-between">
                                 <div class="left text-start text-primary">
-                                    <p class="fw-bold">78%</p>
+                                    <p class="fw-bold">{{$bpasophispercent}}%</p>
                                     <p>EXTROVERT</p>
                                 </div>
                                 <div class="right text-end">
-                                    <p class="fw-bold">22%</p>
+                                    <p class="fw-bold">{{100 - $bpasophispercent}}%</p>
                                     <p>INTROVERT</p>
                                 </div>
                             </div>
                         </div>
                         <div class="card-precentage p-3 mt-3">
-                            <p class="text-primary fw-bold mb-2">78% EXTROVERT</p>
+                            <p style="color: #9123FF;" class=" fw-bold mb-2">{{$bpaexcipercent}}% INTUITIF</p>
                             <div class="progress mb-3">
-                                <div class="progress-bar bg-primary" style="width: 78%" aria-valuenow="78"
+                                <div class="progress-bar" style="width: {{$bpaexcipercent}}%; background-color: #9123FF;" aria-valuenow="{{$bpaexcipercent}}"
                                     aria-valuemin="0" aria-valuemax="100">
                                 </div>
-                                <div class="progress-bar bg-secondary" style="width: 22%" aria-valuenow="22"
+                                <div class="progress-bar bg-secondary" style="width: {{100 - $bpaexcipercent}}%" aria-valuenow="{{100 - $bpaexcipercent}}"
                                     aria-valuemin="0" aria-valuemax="100">
                                 </div>
                             </div>
                             <div class="precentage d-flex justify-content-between">
                                 <div class="left text-start text-primary">
-                                    <p class="fw-bold">78%</p>
-                                    <p>EXTROVERT</p>
+                                    <p style="color: #9123FF;" class="fw-bold">{{$bpaexcipercent}}%</p>
+                                    <p style="color: #9123FF;">INTUITIF</p>
                                 </div>
                                 <div class="right text-end">
-                                    <p class="fw-bold">22%</p>
-                                    <p>INTROVERT</p>
+                                    <p class="fw-bold">{{100 - $bpaexcipercent}}%</p>
+                                    <p>OBSERVANT</p>
                                 </div>
                             </div>
                         </div>
                         <div class="card-precentage p-3 mt-3">
-                            <p class="text-primary fw-bold mb-2">78% EXTROVERT</p>
+                        <p style="color: #1C8E00;" class="fw-bold mb-2">{{$bpasincepercent}}% RASA</p>
                             <div class="progress mb-3">
-                                <div class="progress-bar bg-primary" style="width: 78%" aria-valuenow="78"
-                                    aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: {{$bpasincepercent}}%; background-color: #1C8E00;" aria-valuenow="{{$bpasincepercent}}" aria-valuemin="0" aria-valuemax="100">
                                 </div>
-                                <div class="progress-bar bg-secondary" style="width: 22%" aria-valuenow="22"
-                                    aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-secondary" style="width: {{100 - $bpasincepercent}}%" aria-valuenow="{{100 - $bpasincepercent}}" aria-valuemin="0" aria-valuemax="100">
                                 </div>
                             </div>
                             <div class="precentage d-flex justify-content-between">
                                 <div class="left text-start text-primary">
-                                    <p class="fw-bold">78%</p>
-                                    <p>EXTROVERT</p>
+                                    <p style="color: #1C8E00;" class="fw-bold">{{$bpasincepercent}}%</p>
+                                    <p style="color: #1C8E00;">RASA</p>
                                 </div>
                                 <div class="right text-end">
-                                    <p class="fw-bold">22%</p>
-                                    <p>INTROVERT</p>
+                                    <p class="fw-bold">{{100 - $bpasincepercent}}%</p>
+                                    <p>PEMIKIRAN</p>
                                 </div>
                             </div>
                         </div>
                         <div class="card-precentage p-3 mt-3">
-                            <p class="text-primary fw-bold mb-2">78% EXTROVERT</p>
+                            <p style="color: #AD000A;" class="fw-bold mb-2">{{$bpacompepercent}}% MENILAI</p>
                             <div class="progress mb-3">
-                                <div class="progress-bar bg-primary" style="width: 78%" aria-valuenow="78"
-                                    aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: {{$bpacompepercent}}%; background-color: #AD000A;" aria-valuenow="{{$bpacompepercent}}" aria-valuemin="0" aria-valuemax="100">
                                 </div>
-                                <div class="progress-bar bg-secondary" style="width: 22%" aria-valuenow="22"
-                                    aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-secondary" style="width: {{100 - $bpacompepercent}}%" aria-valuenow="{{100 - $bpacompepercent}}"  aria-valuemin="0" aria-valuemax="100">
                                 </div>
                             </div>
                             <div class="precentage d-flex justify-content-between">
                                 <div class="left text-start text-primary">
-                                    <p class="fw-bold">78%</p>
-                                    <p>EXTROVERT</p>
+                                    <p style="color: #AD000A;" class="fw-bold">{{$bpacompepercent}}%</p>
+                                    <p style="color: #AD000A;">MENILAI</p>
                                 </div>
                                 <div class="right text-end">
-                                    <p class="fw-bold">22%</p>
-                                    <p>INTROVERT</p>
+                                    <p class="fw-bold">{{100 - $bpacompepercent}}%</p>
+                                    <p>PENCARIAN</p>
                                 </div>
                             </div>
                         </div>
                         <div class="card-precentage p-3 mt-3">
-                            <p class="text-primary fw-bold mb-2">78% EXTROVERT</p>
+                        <p style="color: #D88100;" class=" fw-bold mb-2">{{$bparugpercent}}% GEJOLAK</p>
                             <div class="progress mb-3">
-                                <div class="progress-bar bg-primary" style="width: 78%" aria-valuenow="78"
-                                    aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: {{$bparugpercent}}%; background-color: #D88100;" aria-valuenow="{{$bparugpercent}}" aria-valuemin="0" aria-valuemax="100">
                                 </div>
-                                <div class="progress-bar bg-secondary" style="width: 22%" aria-valuenow="22"
-                                    aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-secondary" style="width: {{100 - $bparugpercent}}%" aria-valuenow="{{100 - $bparugpercent}}" aria-valuemin="0" aria-valuemax="100">
                                 </div>
                             </div>
                             <div class="precentage d-flex justify-content-between">
                                 <div class="left text-start text-primary">
-                                    <p class="fw-bold">78%</p>
-                                    <p>EXTROVERT</p>
+                                    <p style="color: #D88100;" class="fw-bold">{{$bparugpercent}}%</p>
+                                    <p style="color: #D88100;">GEJOLAK</p>
                                 </div>
                                 <div class="right text-end">
-                                    <p class="fw-bold">22%</p>
-                                    <p>INTROVERT</p>
+                                    <p class="fw-bold">{{100 - $bparugpercent}}%</p>
+                                    <p>ASERTIF</p>
                                 </div>
                             </div>
                         </div>
-
-                        <h3 class="text-blue fw-bolder my-3">SINCERITY</h3>
-                        <div class="textLong mt-3">
-                            <p class="fw-bold">Reseptif</p>
-                            <p>Tokoh sincerity mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
-                                Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
-                                sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
-                                orang tersebut untuk menyuarakan kebenaran mereka.</p>
-                        </div>
-                        <div class="textLong mt-3">
-                            <p class="fw-bold">Reseptif</p>
-                            <p>Tokoh sincerity mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
-                                Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
-                                sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
-                                orang tersebut untuk menyuarakan kebenaran mereka.</p>
-                        </div>
-                        <div class="textLong mt-3">
-                            <p class="fw-bold">Reseptif</p>
-                            <p>Tokoh sincerity mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
-                                Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
-                                sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
-                                orang tersebut untuk menyuarakan kebenaran mereka.</p>
-                        </div>
-                        <div class="textLong mt-3">
-                            <p class="fw-bold">Reseptif</p>
-                            <p>Tokoh sincerity mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
-                                Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
-                                sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
-                                orang tersebut untuk menyuarakan kebenaran mereka.</p>
-                        </div>
-                        <div class="textLong mt-3">
-                            <p class="fw-bold">Reseptif</p>
-                            <p>Tokoh sincerity mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
-                                Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
-                                sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
-                                orang tersebut untuk menyuarakan kebenaran mereka.</p>
-                        </div>
+                        @switch($bpamax->brand_personality_aaker)
+                            @case('average_sincerity')
+                                <h3 class="text-blue fw-bolder my-3">SINCERITY</h3>
+                                <div class="textLong mt-3">
+                                    <p class="fw-bold">Reseptif</p>
+                                    <p>Tokoh sincerity mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
+                                        Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
+                                        sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
+                                        orang tersebut untuk menyuarakan kebenaran mereka.</p>
+                                </div>
+                            @break
+                            @case('average_competence')
+                                <h3 class="text-blue fw-bolder my-3">COMPETENCE</h3>
+                                <div class="textLong mt-3">
+                                    <p class="fw-bold">Reseptif</p>
+                                    <p>Tokoh competence mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
+                                        Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
+                                        sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
+                                        orang tersebut untuk menyuarakan kebenaran mereka.</p>
+                                </div>
+                            @break
+                            @case('average_excitement')
+                            <h3 class="text-blue fw-bolder">EXCITEMENT</h3>
+                                <div class="textLong mt-3">
+                                    <p class="fw-bold">Reseptif</p>
+                                    <p>Tokoh excitement mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
+                                        Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
+                                        sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
+                                        orang tersebut untuk menyuarakan kebenaran mereka.</p>
+                                </div>
+                            @break
+                            @case('average_sophistication')
+                            <h3 class="text-blue fw-bolder">SOPHISTICATION</h3>
+                                <div class="textLong mt-3">
+                                    <p class="fw-bold">Reseptif</p>
+                                    <p>Tokoh sophistication mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
+                                        Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
+                                        sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
+                                        orang tersebut untuk menyuarakan kebenaran mereka.</p>
+                                </div>
+                            @break
+                            @default
+                            <h3 class="text-blue fw-bolder">RUGGEDNESS</h3>
+                                <div class="textLong mt-3">
+                                    <p class="fw-bold">Reseptif</p>
+                                    <p>Tokoh ruggedness mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
+                                        Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
+                                        sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
+                                        orang tersebut untuk menyuarakan kebenaran mereka.</p>
+                                </div>
+                        @endswitch
                     </div>
                 </div>
             </div>

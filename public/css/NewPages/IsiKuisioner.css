@@ -19,6 +19,31 @@
     height: max-content;
 }
 
+.content {
+    display: none;
+}
+
+#pagination {
+    justify-content: space-between;
+    margin-top: 20px;
+}
+#pagination a{
+    width: 100px;
+    background-color: #2388FF;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#percentage-label {
+    text-align: center;
+    margin-top: 10px;
+}
+.page-link{
+    align-items: center;
+}
+
 
 @media only screen and (max-width: 768px) {
     .header .container{
