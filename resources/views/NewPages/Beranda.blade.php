@@ -228,6 +228,28 @@
                 tabindex="0">
                 <!-- Nav pills -->
                 <ul class="nav nav-pills" role="tablist" id="navNTabs">
+                    @if($level)
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="pill" href="#anda">
+                            <p>Level Anda</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#basic">
+                            <p>Basic</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#intermediate">
+                            <p>Intermediate</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#advance">
+                            <p>Advance</p>
+                        </a>
+                    </li>
+                    @else
                     <li class="nav-item">
                         <a class="nav-link active" data-bs-toggle="pill" href="#basic">
                             <p>Basic</p>
@@ -243,96 +265,508 @@
                             <p>Advance</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#anda">
+                            <p>Level Anda</p>
+                        </a>
+                    </li>
+                    @endif
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
+                    @if(!$level)
+                    <div id="anda" class="container tab-pane fade"><br>
+                        @if(!$level)
+                            <button type="button" class="btn btn-sm btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModalpesan">
+                                Tentukan Level Anda
+                            </button>
+                        @else
+                            <h4 class="fw-bold">Level Digital Anda: 
+                                @if($level->team_creative = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'tidak')
+                                <span class="text-primary">Basic</span>
+                                @elseif($level->team_creative = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
+                                <span class="text-primary">Intermediate</span>
+                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'iya')
+                                <span class="text-primary">Advance</span>
+                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
+                                <span class="text-primary">Advance</span>
+                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'tidak')
+                                <span class="text-primary">Advance</span>
+                                @endif
+                            </h4>
+                        @endif
+                        @if($level)
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_design_thinking.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Tools Design Thinking sederhana</p>
+                                    <p>Anda Sudah Memiliki Merk Dengan Nama {{$level->merk}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @if($level->whatsapp_bisnis == 'sudah')
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_whatsapp.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Whatsapp</p>
+                                    <p>Anda Telah Menggunakan Whatsapp Business Untuk Merk Anda</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @if($level->gbusiness == 'iya')
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_gobusines.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Google My Business</p>
+                                    <p>Merk Anda Sudah Menggunakan Google Business</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @if($level->landing_page == 'iya')
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_web.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Landing Page</p>
+                                    <p>Merk Anda Telah Memiliki Website Katalog</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_seo.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">SEO</p>
+                                    <p>Merk Anda Memiliki Keyword Penting</p>
+                                </div>
+                            </div>
+                        </div>
+                        @if($level->ecommerce == 'iya')
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_ecommerce.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">E - Commerce</p>
+                                    <p>Merk Anda Telah Menggunakan E-Commerce</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @if($level->sosmed == 'iya')
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_sosmed.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Sosial Media</p>
+                                    <p>Merk Anda Telah Menggunakan Social Media</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @if($level->team_creative == 'iya')
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_tcreative.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Team Creative</p>
+                                    <p>Bisnis Anda Telah Memiliki Team Untuk Merk Anda</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                            <button type="button" class="btn btn-sm btn-primary fw-bold mt-3" data-bs-toggle="modal" data-bs-target="#exampleModalpesan">
+                                    Kerjakan Ulang Test Level
+                            </button>
+                        @endif
+                    </div>
+                    @else
+                    <div id="anda" class="container tab-pane active"><br>
+                        @if(!$level)
+                            <button type="button" class="btn btn-sm btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModalpesan">
+                                Tentukan Level Anda
+                            </button>
+                        @else
+                            <h4 class="fw-bold">Level Digital Anda: 
+                                @if($level->team_creative = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'tidak')
+                                <span class="text-primary">Basic</span>
+                                @elseif($level->team_creative = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
+                                <span class="text-primary">Intermediate</span>
+                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'iya')
+                                <span class="text-primary">Advance</span>
+                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
+                                <span class="text-primary">Advance</span>
+                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'tidak')
+                                <span class="text-primary">Advance</span>
+                                @endif
+                            </h4>
+                        @endif
+                        @if($level)
+                            <div class="textBasic mt-3">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{asset('../../images/level_design_thinking.png')}}" alt="">
+                                    </div>
+                                    <div class="my-auto ms-3">
+                                        <p class="fw-bold">Tools Design Thinking sederhana</p>
+                                        <p>Anda Sudah Memiliki Merk Dengan Nama {{$level->merk}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @if($level->whatsapp_bisnis == 'sudah')
+                            <div class="textBasic mt-3">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{asset('../../images/level_whatsapp.png')}}" alt="">
+                                    </div>
+                                    <div class="my-auto ms-3">
+                                        <p class="fw-bold">Whatsapp</p>
+                                        <p>Anda Telah Menggunakan Whatsapp Business Untuk Merk Anda</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            @if($level->gbusiness == 'iya')
+                            <div class="textBasic mt-3">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{asset('../../images/level_gobusines.png')}}" alt="">
+                                    </div>
+                                    <div class="my-auto ms-3">
+                                        <p class="fw-bold">Google My Business</p>
+                                        <p>Merk Anda Sudah Menggunakan Google Business</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            @if($level->landing_page == 'iya')
+                            <div class="textBasic mt-3">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{asset('../../images/level_web.png')}}" alt="">
+                                    </div>
+                                    <div class="my-auto ms-3">
+                                        <p class="fw-bold">Landing Page</p>
+                                        <p>Merk Anda Telah Memiliki Website Katalog</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            <div class="textBasic mt-3">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{asset('../../images/level_seo.png')}}" alt="">
+                                    </div>
+                                    <div class="my-auto ms-3">
+                                        <p class="fw-bold">SEO</p>
+                                        <p>Merk Anda Memiliki Keyword Penting</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @if($level->ecommerce == 'iya')
+                            <div class="textBasic mt-3">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{asset('../../images/level_ecommerce.png')}}" alt="">
+                                    </div>
+                                    <div class="my-auto ms-3">
+                                        <p class="fw-bold">E - Commerce</p>
+                                        <p>Merk Anda Telah Menggunakan E-Commerce</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            @if($level->sosmed == 'iya')
+                            <div class="textBasic mt-3">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{asset('../../images/level_sosmed.png')}}" alt="">
+                                    </div>
+                                    <div class="my-auto ms-3">
+                                        <p class="fw-bold">Sosial Media</p>
+                                        <p>Merk Anda Telah Menggunakan Social Media</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            @if($level->team == 'iya')
+                            <div class="textBasic mt-3">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{asset('../../images/level_tcreative.png')}}" alt="">
+                                    </div>
+                                    <div class="my-auto ms-3">
+                                        <p class="fw-bold">Team Creative</p>
+                                        <p>Bisnis Anda Telah Memiliki Team Untuk Merk Anda</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                        <button type="button" class="btn btn-sm btn-primary fw-bold mt-3" data-bs-toggle="modal" data-bs-target="#exampleModalpesan">
+                                Kerjakan Ulang Test Level
+                        </button>
+                        @endif
+                    </div>
+                    @endif
+
+                    @if(!$level)
                     <div id="basic" class="container tab-pane active"><br>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_design_thinking.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Tools Design Thinking sederhana</p>
+                                    <p>Bikin Merk dan narasi bisnis</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_whatsapp.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Whatsapp</p>
+                                    <p>Akun Bisnis WhatsApp dan WhatsApp katalog</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
-                        </div>
-                        <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
-                        </div>
-                        <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
-                        </div>
-                        <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_gobusines.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Google My Business</p>
+                                    <p>Lokasi Penjualan atau rumah UMKM</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    @else
+                    <div id="basic" class="container tab-pane fade"><br>
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_design_thinking.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Tools Design Thinking sederhana</p>
+                                    <p>Bikin Merk dan narasi bisnis</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_whatsapp.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Whatsapp</p>
+                                    <p>Akun Bisnis WhatsApp dan WhatsApp katalog</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="textBasic mt-3">
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_gobusines.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Google My Business</p>
+                                    <p>Lokasi Penjualan atau rumah UMKM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
 
                     <div id="intermediate" class="container tab-pane fade"><br>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_design_thinking.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Tools Design Thinking sederhana</p>
+                                    <p>Merk dengan Tagline yang relate</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_whatsapp.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Whatsapp</p>
+                                    <p>Akun Bisnis WhatsApp dan katalog lengkap dengan MILSHKE</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_gobusines.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Google My Business</p>
+                                    <p>Merawat dan menjawab semua review</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_web.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Landing Page</p>
+                                    <p>Mulai Landing Page Sederhana</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_seo.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">SEO</p>
+                                    <p>GMB, maintain satu keyword</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_sosmed.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Sosial Media</p>
+                                    <p>Instagram dan TikTok</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                       
 
                     <div id="advance" class="container tab-pane fade"><br>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_design_thinking.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Tools Design Thinking sederhana</p>
+                                    <p>Merk yang kuat dengan terus dipantau “ Kesehatannya “</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_whatsapp.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Whatsapp</p>
+                                    <p>Akun Bisnis WhatsApp dan katalog verified lengkap dengan MILSHKE</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_gobusines.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Google My Business</p>
+                                    <p>Di aktivitas semua reseller</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_web.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">Landing Page</p>
+                                    <p>Website yang meyakinkan</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_seo.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">SEO</p>
+                                    <p>3 - 5 Keyword penting</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="d-flex">
+                                <div class="">
+                                    <img src="{{asset('../../images/level_ecommerce.png')}}" alt="">
+                                </div>
+                                <div class="my-auto ms-3">
+                                    <p class="fw-bold">E - Commerce</p>
+                                    <p>WhatsApp, semua E - Commerce dengan supply Chain terintegrasi SIRCLO atau FORSTOCK</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="textBasic mt-3">
-                            <p class="fw-bold">Tools Design Thinking sederhana</p>
-                            <p>Bikin Merk dan narasi bisnis</p>
+                            <div class="textBasic mt-3">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{asset('../../images/level_sosmed.png')}}" alt="">
+                                    </div>
+                                    <div class="my-auto ms-3">
+                                        <p class="fw-bold">Sosial Media</p>
+                                        <p>Facebook, Instagram, Tiktok, dan Linked In</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="textBasic mt-3">
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{asset('../../images/level_tcreative.png')}}" alt="">
+                                    </div>
+                                    <div class="my-auto ms-3">
+                                        <p class="fw-bold">Team Creative</p>
+                                        <p>Team besar dengan Brand Guidline yang tepat</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
 
             <div class="tab-pane fade" id="v-pills-strategi" role="tabpanel" aria-labelledby="v-pills-strategi-tab"
                 tabindex="0">
@@ -437,12 +871,112 @@
                        </div>
                     </div>
                 </div>
+                </div>
 
             </div>
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="exampleModalpesan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalpesanLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalpesanLabel">Level Digital Umkm</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="{{ url('/level-umkm') }}" method="post" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1">Merk Anda<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Input Merk Name..." name="merk">
+                        @error('merk')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah Whatsapp Bisnis Anda Sudah Terverified?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="belum" class="form-check-input" id="exampleInputUsername1 " name="whatsapp_bisnis"><span class="me-2">
+                            Belum
+                        </span>
+                        <input type="radio" value="sudah" class="form-check-input" id="exampleInputUsername1 " name="whatsapp_bisnis"><span class="me-2">
+                            Sudah
+                        </span>
+                        @error('whatsapp_bisnis')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Menggunakan Google Business?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="gbusiness"><span class="me-2">
+                            ya
+                        </span>
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="gbusiness"><span class="me-2">
+                            Tidak
+                        </span>
+                        @error('gbusiness')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Memiliki Website?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="sosmed"><span class="me-2">
+                            ya
+                        </span>
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="sosmed"><span class="me-2">
+                            tidak
+                        </span>
+                        @error('sosmed')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Memiliki Katalog Di Social Media Seperti Facebook Dan Instagram?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="landing_page"><span class="me-2">
+                            ya
+                        </span>
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="landing_page"><span class="me-2">
+                            tidak
+                        </span>
+                        @error('landing_page')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Menggunakan E Commerce Seperti Shopee Atau Tokopedia?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="ecommerce"><span class="me-2">
+                            ya
+                        </span>
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="ecommerce"><span class="me-2">
+                            tidak
+                        </span>
+                        @error('ecommerce')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Memiliki Team Creative?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="team_creative"><span class="me-2">
+                            ya
+                        </span>
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="team_creative"><span class="me-2">
+                            tidak
+                        </span>
+                        @error('team_creative')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="modal-footer gap-1">
+                    <button type="button" class="btn btn-outline-warning btn-icon-text" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                        <button type="submit" id="dis" class="btn btn-outline-primary btn-icon-text">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="footerBeranda" style="margin-top: 5rem;">
     @include('NewPagesTemplate.Footer')
 </div>

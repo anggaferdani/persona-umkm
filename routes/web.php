@@ -26,6 +26,7 @@ Route::middleware(['user', 'auth:web', 'PreventBack'])->group(function (){
     Route::post('/kuisioner/store', [PersonalityController::class, 'postkuisioner'])->name('user.postkuisioner');
     Route::get('/hasil/{id}',  [PersonalityController::class, 'hasil'])->name('user.hasil');
     Route::get('/beranda', [PersonalityController::class, 'beranda'])->name('user.beranda');
+    Route::post('/level-umkm', [PersonalityController::class, 'levelumkm'])->name('user.level');
     Route::get('/marketer', function () {return view('NewPages.Marketer');});
     Route::get('/marketerdetail', function () {return view('NewPages.MarketerDetail');});
     Route::get('/profile', function () {return view('NewPages.Profile');});
@@ -48,7 +49,7 @@ Route::post('/post-register', [LoginController::class, 'postregister'])->name('u
 Route::get('/reset-password', [LoginController::class, 'resetpassword'])->name('user.resetpassword');
 Route::get('/otp/{id}',  [LoginController::class, 'otp'])->name('user.otp');
 Route::post('/otp/submit/{id}',  [LoginController::class, 'otpsubmit'])->name('user.otpsubmit');
-Route::get('/otp/resent/{id}',  [LoginController::class, 'otpresent'])->name('user.otpresent');
+Route::post('/otp/resent/{id}',  [LoginController::class, 'otpresent'])->name('user.otpresent');
 
 Route::middleware(['web', 'disableBackButton'])->group(function(){
     Route::middleware(['authenticated'])->group(function(){

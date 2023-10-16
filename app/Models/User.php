@@ -55,4 +55,8 @@ class User extends Authenticatable
     public function bpar(){
         return $this->hasMany(BrandPersonalityAakerResult::class, 'created_by', 'updated_by');
     }
+
+    public function level(){
+        return $this->hasMany(LevelUmkm::class, 'user_id');
+    }
 }
