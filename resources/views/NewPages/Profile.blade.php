@@ -11,13 +11,13 @@
     <div class="container" id="content">
         <div class="row justify-content-md-start justify-content-center">
             <div class="col-md-4 col-6 p-2 ">
-                <img class="orang" src="{{asset('../images/profile.png')}}" alt="orang">
+                <img class="orang" src="{{asset('../images/profile.jpg')}}" alt="orang">
                 <a class="btn w-100 mt-1 ms-auto text-white" href="/logout" role="button" style="background-color: #2388FF;">LOG OUT</a>
             </div>
             <div class="col-md-8 p-2 my-md-auto" id="descProfile">
-                <h1 class="text-md-start text-center">JOHN DOE</h1>
+                <h1 class="text-md-start text-center">{{Auth::user()->name}}</h1>
                 <div class="contact_profile justify-content-md-start justify-content-center d-flex gap-3 align-items-center">
-                    <p class="mb-0">johndoe12@gmail.com</p>
+                    <p class="mb-0">{{Auth::user()->email}}</p>
                     <div class="vr" style="width: .15rem;"></div>
                     <p class="mb-0">0857 4859 5623</p>
                 </div>

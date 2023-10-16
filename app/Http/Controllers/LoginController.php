@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Models\BrandPersonalityAaker as BrandPersonalityAakerModel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
@@ -41,7 +42,12 @@ class LoginController extends Controller
 
         if(Auth::attempt($infologin)){
             if(auth()->user()->role == 3 && auth()->user()->verification == 'verified' && auth()->user()->status == 1){
-                return redirect('/welcome');
+                $bpa = BrandPersonalityAakerModel::where('created_by', Auth::user()->id)->first();
+                if($bpa){
+                    return redirect('/beranda');
+                }else{
+                    return redirect('/welcome');
+                }
             }
             if(auth()->user()->role == 3 && auth()->user()->verification == 'verified' && auth()->user()->status == 2){
                 Alert::error('Error', 'Akun Anda Telah Dinonaktifkan');
@@ -108,6 +114,31 @@ class LoginController extends Controller
     public function otp($id) {
         $user = User::find($id);
         return view('NewPages.Otp', compact('user'));
+    }
+
+    public function otpresent($id){
+        $otp = rand(10000,999999);
+        $user = User::find($id);
+        $user->otp = $otp;
+        $user->save();
+
+        $mail = [
+            'subject' => 'Otp Code',
+            'to' => $user->email,
+            'email' => 'testing@gmail.com',
+            'from' => 'Testing',
+            'otp' => $user->otp,
+        ];
+
+        Mail::send('pages.sendmail', $mail, function($message) use ($mail){ 
+            $message->to($mail['to']) 
+            ->from($mail['email'], $mail['from']) 
+            ->subject($mail['subject']); 
+        });
+
+        Alert::success('Success', 'Kode OTP Telah Dikirim Ulang Ke Email Anda');
+        return redirect()->back();
+
     }
 
     public function otpsubmit(Request $request, $id){

@@ -32,7 +32,10 @@
       </form>
       <p id="timer" class="text-center text-danger mt-4"></p>
       <p class="fw-bold text-center mt-4">Tidak Menerima Kode OTP?</p>
-      <button class="btn" type="submit" id="resent-otp" style="border: none"><p class="text-blue text-center">Kirim Ulang Kode</p></button>
+      <form class="mx-auto" action="{{url('/otp/resent', $user->id)}}" method="post">
+        @csrf
+        <button class="btn" id="resent" type="submit" style="border: none;"><p class=" text-center">Kirim Ulang Kode</p></button>
+      </form>
     </div>
 
     {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script> --}}
@@ -91,6 +94,7 @@
 
     // Get a reference to the timer element
     const timerElement = document.getElementById("timer");
+    const resent = document.getElementById("resent");
 
     // Function to update the timer display
     function updateTimer() {
@@ -99,9 +103,13 @@
       // If time is up, stop the countdown
       if (timeInSeconds === 0) {
         clearInterval(interval);
-        timerElement.textContent = "Time's up!";
+        timerElement.textContent = "00:00:00";
+        resent.disabled = false;
+        resent.style.color = '#2388FF';
       } else {
         timeInSeconds--; // Decrement the time
+        resent.disabled = true;
+        resent.style.color = 'gray';
       }
     }
 

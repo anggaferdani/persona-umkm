@@ -10,6 +10,7 @@
   </head>
   <body>
     
+    @include('sweetalert::alert')
     @include('NewPagesTemplate.NavbarFull')
 
     <div class="parentNl">

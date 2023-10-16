@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LevelUmkm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -198,6 +199,61 @@ class PersonalityController extends Controller
         $bparug = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_ruggedness')->first();
         $bparugpercent = $bparug->result * 20;
 
-        return view('NewPages.Beranda', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent'));
+        $level = LevelUmkm::where('user_id', $user)->first();
+
+        return view('NewPages.Beranda', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent', 'level'));
+    }
+
+    public function levelumkm(Request $request){
+        $this->validate($request,[
+            'merk' => 'required',
+            'whatsapp_bisnis' => 'required',
+            'gbusiness' => 'required',
+            'landing_page' => 'required',
+            'sosmed' => 'required',
+            'ecommerce' => 'required',
+            'team_creative' => 'required',
+        ],[
+            'merk' => 'Insert Merk Name',
+            'whatsapp_bisnis' => 'Select One',
+            'gbusiness' => 'Select One',
+            'landing_page' => 'Select One',
+            'sosmed' => 'Select One',
+            'ecommerce' => 'Select One',
+            'team_creative' => 'Select One',
+        ]);
+        $user = Auth::user()->id;
+        $level = LevelUmkm::where('user_id', $user)->first();
+
+        if($level){
+            $level->merk = $request->merk;
+            $level->whatsapp_bisnis = $request->whatsapp_bisnis;
+            $level->gbusiness = $request->gbusiness;
+            $level->landing_page = $request->landing_page;
+            $level->sosmed = $request->sosmed;
+            $level->ecommerce = $request->ecommerce;
+            $level->team_creative = $request->team_creative;
+            $level->user_id = Auth::user()->id;
+
+            $level->save();
+        }
+        else{
+            $levelnew = new LevelUmkm();
+            $levelnew->merk = $request->merk;
+            $levelnew->whatsapp_bisnis = $request->whatsapp_bisnis;
+            $levelnew->gbusiness = $request->gbusiness;
+            $levelnew->landing_page = $request->landing_page;
+            $levelnew->sosmed = $request->sosmed;
+            $levelnew->ecommerce = $request->ecommerce;
+            $levelnew->team_creative = $request->team_creative;
+            $levelnew->user_id = Auth::user()->id;
+
+            $levelnew->save();
+        }
+
+        
+        Alert::success('Success', 'Level Digitalisasi Anda Sudah Ditentukan');
+        return redirect()->back();
+
     }
 }
