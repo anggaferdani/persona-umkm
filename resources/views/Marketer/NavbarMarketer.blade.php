@@ -14,8 +14,8 @@
       <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <div class="menu d-block d-lg-flex justify-content-start">
-            <a class="nav-link text-start" aria-current="page" href="/hasil-umkm"><p>Hasil</p></a>
-            <a class="nav-link text-start" href="/umkm"><p>UMKM</p></a>
+            <a class="nav-link text-start" aria-current="page" href="/marketer/beranda"><p>Hasil</p></a>
+            <a class="nav-link text-start" href="/marketer/umkm"><p>UMKM</p></a>
           </div>
           <div class="navbarNotif d-flex align-items-center gap-4 my-md-0 my-3">
             <a href=""><i class="fa-solid fa-bell"></i></a>

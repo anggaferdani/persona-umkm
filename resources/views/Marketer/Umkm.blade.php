@@ -20,7 +20,6 @@
                     <th scope="col"><p>Marketer</p></th>
                     <th scope="col"><p>Media</p></th>
                     <th scope="col"><p>Presentase</p></th>
-                    <th scope="col"><p>Kelengkapan</p></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -35,19 +34,6 @@
                         </div>
                         <p class="fw-bolder">95%</p>
                     </div></td>
-                    <td>
-                        <div class="top d-flex gap-1 justify-content-center">
-                            <p>CV</p>
-                            <p>PORTOFOLIO</p>
-                        </div>
-                        <div class="middle my-2">
-                            <a href=""><p>www.linkyoutubekami.com</p></a>
-                            <a href=""><p>www.linkyoutubekami.com</p></a>
-                        </div>
-                        <div class="bottom">
-                            <a class="btn btn-success py-1 mt-3" href="/detail-umkm" role="button"><p>Lihat Detail</p></a>
-                        </div>
-                    </td>
                   </tr>
                 </tbody>
             </table>

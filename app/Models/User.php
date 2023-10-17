@@ -59,4 +59,8 @@ class User extends Authenticatable
     public function level(){
         return $this->hasMany(LevelUmkm::class, 'user_id');
     }
+
+    public function marketer(){
+        return $this->hasMany(Marketer::class, 'user_id');
+    }
 }

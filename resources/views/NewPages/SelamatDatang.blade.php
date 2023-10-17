@@ -10,14 +10,23 @@
     <p class="text-blue fw-bold">{{Auth::user()->name}}</p>
     <p class="mt-5">Ayo mulai dan Tentukan Persona Brandmu
         disini dengan mengisi kuisoner yang ada</p>
-
+        @if(Auth::user()->role == 3)
         <div class="btn-isi d-flex justify-content-center mt-5">
-            <a class="btn bg-blue d-flex align-items-center gap-2 justify-content-center w-50" href="/kuisioner" role="button">
+            <a class="btn bg-blue d-flex align-items-center gap-2 justify-content-center w-50" href="/umkm/kuisioner" role="button">
                 <p class="fw-bold">ISI KUISIONER</p>
                 <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
                 <p></p>
             </a>
         </div>
+        @elseif(Auth::user()->role == 4)
+        <div class="btn-isi d-flex justify-content-center mt-5">
+            <a class="btn bg-blue d-flex align-items-center gap-2 justify-content-center w-50" href="/marketer/kuisioner" role="button">
+                <p class="fw-bold">ISI KUISIONER</p>
+                <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+                <p></p>
+            </a>
+        </div>
+        @endif
 </div>
 
 @endsection

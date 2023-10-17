@@ -10,7 +10,7 @@
       <p class=" text-center">kami telah mengirimkan kode <br>
         akses melalui email untuk verifikasi</p>
 
-        <form action="{{url('/umkm/otp/submit', $user->id)}}" method="post">
+        <form action="{{url('/marketer/otp/submit', $user->id)}}" method="post">
           @csrf
      <div class="otp-bx mt-4 gap-sm-3 gap-2">
        <input class="no-spinner" type="number" name="otp[]" maxlength="1">
@@ -32,7 +32,7 @@
       </form>
       <p id="timer" class="text-center text-danger mt-4"></p>
       <p class="fw-bold text-center mt-4">Tidak Menerima Kode OTP?</p>
-      <form class="mx-auto" action="{{url('/otp/resent', $user->id)}}" method="post">
+      <form class="mx-auto" action="{{url('/marketer/otp/resent', $user->id)}}" method="post">
         @csrf
         <button class="btn" id="resent" type="submit" style="border: none;"><p class=" text-center">Kirim Ulang Kode</p></button>
       </form>

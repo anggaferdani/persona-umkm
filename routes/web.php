@@ -20,36 +20,70 @@ use App\Http\Controllers\BrandPersonalityAakerController;
 */
 // Route::get('/', function () {return view('NewPages.Opening');});
 // Route::get('/register', function () {return view('NewPages.Registrasi');});
-Route::middleware(['user', 'auth:web', 'PreventBack'])->group(function (){
-    Route::get('/welcome', [PersonalityController::class, 'welcome'])->name('user.welcome');
-    Route::get('/kuisioner', [PersonalityController::class, 'kuisioner'])->name('user.kuisioner');
-    Route::post('/kuisioner/store', [PersonalityController::class, 'postkuisioner'])->name('user.postkuisioner');
-    Route::get('/hasil/{id}',  [PersonalityController::class, 'hasil'])->name('user.hasil');
-    Route::get('/beranda', [PersonalityController::class, 'beranda'])->name('user.beranda');
-    Route::post('/level-umkm', [PersonalityController::class, 'levelumkm'])->name('user.level');
-    Route::get('/marketer', function () {return view('NewPages.Marketer');});
-    Route::get('/marketerdetail', function () {return view('NewPages.MarketerDetail');});
-    Route::get('/profile', function () {return view('NewPages.Profile');});
 
-    // MARKETER
-    Route::get('/hasil-umkm', function () {return view('Marketer.Hasil');});
-    Route::get('/umkm', function () {return view('Marketer.Umkm');});
-    Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
-
-    Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
-});
 // Route::get('/lupapassword', function () {return view('NewPages.LupaPassword');});
 
 Route::get('/brand-personality-aaker', [BrandPersonalityAakerController::class, 'index'])->name('brand-personality-aaker');
 
 Route::get('/', [LoginController::class, 'index'])->name('user.login');
 Route::post('/postlogin', [LoginController::class, 'afterlogin'])->name('user.postlogin');
-Route::get('/register', [LoginController::class, 'register'])->name('user.register');
-Route::post('/post-register', [LoginController::class, 'postregister'])->name('user.postregister');
 Route::get('/reset-password', [LoginController::class, 'resetpassword'])->name('user.resetpassword');
-Route::get('/otp/{id}',  [LoginController::class, 'otp'])->name('user.otp');
-Route::post('/otp/submit/{id}',  [LoginController::class, 'otpsubmit'])->name('user.otpsubmit');
-Route::post('/otp/resent/{id}',  [LoginController::class, 'otpresent'])->name('user.otpresent');
+Route::get('/register', [LoginController::class, 'registerselect'])->name('user.registerselect');
+
+
+Route::prefix('umkm')->group(function(){
+    Route::get('/register', [LoginController::class, 'register'])->name('user.register');
+    Route::post('/post-register', [LoginController::class, 'postregister'])->name('user.postregister');
+    Route::get('/otp/{id}',  [LoginController::class, 'otp'])->name('user.otp');
+    Route::post('/otp/submit/{id}',  [LoginController::class, 'otpsubmit'])->name('user.otpsubmit');
+    Route::post('/otp/resent/{id}',  [LoginController::class, 'otpresent'])->name('user.otpresent');
+
+    Route::middleware(['user', 'auth:web', 'disableBackButton'])->group(function (){
+        Route::get('/welcome', [PersonalityController::class, 'welcome'])->name('user.welcome');
+        Route::get('/kuisioner', [PersonalityController::class, 'kuisioner'])->name('user.kuisioner');
+        Route::post('/kuisioner/store', [PersonalityController::class, 'postkuisioner'])->name('user.postkuisioner');
+        Route::get('/hasil/{id}',  [PersonalityController::class, 'hasil'])->name('user.hasil');
+        Route::get('/beranda', [PersonalityController::class, 'beranda'])->name('user.beranda');
+        Route::post('/level-umkm', [PersonalityController::class, 'levelumkm'])->name('user.level');
+        Route::get('/marketer', function () {return view('NewPages.Marketer');});
+        Route::get('/marketerdetail', function () {return view('NewPages.MarketerDetail');});
+        Route::get('/profile', function () {return view('NewPages.Profile');});
+    
+        // MARKETER
+        Route::get('/umkm', function () {return view('Marketer.Umkm');});
+        Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
+    
+        Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+    });
+});
+
+Route::prefix('marketer')->group(function(){
+    Route::get('/register', [LoginController::class, 'marketerregister'])->name('marketer.register');
+    Route::post('/post-register', [LoginController::class, 'marketerpostregister'])->name('marketer.postregister');
+    Route::get('/otp/{id}',  [LoginController::class, 'marketerotp'])->name('marketer.otp');
+    Route::post('/otp/submit/{id}',  [LoginController::class, 'marketerotpsubmit'])->name('marketer.otpsubmit');
+    Route::post('/otp/resent/{id}',  [LoginController::class, 'marketerotpresent'])->name('marketer.otpresent');
+
+    Route::middleware(['marketer', 'auth:web', 'disableBackButton'])->group(function (){
+        Route::get('/welcome', [PersonalityController::class, 'welcome'])->name('user.welcome');
+        Route::get('/kuisioner', [PersonalityController::class, 'kuisioner'])->name('user.kuisioner');
+        Route::post('/kuisioner/store', [PersonalityController::class, 'postkuisioner'])->name('user.postkuisioner');
+        Route::get('/hasil/{id}',  [PersonalityController::class, 'hasil'])->name('user.hasil');
+        Route::get('/beranda', [PersonalityController::class, 'marketerberanda'])->name('marketer.beranda');
+        Route::post('/level-umkm', [PersonalityController::class, 'levelumkm'])->name('user.level');
+        Route::get('/marketer', function () {return view('NewPages.Marketer');});
+        Route::get('/marketerdetail', function () {return view('NewPages.MarketerDetail');});
+        Route::get('/profile', function () {return view('NewPages.Profile');});
+    
+        // MARKETER
+        Route::get('/hasil-umkm', function () {return view('Marketer.Hasil');});
+        Route::get('/umkm', function () {return view('Marketer.Umkm');});
+        Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
+    
+        Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+    });
+});
+
 
 Route::middleware(['web', 'disableBackButton'])->group(function(){
     Route::middleware(['authenticated'])->group(function(){

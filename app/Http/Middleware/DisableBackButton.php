@@ -21,6 +21,6 @@ class DisableBackButton
         $response->headers->set('Expires', 'Fri 31 Dec 1999 00:00:00 GMT');
         return $response;
 
-        return redirect()->route('login');
+        return redirect()->route('user.login');
     }
 }
