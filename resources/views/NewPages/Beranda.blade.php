@@ -5,7 +5,7 @@
 <link rel="stylesheet" href=" {{ asset('../css/NewPages/Beranda.css')}}">
 
 <div class="header"  style="padding-top: 2.75rem;">
-    <img src="{{asset('../../images/bannerBeranda.png')}}">
+    <img src="{{asset('../../images/banner_persona.png')}}">
 </div>
 
 
@@ -282,15 +282,15 @@
                             </button>
                         @else
                             <h4 class="fw-bold">Level Digital Anda: 
-                                @if($level->team_creative = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'tidak')
+                                @if($level->team = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'tidak')
                                 <span class="text-primary">Basic</span>
-                                @elseif($level->team_creative = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
+                                @elseif($level->team = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
                                 <span class="text-primary">Intermediate</span>
-                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'iya')
+                                @elseif($level->team = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'iya')
                                 <span class="text-primary">Advance</span>
-                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
+                                @elseif($level->team = 'iya' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
                                 <span class="text-primary">Advance</span>
-                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'tidak')
+                                @elseif($level->team = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'tidak')
                                 <span class="text-primary">Advance</span>
                                 @endif
                             </h4>
@@ -383,7 +383,7 @@
                             </div>
                         </div>
                         @endif
-                        @if($level->team_creative == 'iya')
+                        @if($level->team == 'iya')
                         <div class="textBasic mt-3">
                             <div class="d-flex">
                                 <div class="">
@@ -409,15 +409,15 @@
                             </button>
                         @else
                             <h4 class="fw-bold">Level Digital Anda: 
-                                @if($level->team_creative = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'tidak')
+                                @if($level->team = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'tidak')
                                 <span class="text-primary">Basic</span>
-                                @elseif($level->team_creative = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
+                                @elseif($level->team = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
                                 <span class="text-primary">Intermediate</span>
-                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'iya')
+                                @elseif($level->team = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'iya')
                                 <span class="text-primary">Advance</span>
-                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
+                                @elseif($level->team = 'iya' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
                                 <span class="text-primary">Advance</span>
-                                @elseif($level->team_creative = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'tidak')
+                                @elseif($level->team = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'tidak')
                                 <span class="text-primary">Advance</span>
                                 @endif
                             </h4>
@@ -885,7 +885,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form action="{{ url('/level-umkm') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ url('/umkm/level-umkm') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1">Merk Anda<span class="text-danger">*</span></label>
@@ -956,13 +956,13 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Memiliki Team Creative?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="team_creative"><span class="me-2">
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="team"><span class="me-2">
                             ya
                         </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="team_creative"><span class="me-2">
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="team"><span class="me-2">
                             tidak
                         </span>
-                        @error('team_creative')
+                        @error('team')
                                 <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

@@ -8,9 +8,9 @@
     <img class="objectRight" id="object" src="{{asset('../../images/objectRight.png')}}">
 <div class="registrasiContent">
     <div class="content">
-        <h3 class="fw-bold text-center">REGISTRASI UMKM</h3>
+        <h3 class="fw-bold text-center">REGISTRASI MARKETER</h3>
         <p class="text-blue text-center">PERSONA BRAND</p>
-    <form action="{{route('user.postregister')}}" method="post">
+    <form action="{{route('marketer.postregister')}}" method="post" enctype="multipart/form-data">
         @csrf
     <div class="form">
         <div class="form-group my-3">
@@ -28,6 +28,35 @@
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
             </div>
+        </div>
+        <div class="form-group my-3">
+            <div class="form-input-container">
+                <label for="" class="ms-3 fw-bold">Upload CV</label>
+                <input type="file" name="cv" class="form-control email-input" id="txtemailLogin" placeholder="Email">
+                @error('cv')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+            </div>
+        </div>
+        <div class="form-group my-3">
+            <div class="form-input-container">
+                <input type="url" name="link_portofolio_1" class="form-control email-input" id="txtemailLogin" placeholder="Link Portofolio 1">
+                @error('link_portofolio_1')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+            </div>
+        </div>
+        <div class="row">
+        <div class="form-group my-1 col">
+            <div class="form-input-container">
+                <input type="url" name="link_portofolio_2" class="form-control email-input" id="txtemailLogin" placeholder="Link Portofolio 2 *opsional">
+            </div>
+        </div>
+        <div class="form-group my-1 col">
+            <div class="form-input-container">
+                <input type="url" name="link_portofolio_3" class="form-control email-input" id="txtemailLogin" placeholder="Link Portofolio 3 *opsional">
+            </div>
+        </div>
         </div>
         <div class="form-group my-3">
             <div class="form-input-container">

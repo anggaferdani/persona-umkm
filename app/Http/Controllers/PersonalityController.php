@@ -155,7 +155,11 @@ class PersonalityController extends Controller
             ]);
         }
         Alert::success('Success', 'Lihat Hasil Anda');
-        return redirect('/hasil/'.Auth::user()->id);
+        if(Auth::user()->role == 3){
+            return redirect('/umkm/hasil/'.Auth::user()->id);
+        }elseif(Auth::user()->role == 4){
+            return redirect('/marketer/hasil/'.Auth::user()->id);
+        }
     }
 
     public function hasil($id){
@@ -212,7 +216,7 @@ class PersonalityController extends Controller
             'landing_page' => 'required',
             'sosmed' => 'required',
             'ecommerce' => 'required',
-            'team_creative' => 'required',
+            'team' => 'required',
         ],[
             'merk' => 'Insert Merk Name',
             'whatsapp_bisnis' => 'Select One',
@@ -220,7 +224,7 @@ class PersonalityController extends Controller
             'landing_page' => 'Select One',
             'sosmed' => 'Select One',
             'ecommerce' => 'Select One',
-            'team_creative' => 'Select One',
+            'team' => 'Select One',
         ]);
         $user = Auth::user()->id;
         $level = LevelUmkm::where('user_id', $user)->first();
@@ -232,7 +236,7 @@ class PersonalityController extends Controller
             $level->landing_page = $request->landing_page;
             $level->sosmed = $request->sosmed;
             $level->ecommerce = $request->ecommerce;
-            $level->team_creative = $request->team_creative;
+            $level->team = $request->team;
             $level->user_id = Auth::user()->id;
 
             $level->save();
@@ -245,7 +249,7 @@ class PersonalityController extends Controller
             $levelnew->landing_page = $request->landing_page;
             $levelnew->sosmed = $request->sosmed;
             $levelnew->ecommerce = $request->ecommerce;
-            $levelnew->team_creative = $request->team_creative;
+            $levelnew->team = $request->team;
             $levelnew->user_id = Auth::user()->id;
 
             $levelnew->save();
@@ -255,5 +259,28 @@ class PersonalityController extends Controller
         Alert::success('Success', 'Level Digitalisasi Anda Sudah Ditentukan');
         return redirect()->back();
 
+    }
+
+    public function marketerberanda(){
+        $user = Auth::user()->id;
+        $bparesult = BrandPersonalityAakerResult::where('created_by', $user)->get();
+        $bpamax = BrandPersonalityAakerResult::where('created_by', $user)->orderby('result', 'DESC')->first();
+
+        $bpasince = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_sincerity')->first();
+        $bpasincepercent = $bpasince->result * 20;
+
+        $bpacompe = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_competence')->first();
+        $bpacompepercent = $bpacompe->result * 20;
+
+        $bpaexci = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_excitement')->first();
+        $bpaexcipercent = $bpaexci->result * 20;
+
+        $bpasophis = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_sophistication')->first();
+        $bpasophispercent = $bpasophis->result * 20;
+
+        $bparug = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_ruggedness')->first();
+        $bparugpercent = $bparug->result * 20;
+
+        return view('Marketer.Hasil', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent'));
     }
 }

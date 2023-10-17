@@ -249,7 +249,11 @@
               <div class="w3-section">
                 <button class="carousel-prev"><p>❮  Sebelumnya</p></button>
                 <button class="carousel-next"><p>Selanjutnya  ❯</p></button>
-                <a class="carousel-done" href="/beranda"><p>Selesai  ❯</p></a>
+                @if(Auth::user()->role == 3)
+                <a class="carousel-done" href="/umkm/beranda"><p>Selesai  ❯</p></a>
+                @elseif(Auth::user()->role == 4)
+                <a class="carousel-done" href="/marketer/beranda"><p>Selesai  ❯</p></a>
+                @endif
               </div>
             </div>
             
