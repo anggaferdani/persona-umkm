@@ -31,6 +31,7 @@ Route::get('/reset-password', [LoginController::class, 'resetpassword'])->name('
 Route::get('/register', [LoginController::class, 'registerselect'])->name('user.registerselect');
 
 
+
 Route::prefix('umkm')->group(function(){
     Route::get('/register', [LoginController::class, 'register'])->name('user.register');
     Route::post('/post-register', [LoginController::class, 'postregister'])->name('user.postregister');
@@ -53,7 +54,7 @@ Route::prefix('umkm')->group(function(){
         Route::get('/umkm', function () {return view('Marketer.Umkm');});
         Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
     
-        Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+        
     });
 });
 
@@ -79,8 +80,6 @@ Route::prefix('marketer')->group(function(){
         Route::get('/hasil-umkm', function () {return view('Marketer.Hasil');});
         Route::get('/umkm', function () {return view('Marketer.Umkm');});
         Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
-    
-        Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
     });
 });
 
@@ -91,7 +90,6 @@ Route::middleware(['web', 'disableBackButton'])->group(function(){
         Route::post('/post-login', [AuthenticationController::class, 'postLogin'])->name('post-login');
     });
     
-    Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 });
 
 Route::prefix('superadmin')->name('superadmin.')->group(function(){
@@ -107,3 +105,5 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
     });
 });
+
+Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');

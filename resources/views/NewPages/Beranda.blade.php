@@ -8,7 +8,6 @@
     <img src="{{asset('../../images/banner_persona.png')}}">
 </div>
 
-
 <div class="container mt-3">
     <div class="d-flex align-items-start justify-content-between responsive-tab-menu">
         <ul class="nav flex-column nav-pills nav-tabs-dropdown me-3" id="v-pills-tab" role="tablist"
@@ -383,7 +382,7 @@
                             </div>
                         </div>
                         @endif
-                        @if($level->team == 'iya')
+                        @if($level->team == "iya")
                         <div class="textBasic mt-3">
                             <div class="d-flex">
                                 <div class="">
@@ -396,9 +395,9 @@
                             </div>
                         </div>
                         @endif
-                            <button type="button" class="btn btn-sm btn-primary fw-bold mt-3" data-bs-toggle="modal" data-bs-target="#exampleModalpesan">
-                                    Kerjakan Ulang Test Level
-                            </button>
+                        <button type="button" class="btn btn-sm btn-primary fw-bold mt-3" data-bs-toggle="modal" data-bs-target="#exampleModalpesan">
+                            Kerjakan Ulang Test Level
+                        </button>
                         @endif
                     </div>
                     @else
@@ -409,15 +408,15 @@
                             </button>
                         @else
                             <h4 class="fw-bold">Level Digital Anda: 
-                                @if($level->team = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'tidak')
+                                @if($basic)
                                 <span class="text-primary">Basic</span>
-                                @elseif($level->team = 'tidak' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
+                                @elseif($intermediate)
                                 <span class="text-primary">Intermediate</span>
-                                @elseif($level->team = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'iya')
+                                @elseif($advance1)
                                 <span class="text-primary">Advance</span>
-                                @elseif($level->team = 'iya' && $level->ecommerce == 'tidak' && $level->landing_page == 'iya')
+                                @elseif($advance2)
                                 <span class="text-primary">Advance</span>
-                                @elseif($level->team = 'iya' && $level->ecommerce == 'iya' && $level->landing_page == 'tidak')
+                                @elseif($advance3)
                                 <span class="text-primary">Advance</span>
                                 @endif
                             </h4>
@@ -920,18 +919,6 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Memiliki Website?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="sosmed"><span class="me-2">
-                            ya
-                        </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="sosmed"><span class="me-2">
-                            tidak
-                        </span>
-                        @error('sosmed')
-                                <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Memiliki Katalog Di Social Media Seperti Facebook Dan Instagram?<span class="text-danger">*</span></label><br>
                         <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="landing_page"><span class="me-2">
                             ya
                         </span>
@@ -939,6 +926,18 @@
                             tidak
                         </span>
                         @error('landing_page')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Memiliki Katalog Di Social Media Seperti Facebook Dan Instagram?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="sosmed"><span class="me-2">
+                            ya
+                        </span>
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="sosmed"><span class="me-2">
+                            tidak
+                        </span>
+                        @error('sosmed')
                                 <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
