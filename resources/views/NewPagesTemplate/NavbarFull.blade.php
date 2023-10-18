@@ -19,7 +19,7 @@
           </div>
           <div class="navbarNotif d-flex align-items-center gap-4 my-md-0 my-3">
             <a href=""><i class="fa-solid fa-bell"></i></a>
-            <a href="/profile"><i class="fa-solid fa-user"></i></a>
+            <a href="/umkm/profile"><i class="fa-solid fa-user"></i></a>
           </div>
         </div>
        

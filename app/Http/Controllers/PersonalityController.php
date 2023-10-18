@@ -205,7 +205,18 @@ class PersonalityController extends Controller
 
         $level = LevelUmkm::where('user_id', $user)->first();
 
-        return view('NewPages.Beranda', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent', 'level'));
+        $basic = LevelUmkm::where('user_id', $user)->where('team', 'tidak')->where('ecommerce', 'tidak')->where('landing_page', 'tidak')->first();
+
+        $intermediate = LevelUmkm::where('user_id', $user)->where('team', 'tidak')->where('ecommerce', 'tidak')->where('landing_page', 'iya')->first();
+
+        $advance1 = LevelUmkm::where('user_id', $user)->where('team', 'iya')->where('ecommerce', 'iya')->where('landing_page', 'iya')->first();
+
+        $advance2 = LevelUmkm::where('user_id', $user)->where('team', 'iya')->where('ecommerce', 'tidak')->where('landing_page', 'iya')->first();
+
+        $advance3 = LevelUmkm::where('user_id', $user)->where('team', 'iya')->where('ecommerce', 'tidak')->where('landing_page', 'tidak')->first();
+        // dd($level->team);
+
+        return view('NewPages.Beranda', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent', 'level', 'basic', 'intermediate', 'advance1', 'advance2', 'advance3'));
     }
 
     public function levelumkm(Request $request){
@@ -240,8 +251,7 @@ class PersonalityController extends Controller
             $level->user_id = Auth::user()->id;
 
             $level->save();
-        }
-        else{
+        }else{
             $levelnew = new LevelUmkm();
             $levelnew->merk = $request->merk;
             $levelnew->whatsapp_bisnis = $request->whatsapp_bisnis;
