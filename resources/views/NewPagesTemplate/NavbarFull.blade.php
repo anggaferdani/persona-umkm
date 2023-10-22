@@ -14,8 +14,13 @@
       <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <div class="menu d-block d-lg-flex justify-content-start">
+            @if(Auth::user()->role == 3)
             <a class="nav-link text-start" aria-current="page" href="/umkm/beranda"><p>Hasil</p></a>
             <a class="nav-link text-start" href="/umkm/marketer"><p>Marketer</p></a>
+            @elseif(Auth::user()->role == 4)
+            <a class="nav-link text-start" aria-current="page" href="/marketer/beranda"><p>Hasil</p></a>
+            <a class="nav-link text-start" href="/marketer/umkm"><p>Umkm</p></a>
+            @endif
           </div>
           <div class="navbarNotif d-flex align-items-center gap-4 my-md-0 my-3">
             <a href=""><i class="fa-solid fa-bell"></i></a>

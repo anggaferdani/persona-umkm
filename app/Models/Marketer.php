@@ -17,6 +17,7 @@ class Marketer extends Model
         'link_portofolio_1',
         'link_portofolio_2',
         'link_portofolio_3',
+        'portofolio',
     ];
 
     public function user(){

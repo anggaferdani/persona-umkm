@@ -188,11 +188,13 @@ class LoginController extends Controller
     }
 
     public function marketerpostregister(Request $request){
+        // dd($request);
         $this->validate($request,[
             'email' => 'required|email',
             'name' => 'required',
             'password' => 'required|min:8',
             'cv' => 'required|file|mimes:png,jpg,jpeg,csv,txt,xlx,xls,xlsx,pdf,doc,docx,ppt,pptx',
+            'portofolio' => 'required|file|mimes:png,jpg,jpeg,csv,txt,xlx,xls,xlsx,pdf,doc,docx,ppt,pptx',
             'link_portofolio_1' => 'required',
         ],[
             'email' => 'Input Your Email',
@@ -200,6 +202,8 @@ class LoginController extends Controller
             'name' => 'Input Your Username',
             'password' => 'Input Your Password',
             'password.min' => 'Password Must Be 8 Character',
+            'portofolio' => 'Upload Your Portofolio',
+            'portofolio.mimes' => 'File Must Be png,jpg,jpeg,csv,txt,xlx,xls,xlsx,pdf,doc,docx,ppt,pptx',
             'cv' => 'Upload Your CV',
             'cv.mimes' => 'File Must Be png,jpg,jpeg,csv,txt,xlx,xls,xlsx,pdf,doc,docx,ppt,pptx',
             'link_portofolio_1' => 'Input Your Portofiolio',
@@ -221,11 +225,16 @@ class LoginController extends Controller
         $newMarketer = new Marketer();
         $newMarketer->user_id = $user->id;
         $newMarketer->link_portofolio_1 = $request->link_portofolio_1;
-        if($request->hasFile('cv'))
+        if($request->hasFile('cv') && $request->hasFile('portofolio'))
         {
-            $fileCV = 'CV'.rand(1,99999).'.'.$request->cv->getClientOriginalExtension();
+            $fileCV = 'CV '.$request->name.'.'.$request->cv->getClientOriginalExtension();
             $request->file('cv')->move(public_path().'/file/', $fileCV);
             $newMarketer->cv = $fileCV;
+
+            $fileportofolio = 'Porto '.$request->name.'.'.$request->portofolio->getClientOriginalExtension();
+            $request->file('portofolio')->move(public_path().'/file/', $fileportofolio);
+            $newMarketer->portofolio = $fileportofolio;
+            
             $newMarketer->save();
         }
         if($request->link_portofolio_2){

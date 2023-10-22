@@ -50,24 +50,23 @@
                         @switch($bpamax->brand_personality_aaker)
                             @case('average_sincerity')
                             <h3 class="text-blue fw-bolder">SINCERITY</h3>
-                            <p class="mt-3">SINCERITY adalah orang yang sangat tulus, siap mengambil
-                                    tindakan untuk melakukan apa yang mereka rasa benar.</p>
+                            <p class="mt-3">SINCERITY adalah orang yang  jujur, tulus, dan memiliki integritas. Personal Brand ini sering kali dilihat sebagai dapat dipercaya dan dapat diandalkan.</p>
                             @break
                             @case('average_competence')
                             <h3 class="text-blue fw-bolder">COMPETENCE</h3>
-                            <p class="mt-3">COMPETENCE adalah orang yang Handal, Bertanggung Jawab, Cerdas, dan Efisien.</p>
+                            <p class="mt-3">COMPETENCE adalah orang yang  kompeten, efisien, dan ahli dalam bidangnya. Personal Brand ini handal dan memiliki keunggulan dalam hal kualitas dan kinerja.</p>
                             @break
                             @case('average_excitement')
                             <h3 class="text-blue fw-bolder">EXCITEMENT</h3>
-                            <p class="mt-3">EXCITEMENT adalah orang yang Suka Berimajinasi, Suka Hal Baru, Inspiratif, dan Bersemangat.</p>
+                            <p class="mt-3">EXCITEMENT adalah orang yang berenergi, bersemangat, dan menarik perhatian konsumen. Personal Brand ini sering dihubungkan dengan inovasi dan kegembiraan.</p>
                             @break
                             @case('average_sophistication')
                             <h3 class="text-blue fw-bolder">SOPHISTICATION</h3>
-                            <p class="mt-3">SOPHISTICATION adalah orang yang Romantis, Memiliki Daya Tarik, Menawan, dan Mempesona.</p>
+                            <p class="mt-3">SOPHISTICATION adalah orang yang elegan, anggun, dan mewah. Personal Brand ini sering dihubungkan dengan keanggunan dan gaya yang tinggi.</p>
                             @break
                             @default
                             <h3 class="text-blue fw-bolder">RUGGEDNESS</h3>
-                            <p class="mt-3">RUGGEDNESS adalah orang yang Maskulin, Terbuka, Aktif, dan Tangguh.</p>
+                            <p class="mt-3">RUGGEDNESS adalah orang yang Maskulin, Terbuka, Aktif, dan Tangguh. Personal Brand ini sering diidentifikasi dengan kekuatan dan daya tahan.</p>
                         @endswitch
                         <div class="card-precentage p-3 mt-3">
                             <p class="text-primary fw-bold mb-2">{{$bpasophispercent}}% EXTROVERT</p>
@@ -172,51 +171,61 @@
                             @case('average_sincerity')
                                 <h3 class="text-blue fw-bolder my-3">SINCERITY</h3>
                                 <div class="textLong mt-3">
-                                    <p class="fw-bold">Reseptif</p>
-                                    <p>Tokoh sincerity mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
-                                        Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
-                                        sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
-                                        orang tersebut untuk menyuarakan kebenaran mereka.</p>
+                                    <p class="">SINCERITY mengacu pada kualitas bersikap tulus, jujur, dan jujur dalam tindakan, perkataan, dan niat seseorang. SINCERITY menyiratkan bahwa seseorang bertindak tanpa tipu daya atau motif tersembunyi dan bersikap lugas serta transparan dalam perilakunya. Hal ini sering dikaitkan dengan integritas, keaslian, dan kurangnya kepura-puraan. <br>
+
+                                    SINCERITY adalah atribut penting dalam hubungan interpersonal, karena menumbuhkan kepercayaan dan keandalan. Ketika orang merasakan ketulusan pada orang lain, mereka akan lebih percaya pada apa yang dikatakan atau dilakukan dan merasa lebih nyaman dalam interaksi mereka.<br>
+
+                                    Dalam konteks branding dan pemasaran, kepribadian SINCERITY juga dapat menjadi salah satu dimensi kepribadian, seperti yang telah disebutkan sebelumnya. Kepribadian SINCERITY dalam komunikasi dan tindakannya dipandang sebagai orang yang dapat dipercaya dan berkomitmen tulus terhadap kesejahteraan pelanggannya.<br>
+
+                                    Singkatnya, kepribadian SINCERITY adalah sifat pribadi yang berharga yang melibatkan kejujuran dan ketulusan dalam tindakan dan interaksi dengan orang lain. Ini berkontribusi untuk membangun kepercayaan dan hubungan positif.</p>
                                 </div>
                             @break
                             @case('average_competence')
                                 <h3 class="text-blue fw-bolder my-3">COMPETENCE</h3>
                                 <div class="textLong mt-3">
-                                    <p class="fw-bold">Reseptif</p>
-                                    <p>Tokoh competence mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
-                                        Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
-                                        sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
-                                        orang tersebut untuk menyuarakan kebenaran mereka.</p>
+                                    <p class="">COMPETENCE mengacu pada kepribadian yang memiliki citra dan reputasi sebagai orang yang terampil, mampu, dan mahir dalam memberikan produk atau layanan berkualitas. Kepribadian COMPETENCE dipandang dapat diandalkan, dapat dipercaya, dan ahli di bidangnya. Mereka dikenal karena kemampuannya untuk secara konsisten memenuhi atau melampaui harapan pelanggan. <br>
+
+                                    Kepribadian COMPETENCE sering kali berfokus pada kualitas seperti keahlian, ketergantungan, dan jaminan kualitas. Mereka mungkin menggunakan pesan dan strategi pemasaran yang menonjolkan rekam jejak, sertifikasi, pengetahuan industri, dan dedikasi mereka terhadap keunggulan. Kepribadian ini berupaya menciptakan rasa percaya diri dan kepastian di benak konsumen. <br>
+
+                                    Pelanggan COMPETENCE sering kali mencari produk atau layanan yang dapat mereka andalkan, dan mereka percaya bahwa merek tersebut adalah otoritas dalam ceruk pasarnya. Kepribadian COMPETENCE dapat menjadi sangat penting dalam industri yang mengutamakan presisi, keahlian, dan kepercayaan, seperti layanan kesehatan, jasa keuangan, dan jasa profesional. <br>
+
+                                    Singkatnya, Kepribadian COMPETENCE adalah seorang yang dipandang sangat terampil, dapat diandalkan, dan mampu memberikan kualitas yang konsisten. Mereka membangun kepercayaan dan keyakinan pelanggan melalui keahlian dan keandalan mereka.</p>
                                 </div>
                             @break
                             @case('average_excitement')
                             <h3 class="text-blue fw-bolder">EXCITEMENT</h3>
                                 <div class="textLong mt-3">
-                                    <p class="fw-bold">Reseptif</p>
-                                    <p>Tokoh excitement mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
-                                        Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
-                                        sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
-                                        orang tersebut untuk menyuarakan kebenaran mereka.</p>
+                                    <p class="">EXCITEMENT mengacu pada kepribadian yang memiliki citra yang energik, dinamis, dan menawan. Kepribadian EXCITEMENT sering dikaitkan dengan inovasi, kesenangan, dan rasa petualangan. Mereka bertujuan untuk menarik konsumen dengan membangkitkan antusiasme dan kegembiraan seputar produk atau layanan mereka.<br>
+
+                                    Seseorang dengan kepribadian EXCITEMENT yang kuat dapat menggunakan warna-warna cerah, kampanye pemasaran dinamis, dan teknologi mutakhir untuk menciptakan gebrakan seputar penawaran mereka. Mereka ingin dianggap sebagai trendsetter dan pemimpin di industrinya. Kepribadian ini sering kali menarik konsumen yang mencari pengalaman baru dan mendebarkan, dan mereka mungkin memposisikan diri sebagai merek yang berpikiran maju dan terdepan di pasarnya masing-masing.<br>
+
+                                    Contoh Seorang dengan kepribadian EXCITEMENT antara lain bekerja di industri teknologi, hiburan, dan olahraga. Mereka menggunakan kepribadian mereka untuk menciptakan rasa kegembiraan dan keterlibatan di antara audiens target mereka.<br>
+
+                                    Singkatnya, kepribadian EXCITEMENT dalam kepribadian merek mengacu pada merek yang hidup, inovatif, dan menstimulasi, yang bertujuan untuk menarik perhatian dan antusiasme konsumen.</p>
                                 </div>
                             @break
                             @case('average_sophistication')
                             <h3 class="text-blue fw-bolder">SOPHISTICATION</h3>
                                 <div class="textLong mt-3">
-                                    <p class="fw-bold">Reseptif</p>
-                                    <p>Tokoh sophistication mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
-                                        Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
-                                        sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
-                                        orang tersebut untuk menyuarakan kebenaran mereka.</p>
+                                    <p class="">SOPHISTICATION mengacu pada citra dan reputasi sebagai pribadi elegan, halus, dan berbudaya. Kepribadian ini sering kali memposisikan dirinya sebagai yang terdepan dalam industrinya dan melayani konsumen yang menghargai kemewahan, estetika, dan cita rasa yang tinggi.<br>
+
+                                    Kepribadian SOPHISTICATION sering kali menggunakan desain elegan, bahan premium, dan strategi pemasaran kelas atas untuk menyampaikan kesan eksklusivitas. Mereka menargetkan konsumen yang mencari pengalaman, produk, atau layanan yang lebih baik. Kepribadian SOPHISTICATION sering dihubungkan dengan kualitas, eksklusivitas, dan rasa kehalusan.<br>
+
+                                    Kepribadian SOPHISTICATION biasanya ditemukan di industri seperti fesyen kelas atas, mobil mewah, santapan mewah, dan barang konsumsi kelas atas. Mereka sering kali menonjolkan seni, keahlian, dan perhatian terhadap detail yang ada pada produk atau layanan mereka.<br>
+
+                                    Singkatnya, Kepribadian SOPHISTICATION adalah kepribadian yang dianggap elegan, halus, dan mewah. Mereka bertujuan untuk menarik konsumen yang menghargai pengalaman premium dan produk dengan rasa dan kualitas tingkat tinggi.</p>
                                 </div>
                             @break
                             @default
                             <h3 class="text-blue fw-bolder">RUGGEDNESS</h3>
                                 <div class="textLong mt-3">
-                                    <p class="fw-bold">Reseptif</p>
-                                    <p>Tokoh ruggedness mempunyai pendapat yang kuat, tetapi mereka tidak berpikiran tertutup.
-                                        Mereka menyadari pentingnya membiarkan orang lain mengekspresikan diri mereka
-                                        sepenuhnya. Bahkan ketika Protagonis tidak setuju dengan seseorang, mereka mengakui hak
-                                        orang tersebut untuk menyuarakan kebenaran mereka.</p>
+                                    <p class="">RUGGEDNESS dalam konteks kepribadian mengacu pada kepribadian yang tangguh, kokoh, dan kuat. Kepribadian RUGGEDNESS sering dikaitkan dengan kualitas seperti daya tahan, kekuatan, dan rasa petualangan. Mereka menargetkan konsumen yang menghargai pengalaman dan produk yang tangguh dan luar ruangan. <br>
+
+                                    Kepribadian RUGGEDNESS sering kali menggunakan citra dan pemasaran yang menyampaikan rasa eksplorasi, kecakapan fisik, dan kemampuan untuk bertahan dalam kondisi yang keras. Barang-barang tersebut mungkin terkait dengan olahraga luar ruangan dan petualangan, perlengkapan luar ruangan, dan produk atau layanan yang dibuat agar tahan terhadap kerusakan. <br>
+
+                                    Kepribadian RUGGEDNESS biasanya ditemukan di industri pakaian luar ruangan, peralatan hiking, dan kendaraan off-road. Merek yang menekankan ketangguhan sering kali bertujuan untuk menarik konsumen yang mencari produk yang tahan terhadap lingkungan yang menantang dan penggunaan yang lama. <br>
+
+                                    Singkatnya, kepribadian RUGGEDNESS adalah kepribadian yang dipandang tangguh, kuat, dan penuh petualangan. Mereka ditujukan untuk konsumen yang menghargai produk atau barang yang tangguh dan kuat.</p>
                                 </div>
                         @endswitch
                     </div>
@@ -771,6 +780,13 @@
                 tabindex="0">
                 <!-- Nav pills -->
                 <ul class="nav nav-pills" role="tablist" id="navNTabs">
+                    @if(!$strategi)
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="pill" href="#strategianda">
+                            <p>Strategi Digital Anda</p>
+                        </a>
+                    </li>
+                    @else
                     <li class="nav-item">
                         <a class="nav-link active" data-bs-toggle="pill" href="#SocialMedia">
                             <p>Social Media</p>
@@ -781,10 +797,20 @@
                             <p>Online Shop</p>
                         </a>
                     </li>
+                    @endif
                 </ul>
+
                 <!-- Tab panes -->
                 <div class="tab-content">
+                    @if(!$strategi)
+                    <div id="strategianda" class="container tab-pane active"><br>
+                    <button type="button" class="btn btn-sm btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModalstrategi">
+                                Tentukan Strategi Anda
+                            </button>
+                    </div>
+                    @else
                     <div id="SocialMedia" class="container tab-pane active"><br>
+                        @if($tiktok95)
                         <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
                             <div class="tpcImage">
                                 <img src="{{asset('../../images/tiktokImage.png')}}">
@@ -801,36 +827,50 @@
                                 <img src="{{asset('../../images/tiktokMini.png')}}">
                             </div>
                             <div class="apkText">
-                                <p class=" my-3"><span class="fw-bold">TikTok</span> untuk saat ini platform paling
-                                    cocok untuk anda
-                                    berjualan.</p>
+                                <p class=" my-3"><span class="fw-bold">TikTok</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
                                 <div class="progressBar d-flex align-items-center gap-2 my-3">
                                     <div class="progress w-100" role="progressbar" aria-label="Basic example"
-                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar w-75"></div>
+                                        aria-valuenow="95" aria-valuemin="5" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 95%"></div>
                                     </div>
                                     <p class="text-blue fw-bolder">95%</p>
                                 </div>
                             </div>
                         </div>
-
-                        <p class="fw-bold mt-4">#Hastag</p>
-                        <p>Hastag yang di perlukan agar jualan mu cepat di
-                            kenal:</p>
-                       <div class="hastag d-flex gap-3 justify-content-between align-items-center flex-wrap">
-                        <a href=""><p>#pakaianpria</p></a>
-                        <a href=""><p>#pakaianpria</p></a>
-                        <a href=""><p>#pakaianpria</p></a>
-                        <a href=""><p>#pakaianpria</p></a>
-                        <a href=""><p>#pakaianpria</p></a>
-                        <a href=""><p>#pakaianpria</p></a>
-                       </div>
-                    </div>
-
-                    <div id="OnlineShop" class="container tab-pane fade"><br>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_instagram.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Instagram</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_fb.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Facebook</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="05" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif($tiktok901 || $tiktok902)
                         <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
                             <div class="tpcImage">
-                                <img src="{{asset('../../images/shopeeImg.png')}}">
+                                <img src="{{asset('../../images/tiktokImage.png')}}">
                             </div>
                             <div class="tcpTex">
                                 <p class="fw-bold my-sm-0 my-2">TikTok</p>
@@ -839,36 +879,647 @@
                             </div>
                         </div>
                         <div class="hr-jumbo"></div>
-                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
                             <div class="apkImg">
-                                <img src="{{asset('../../images/shopeeMini.png')}}">
+                                <img src="{{asset('../../images/tiktokMini.png')}}">
                             </div>
                             <div class="apkText">
-                                <p class=" my-3"><span class="fw-bold">TikTok</span> untuk saat ini platform paling
-                                    cocok untuk anda
-                                    berjualan.</p>
+                                <p class=" my-3"><span class="fw-bold">TikTok</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
                                 <div class="progressBar d-flex align-items-center gap-2 my-3">
                                     <div class="progress w-100" role="progressbar" aria-label="Basic example"
-                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar w-75"></div>
+                                        aria-valuenow="95" aria-valuemin="5" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 90%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">90%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_instagram.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Instagram</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_fb.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Facebook</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="05" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif($tiktok85)
+                        <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
+                            <div class="tpcImage">
+                                <img src="{{asset('../../images/tiktokImage.png')}}">
+                            </div>
+                            <div class="tcpTex">
+                                <p class="fw-bold my-sm-0 my-2">TikTok</p>
+                                <p>Sesuai dengan hasil test. Sosial Media
+                                    yang tepat untuk Anda berjualan Online saat ini adalah TikTok</p>
+                            </div>
+                        </div>
+                        <div class="hr-jumbo"></div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/tiktokMini.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">TikTok</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="95" aria-valuemin="5" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 85%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">85%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_instagram.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Instagram</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_fb.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Facebook</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="05" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        @elseif($instagram95)
+                        <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
+                            <div class="tpcImage">
+                                <img src="{{asset('../../images/strategi_instagram.png')}}">
+                            </div>
+                            <div class="tcpTex">
+                                <p class="fw-bold my-sm-0 my-2">Instagram</p>
+                                <p>Sesuai dengan hasil test. Sosial Media
+                                    yang tepat untuk Anda berjualan Online saat ini adalah Instagram</p>
+                            </div>
+                        </div>
+                        <div class="hr-jumbo"></div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_instagram.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Instagram</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="95" aria-valuemin="5" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 95%"></div>
                                     </div>
                                     <p class="text-blue fw-bolder">95%</p>
                                 </div>
                             </div>
                         </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/tiktokMini.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Tiktok</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_fb.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Facebook</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="50" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif($instagram901 || $instagram902)
+                        <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
+                            <div class="tpcImage">
+                                <img src="{{asset('../../images/strategi_instagram.png')}}">
+                            </div>
+                            <div class="tcpTex">
+                                <p class="fw-bold my-sm-0 my-2">Instagram</p>
+                                <p>Sesuai dengan hasil test. Sosial Media
+                                    yang tepat untuk Anda berjualan Online saat ini adalah Instagram</p>
+                            </div>
+                        </div>
+                        <div class="hr-jumbo"></div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_instagram.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Instagram</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="80" aria-valuemin="10" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 90%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">90%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/tiktokMini.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Tiktok</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_fb.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Facebook</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="05" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif($instagram85)
+                        <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
+                            <div class="tpcImage">
+                                <img src="{{asset('../../images/strategi_instagram.png')}}">
+                            </div>
+                            <div class="tcpTex">
+                                <p class="fw-bold my-sm-0 my-2">Instagram</p>
+                                <p>Sesuai dengan hasil test. Sosial Media
+                                    yang tepat untuk Anda berjualan Online saat ini adalah Instagram</p>
+                            </div>
+                        </div>
+                        <div class="hr-jumbo"></div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_instagram.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Instagram</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="85" aria-valuemin="15" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 85%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">85%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/tiktokMini.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Tiktok</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-block d-sm-flex text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_fb.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Facebook</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="50" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
 
                         <p class="fw-bold mt-4">#Hastag</p>
                         <p>Hastag yang di perlukan agar jualan mu cepat di
                             kenal:</p>
                        <div class="hastag d-flex gap-3 justify-content-between align-items-center flex-wrap">
-                        <a href=""><p>#pakaianpria</p></a>
-                        <a href=""><p>#pakaianpria</p></a>
-                        <a href=""><p>#pakaianpria</p></a>
-                        <a href=""><p>#pakaianpria</p></a>
-                        <a href=""><p>#pakaianpria</p></a>
-                        <a href=""><p>#pakaianpria</p></a>
+                        <a href="#"><p>#pakaianpria</p></a>
+                        <a href="#"><p>#pakaianpria</p></a>
+                        <a href="#"><p>#pakaianpria</p></a>
+                        <a href="#"><p>#pakaianpria</p></a>
+                        <a href="#"><p>#pakaianpria</p></a>
+                        <a href="#"><p>#pakaianpria</p></a>
                        </div>
                     </div>
+
+                    <div id="OnlineShop" class="container tab-pane fade"><br>
+                        @if($shope95)
+                        <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
+                            <div class="tpcImage">
+                                <img src="{{asset('../../images/shopeeImg.png')}}">
+                            </div>
+                            <div class="tcpTex">
+                                <p class="fw-bold my-sm-0 my-2">Shopee</p>
+                                <p>Sesuai dengan hasil test. E-Commerce
+                                    yang tepat untuk Anda berjualan Online saat ini adalah Shopee</p>
+                            </div>
+                        </div>
+                        <div class="hr-jumbo"></div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/shopeeMini.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Shopee</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="95" aria-valuemin="5" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 95%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">95%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_tokped.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Tokopedia</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="50" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif($shope901 || $shope902)
+                        <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
+                            <div class="tpcImage">
+                                <img src="{{asset('../../images/shopeeImg.png')}}">
+                            </div>
+                            <div class="tcpTex">
+                                <p class="fw-bold my-sm-0 my-2">Shopee</p>
+                                <p>Sesuai dengan hasil test. E-Commerce
+                                    yang tepat untuk Anda berjualan Online saat ini adalah Shopee</p>
+                            </div>
+                        </div>
+                        <div class="hr-jumbo"></div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/shopeeMini.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Shopee</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="90" aria-valuemin="10" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 90%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">90%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_tokped.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Tokopedia</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="50" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif($shope85)
+                        <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
+                            <div class="tpcImage">
+                                <img src="{{asset('../../images/shopeeImg.png')}}">
+                            </div>
+                            <div class="tcpTex">
+                                <p class="fw-bold my-sm-0 my-2">Shopee</p>
+                                <p>Sesuai dengan hasil test. E-Commerce
+                                    yang tepat untuk Anda berjualan Online saat ini adalah Shopee</p>
+                            </div>
+                        </div>
+                        <div class="hr-jumbo"></div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/shopeeMini.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Shopee</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="85" aria-valuemin="15" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 85%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">85%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_tokped.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Tokopedia</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="50" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif($tokped95)
+                        <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
+                            <div class="tpcImage">
+                                <img src="{{asset('../../images/strategi_tokped.png')}}">
+                            </div>
+                            <div class="tcpTex">
+                                <p class="fw-bold my-sm-0 my-2">Tokopedia</p>
+                                <p>Sesuai dengan hasil test. E-Commerce
+                                    yang tepat untuk Anda berjualan Online saat ini adalah Tokopedia</p>
+                            </div>
+                        </div>
+                        <div class="hr-jumbo"></div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_tokped.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">TokoPedia</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="95" aria-valuemin="5" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 95%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">95%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/shopeeMini.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Shopee</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="50" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif($tokped901 || $tokped902)
+                        <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
+                            <div class="tpcImage">
+                                <img src="{{asset('../../images/strategi_tokped.png')}}">
+                            </div>
+                            <div class="tcpTex">
+                                <p class="fw-bold my-sm-0 my-2">Tokopedia</p>
+                                <p>Sesuai dengan hasil test. E-Commerce
+                                    yang tepat untuk Anda berjualan Online saat ini adalah Tokopedia</p>
+                            </div>
+                        </div>
+                        <div class="hr-jumbo"></div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_tokped.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">TokoPedia</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="90" aria-valuemin="10" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 90%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">90%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/shopeeMini.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Shopee</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="50" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif($tokped85)
+                        <div class="tabPaneContent d-block d-sm-flex text-sm-start text-center align-items-center gap-5">
+                            <div class="tpcImage">
+                                <img src="{{asset('../../images/strategi_tokped.png')}}">
+                            </div>
+                            <div class="tcpTex">
+                                <p class="fw-bold my-sm-0 my-2">Tokopedia</p>
+                                <p>Sesuai dengan hasil test. E-Commerce
+                                    yang tepat untuk Anda berjualan Online saat ini adalah Tokopedia</p>
+                            </div>
+                        </div>
+                        <div class="hr-jumbo"></div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_tokped.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">TokoPedia</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="85" aria-valuemin="15" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 85%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">85%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/shopeeMini.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Shopee</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="70" aria-valuemin="30" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">70%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
+                            <div class="apkImg">
+                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                            </div>
+                            <div class="apkText">
+                                <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="progressBar d-flex align-items-center gap-2 my-3">
+                                    <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                        aria-valuenow="50" aria-valuemin="50" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <p class="text-blue fw-bolder">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                        <button type="button" class="btn mt-3 btn-sm btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModalstrategi">
+                                Tentukan Ulang Strategi Anda
+                            </button>
+                    </div>
+                    </div>
+
+                    @endif
                 </div>
                 </div>
 
@@ -962,6 +1613,105 @@
                             tidak
                         </span>
                         @error('team')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="modal-footer gap-1">
+                    <button type="button" class="btn btn-outline-warning btn-icon-text" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                        <button type="submit" id="dis" class="btn btn-outline-primary btn-icon-text">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalstrategi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalstrategiLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalstrategiLabel">Level Digital Umkm</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="{{ url('/umkm/strategi-digital') }}" method="post" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah merk anda sering menggunakan fitur live streaming untuk mengiklankan product anda?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="live_stream"><span class="me-2">
+                            ya
+                        </span>
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="live_stream"><span class="me-2">
+                            tidak
+                        </span>
+                        @error('live_stream')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah merk anda ingin menggunakan fitur cod<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="cod"><span class="me-2">
+                            ya
+                        </span>
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="cod"><span class="me-2">
+                            tidak
+                        </span>
+                        @error('cod')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah merk anda akan sering mengadakan promo?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="promo"><span class="me-2">
+                            ya
+                        </span>
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="promo"><span class="me-2">
+                            tidak
+                        </span>
+                        @error('promo')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apakah merk anda melayani ekspor?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="ekspor"><span class="me-2">
+                            ya
+                        </span>
+                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="ekspor"><span class="me-2">
+                            tidak
+                        </span>
+                        @error('ekspor')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Apa yang anda gunakan untuk mengiklankan merk anda?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="video" class="form-check-input" id="exampleInputUsername1 " name="iklan"><span class="me-2">
+                            Video
+                        </span>
+                        <input type="radio" value="foto" class="form-check-input" id="exampleInputUsername1 " name="iklan"><span class="me-2">
+                            Poster/Foto Product
+                        </span>
+                        @error('iklan')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Produk apa yang anda jual?<span class="text-danger">*</span></label><br>
+                        <input type="radio" value="makanan" class="form-check-input" id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
+                            Makanan/Minuman
+                        </span>
+                        <input type="radio" value="pakaian" class="form-check-input" id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
+                            Pakaian
+                        </span><br>
+                        <input type="radio" value="elektronik" class="form-check-input" id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
+                            Elektronik
+                        </span>
+                        <input type="radio" value="aksesoris" class="form-check-input" id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
+                            Aksesoris
+                        </span>
+                        @error('jenis_product')
                                 <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
