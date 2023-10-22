@@ -63,4 +63,12 @@ class User extends Authenticatable
     public function marketer(){
         return $this->hasMany(Marketer::class, 'user_id');
     }
+
+    public function profile(){
+        return $this->hasMany(Profile::class, 'user_id');
+    }
+
+    public function strategi(){
+        return $this->hasMany(StrategiDigital::class, 'user_id');
+    }
 }

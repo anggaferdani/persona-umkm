@@ -23,6 +23,8 @@ use App\Http\Controllers\BrandPersonalityAakerController;
 
 // Route::get('/lupapassword', function () {return view('NewPages.LupaPassword');});
 
+
+
 Route::get('/brand-personality-aaker', [BrandPersonalityAakerController::class, 'index'])->name('brand-personality-aaker');
 
 Route::get('/', [LoginController::class, 'index'])->name('user.login');
@@ -46,13 +48,15 @@ Route::prefix('umkm')->group(function(){
         Route::get('/hasil/{id}',  [PersonalityController::class, 'hasil'])->name('user.hasil');
         Route::get('/beranda', [PersonalityController::class, 'beranda'])->name('user.beranda');
         Route::post('/level-umkm', [PersonalityController::class, 'levelumkm'])->name('user.level');
-        Route::get('/marketer', function () {return view('NewPages.Marketer');});
-        Route::get('/marketerdetail', function () {return view('NewPages.MarketerDetail');});
-        Route::get('/profile', function () {return view('NewPages.Profile');});
+        Route::post('/strategi-digital', [PersonalityController::class, 'strategi'])->name('user.strategi');
+        Route::get('/marketer', [PersonalityController::class, 'marketer'])->name('user.marketer');
+        Route::get('/marketerdetail/{id}', [PersonalityController::class, 'marketerdetail']);
+        Route::get('/profile', [PersonalityController::class, 'profil']);
+        Route::post('/profile-submit', [PersonalityController::class, 'profilsubmit']);
     
         // MARKETER
-        Route::get('/umkm', function () {return view('Marketer.Umkm');});
-        Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
+        // Route::get('/umkm', function () {return view('Marketer.Umkm');});
+        // Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
     
         
     });
@@ -72,14 +76,13 @@ Route::prefix('marketer')->group(function(){
         Route::get('/hasil/{id}',  [PersonalityController::class, 'hasil'])->name('user.hasil');
         Route::get('/beranda', [PersonalityController::class, 'marketerberanda'])->name('marketer.beranda');
         Route::post('/level-umkm', [PersonalityController::class, 'levelumkm'])->name('user.level');
-        Route::get('/marketer', function () {return view('NewPages.Marketer');});
-        Route::get('/marketerdetail', function () {return view('NewPages.MarketerDetail');});
-        Route::get('/profile', function () {return view('NewPages.Profile');});
+        Route::get('/profile',[PersonalityController::class, 'profil']);
+        Route::post('/profile-submit', [PersonalityController::class, 'profilsubmit']);
     
         // MARKETER
-        Route::get('/hasil-umkm', function () {return view('Marketer.Hasil');});
+        // Route::get('/hasil-umkm', function () {return view('Marketer.Hasil');});
         Route::get('/umkm', function () {return view('Marketer.Umkm');});
-        Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
+        // Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
     });
 });
 
@@ -106,4 +109,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 });
 
+
+Route::get('/dw-cv/{file}', [PersonalityController::class, 'downloadcv'])->name('downloadcv');
+Route::get('/dw-porto/{file}', [PersonalityController::class, 'downloadporto'])->name('downloadporto');
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');

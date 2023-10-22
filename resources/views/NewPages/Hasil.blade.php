@@ -39,19 +39,19 @@
                 </div>
                 <p>@switch($bpamax->brand_personality_aaker)
                     @case('average_sincerity')
-                    <span class="text-blue">SINCERITY</span>  adalah orang yang Ramah, Dapat Dipercaya, dan Menyenangkan
+                    <span class="text-blue">SINCERITY</span>  adalah orang yang  jujur, tulus, dan memiliki integritas. Personal Brand ini sering kali dilihat sebagai dapat dipercaya dan dapat diandalkan.
                       @break
                     @case('average_competence')
-                     <span class="text-blue">COMPETENCE</span>  adalah orang yang Handal, Bertanggung Jawab, Cerdas, dan Efisien
+                     <span class="text-blue">COMPETENCE</span>  adalah orang yang  kompeten, efisien, dan ahli dalam bidangnya. Personal Brand ini handal dan memiliki keunggulan dalam hal kualitas dan kinerja.
                      @break
                     @case('average_excitement')
-                      <span class="text-blue">EXCITEMENT</span>  adalah orang yang Suka Berimajinasi, Suka Hal Baru, Inspiratif, dan Bersemangat
+                      <span class="text-blue">EXCITEMENT</span>  adalah orang yang berenergi, bersemangat, dan menarik perhatian konsumen. Personal Brand ini sering dihubungkan dengan inovasi dan kegembiraan
                      @break
                     @case('average_sophistication')
-                     <span class="text-blue">SOPHISTICATION</span>  adalah orang yang Romantis, Memiliki Daya Tarik, Menawan, dan Mempesona
+                     <span class="text-blue">SOPHISTICATION</span>  adalah orang yang elegan, anggun, dan mewah. Personal Brand ini sering dihubungkan dengan keanggunan dan gaya yang tinggi.
                      @break
                      @default
-                     <span class="text-blue">RUGGEDNESS</span>  adalah orang yang Maskulin, Terbuka, Aktif, dan Tangguh
+                     <span class="text-blue">RUGGEDNESS</span>  adalah orang yang Maskulin, Terbuka, Aktif, dan Tangguh. Personal Brand ini sering diidentifikasi dengan kekuatan dan daya tahan.
                   @endswitch
                   </p>
               </div>

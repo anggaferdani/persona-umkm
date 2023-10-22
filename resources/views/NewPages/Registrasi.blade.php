@@ -15,7 +15,7 @@
     <div class="form">
         <div class="form-group my-3">
             <div class="form-input-container">
-                <input type="text" name="name" class="form-control email-input" id="txtemailLogin" placeholder="Nama">
+                <input type="text" name="name" class="form-control email-input" id="txtemailLogin" placeholder="Nama Umkm Anda">
                 @error('name')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror

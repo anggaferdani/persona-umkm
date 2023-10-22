@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Profile;
 use App\Models\LevelUmkm;
 use Illuminate\Http\Request;
+use App\Models\StrategiDigital;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -214,9 +217,31 @@ class PersonalityController extends Controller
         $advance2 = LevelUmkm::where('user_id', $user)->where('team', 'iya')->where('ecommerce', 'tidak')->where('landing_page', 'iya')->first();
 
         $advance3 = LevelUmkm::where('user_id', $user)->where('team', 'iya')->where('ecommerce', 'tidak')->where('landing_page', 'tidak')->first();
+
+        $strategi = StrategiDIgital::where('user_id', $user)->first();
+
+        $shope95 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'iya')->where('cod', 'iya')->where('promo', 'iya')->first();
+        $shope901 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'iya')->where('cod', 'iya')->where('promo', 'tidak')->first();
+        $shope902 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'iya')->where('cod', 'tidak')->where('promo', 'iya')->first();
+        $shope85 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'iya')->where('cod', 'tidak')->where('promo', 'tidak')->first();
+
+        $tokped95 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'tidak')->where('cod', 'iya')->where('promo', 'iya')->first();
+        $tokped901 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'tidak')->where('cod', 'iya')->where('promo', 'tidak')->first();
+        $tokped902 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'tidak')->where('cod', 'tidak')->where('promo', 'iya')->first();
+        $tokped85 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'tidak')->where('cod', 'tidak')->where('promo', 'tidak')->first();
+
+        $tiktok95 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'iya')->where('cod', 'iya')->where('promo', 'iya')->first();
+        $tiktok901 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'iya')->where('cod', 'iya')->where('promo', 'tidak')->first();
+        $tiktok902 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'iya')->where('cod', 'tidak')->where('promo', 'iya')->first();
+        $tiktok85 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'iya')->where('cod', 'tidak')->where('promo', 'tidak')->first();
+
+        $instagram95 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'tidak')->where('cod', 'iya')->where('promo', 'iya')->first();
+        $instagram901 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'tidak')->where('cod', 'iya')->where('promo', 'tidak')->first();
+        $instagram902 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'tidak')->where('cod', 'tidak')->where('promo', 'iya')->first();
+        $instagram85 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'tidak')->where('cod', 'tidak')->where('promo', 'tidak')->first();
         // dd($level->team);
 
-        return view('NewPages.Beranda', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent', 'level', 'basic', 'intermediate', 'advance1', 'advance2', 'advance3'));
+        return view('NewPages.Beranda', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent', 'level', 'basic', 'intermediate', 'advance1', 'advance2', 'advance3', 'strategi', 'shope95', 'shope901', 'shope902', 'shope85', 'tokped95', 'tokped901', 'tokped902', 'tokped85', 'tiktok95', 'tiktok901','tiktok902', 'tiktok85', 'instagram95', 'instagram901', 'instagram902', 'instagram85'));
     }
 
     public function levelumkm(Request $request){
@@ -292,5 +317,129 @@ class PersonalityController extends Controller
         $bparugpercent = $bparug->result * 20;
 
         return view('Marketer.Hasil', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent'));
+    }
+
+    public function marketer(){
+        $marketer = User::where('role', 4)->get();
+        return view('NewPages.Marketer', compact('marketer'));
+    }
+
+    public function downloadcv($file){
+        return response()->download(public_path('file/'.$file));
+    }
+
+    public function downloadporto($file){
+        return response()->download(public_path('file/'.$file));
+    }
+
+    public function profil(){
+        $profil = Profile::where('user_id', Auth::user()->id)->first();
+        return view('NewPages.Profile', compact('profil'));
+    }
+
+    public function profilsubmit(Request $request){
+        $this->validate($request,[
+            'foto' => 'required|file|mimes:png,jpg,jpeg',
+            'alamat' => 'required',
+            'no_telepon' => 'required',
+        ],[
+            'foto' => 'Insert Profile Photo',
+            'foto.mimes' => 'Image Must Be .png, .jpeg, .jpg',
+            'alamat' => 'Insert Your Address',
+            'no_telepon' => 'Insert Your Phone Number',
+        ]);
+
+        $newProfile = new Profile();
+        $newProfile->user_id = Auth::user()->id;
+        $newProfile->alamat = $request->alamat;
+        $newProfile->no_telepon = $request->no_telepon;
+
+        if($request->hasFile('foto'))
+        {
+            $fotoprofile = 'Profile'.Auth::user()->name.'.'.$request->foto->getClientOriginalExtension();
+            $request->file('foto')->move(public_path().'/img/', $fotoprofile);
+            $newProfile->foto = $fotoprofile;
+            $newProfile->save();
+        }
+
+        if($request->deskripsi){
+            $newProfile->deskripsi = $request->deskripsi;
+            $newProfile->save();
+        }
+        $newProfile->save();
+        Alert::success('Success', 'Profile Anda Telah Diupdate');
+        return redirect()->back();
+
+    }
+
+    public function marketerdetail($id){
+        $userid = User::find($id);
+        $pp = Profile::where('user_id', $id)->first();
+
+        $bparesult = BrandPersonalityAakerResult::where('created_by', $id)->get();
+        $bpamax = BrandPersonalityAakerResult::where('created_by', $id)->orderby('result', 'DESC')->first();
+
+        $bpasince = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_sincerity')->first();
+        $bpasincepercent = $bpasince->result * 20;
+
+        $bpacompe = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_competence')->first();
+        $bpacompepercent = $bpacompe->result * 20;
+
+        $bpaexci = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_excitement')->first();
+        $bpaexcipercent = $bpaexci->result * 20;
+
+        $bpasophis = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_sophistication')->first();
+        $bpasophispercent = $bpasophis->result * 20;
+
+        $bparug = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_ruggedness')->first();
+        $bparugpercent = $bparug->result * 20;
+
+        return view('NewPages.MarketerDetail', compact('userid', 'bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent', 'pp'));
+    }
+
+    public function strategi(Request $request){
+        $this->validate($request,[
+            'live_stream' => 'required',
+            'cod' => 'required',
+            'promo' => 'required',
+            'ekspor' => 'required',
+            'iklan' => 'required',
+            'jenis_product' => 'required',
+        ],[
+            'live_stream' => 'Insert Merk Name',
+            'cod' => 'Select One',
+            'promo' => 'Select One',
+            'ekspor' => 'Select One',
+            'iklan' => 'Select One',
+            'jenis_product' => 'Select One',
+        ]);
+
+
+        $user = Auth::user()->id;
+        $strategi = StrategiDigital::where('user_id',$user)->first();
+
+        if($strategi){
+            $strategi->user_id = Auth::user()->id;
+            $strategi->live_stream = $request->live_stream;
+            $strategi->cod = $request->cod;
+            $strategi->promo = $request->promo;
+            $strategi->ekspor = $request->ekspor;
+            $strategi->iklan = $request->iklan;
+            $strategi->jenis_product = $request->jenis_product;
+            $strategi->save();
+        }else{
+            $newStrategi = new StrategiDigital();
+            $newStrategi->user_id = $user;
+            $newStrategi->live_stream = $request->live_stream;
+            $newStrategi->cod = $request->cod;
+            $newStrategi->promo = $request->promo;
+            $newStrategi->ekspor = $request->ekspor;
+            $newStrategi->iklan = $request->iklan;
+            $newStrategi->jenis_product = $request->jenis_product;
+            $newStrategi->save();
+        }
+
+        Alert::success('Success', 'Strategi Anda Telah Ditentukan');
+        return back();
     }
 }

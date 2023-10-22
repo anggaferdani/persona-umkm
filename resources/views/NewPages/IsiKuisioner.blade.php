@@ -430,7 +430,7 @@ $(document).ready(function() {
                         <p class="fw-bold">Jenis Kelamin</p>
                         <p>Ini akan menentukan avatar Anda di layar hasil</p>
                         <select name="gender" class="form-select p-sm-3 p-1 my-3 mx-auto" aria-label="Default select example">
-                            <option selected>Pilih kelamin Anda</option>
+                            <option disabled selected>Pilih kelamin Anda</option>
                             <option value="men">Laki-Laki</option>
                             <option value="women">Perempuan</option>
                         </select>
@@ -803,7 +803,7 @@ $(document).ready(function() {
                         <p class="fw-bold">Jenis Kelamin</p>
                         <p>Ini akan menentukan avatar Anda di layar hasil</p>
                         <select name="gender" class="form-select p-sm-3 p-1 my-3 mx-auto" aria-label="Default select example">
-                            <option selected>Pilih kelamin Anda</option>
+                            <option selected disabled>Pilih kelamin Anda</option>
                             <option value="men">Laki-Laki</option>
                             <option value="women">Perempuan</option>
                         </select>

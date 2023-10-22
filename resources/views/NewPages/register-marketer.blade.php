@@ -40,6 +40,15 @@
         </div>
         <div class="form-group my-3">
             <div class="form-input-container">
+                <label for="" class="ms-3 fw-bold">Upload Portofolio</label>
+                <input type="file" name="portofolio" class="form-control email-input" id="txtemailLogin" placeholder="Email">
+                @error('portofolio')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+            </div>
+        </div>
+        <div class="form-group my-3">
+            <div class="form-input-container">
                 <input type="url" name="link_portofolio_1" class="form-control email-input" id="txtemailLogin" placeholder="Link Portofolio 1">
                 @error('link_portofolio_1')
                     <p class="text-danger">{{ $message }}</p>
