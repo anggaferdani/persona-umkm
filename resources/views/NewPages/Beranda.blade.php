@@ -1213,7 +1213,7 @@
                         </div>
                         <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
                             <div class="apkImg">
-                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                                <img src="{{asset('../../images/strategi_lazada.png')}}">
                             </div>
                             <div class="apkText">
                                 <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
@@ -1270,7 +1270,7 @@
                         </div>
                         <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
                             <div class="apkImg">
-                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                                <img src="{{asset('../../images/strategi_lazada.png')}}">
                             </div>
                             <div class="apkText">
                                 <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
@@ -1327,7 +1327,7 @@
                         </div>
                         <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
                             <div class="apkImg">
-                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                                <img src="{{asset('../../images/strategi_lazada.png')}}">
                             </div>
                             <div class="apkText">
                                 <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
@@ -1384,7 +1384,7 @@
                         </div>
                         <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
                             <div class="apkImg">
-                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                                <img src="{{asset('../../images/strategi_lazada.png')}}">
                             </div>
                             <div class="apkText">
                                 <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
@@ -1441,7 +1441,7 @@
                         </div>
                         <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
                             <div class="apkImg">
-                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                                <img src="{{asset('../../images/strategi_lazada.png')}}">
                             </div>
                             <div class="apkText">
                                 <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
@@ -1498,7 +1498,7 @@
                         </div>
                         <div class="apk d-sm-flex d-block text-sm-start text-center align-items-center gap-5 p-3 mt-3">
                             <div class="apkImg">
-                                <img src="{{asset('../../images/strategi_Lazada.png')}}">
+                                <img src="{{asset('../../images/strategi_lazada.png')}}">
                             </div>
                             <div class="apkText">
                                 <p class=" my-3"><span class="fw-bold">Lazada</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
