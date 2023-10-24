@@ -53,7 +53,7 @@ class User extends Authenticatable
     }
 
     public function bpar(){
-        return $this->hasMany(BrandPersonalityAakerResult::class, 'created_by', 'updated_by');
+        return $this->hasMany(BrandPersonalityAakerResult::class, 'created_by');
     }
 
     public function level(){

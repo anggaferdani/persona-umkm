@@ -5,7 +5,7 @@
 <link rel="stylesheet" href=" {{ asset('../css/NewPages/Beranda.css')}}">
 
 <div class="header"  style="padding-top: 2.75rem;">
-    <img src="{{asset('../../images/banner_persona.png')}}">
+    <img src="{{asset('../../images/beranda_umkm.png')}}">
 </div>
 
 <div class="container mt-3">
@@ -43,7 +43,42 @@
                 tabindex="0">
                 <div class="row">
                     <div class="col-sm-2 d-sm-block d-none text-end parentImageHasil">
-                        <img src="{{asset('../../images/hasilIcon.png')}}">
+                    @switch($bpamax->brand_personality_aaker)
+                        @case('average_sincerity')
+                            @if($bpa->gender == 'men')
+                                <img src="{{asset('../../images/sincerity_boy.png')}}">
+                            @else
+                                <img src="{{asset('../../images/sincerity_girl.png')}}">
+                            @endif
+                        @break
+                        @case('average_competence')
+                            @if($bpa->gender == 'men')
+                                <img src="{{asset('../../images/competence_boy.png')}}">
+                            @else
+                                <img src="{{asset('../../images/competence_girl.png')}}">
+                            @endif
+                        @break
+                        @case('average_excitement')
+                            @if($bpa->gender == 'men')
+                                <img src="{{asset('../../images/exitement_boy.png')}}">
+                            @else
+                                <img src="{{asset('../../images/exitement_girl.png')}}">
+                            @endif
+                        @break
+                        @case('average_sophistication')
+                            @if($bpa->gender == 'men')
+                                <img src="{{asset('../../images/shopistication_boy.png')}}">
+                            @else
+                                <img src="{{asset('../../images/shopistication_girl.png')}}">
+                            @endif
+                        @break
+                        @default
+                            @if($bpa->gender == 'men')
+                                <img src="{{asset('../../images/ruggednes_boy.png')}}">
+                            @else
+                                <img src="{{asset('../../images/ruggednes_girl.png')}}">
+                            @endif
+                    @endswitch
                     </div>
                     <div class="col-sm-10 col-11">
                         <p class="fw-bold">Persona Brand Anda :</p>
@@ -201,7 +236,7 @@
 
                                     Contoh Seorang dengan kepribadian EXCITEMENT antara lain bekerja di industri teknologi, hiburan, dan olahraga. Mereka menggunakan kepribadian mereka untuk menciptakan rasa kegembiraan dan keterlibatan di antara audiens target mereka.<br>
 
-                                    Singkatnya, kepribadian EXCITEMENT dalam kepribadian merek mengacu pada merek yang hidup, inovatif, dan menstimulasi, yang bertujuan untuk menarik perhatian dan antusiasme konsumen.</p>
+                                    Singkatnya, kepribadian EXCITEMENT dalam kepribadian mengacu pada kepribadian yang hidup, inovatif, dan menstimulasi, yang bertujuan untuk menarik perhatian dan antusiasme konsumen.</p>
                                 </div>
                             @break
                             @case('average_sophistication')
@@ -1159,12 +1194,11 @@
                         <p>Hastag yang di perlukan agar jualan mu cepat di
                             kenal:</p>
                        <div class="hastag d-flex gap-3 justify-content-between align-items-center flex-wrap">
-                        <a href="#"><p>#pakaianpria</p></a>
-                        <a href="#"><p>#pakaianpria</p></a>
-                        <a href="#"><p>#pakaianpria</p></a>
-                        <a href="#"><p>#pakaianpria</p></a>
-                        <a href="#"><p>#pakaianpria</p></a>
-                        <a href="#"><p>#pakaianpria</p></a>
+                        <a href="#"><p>{{$strategi->tag1}}</p></a>
+                        <a href="#"><p>{{$strategi->tag2}}</p></a>
+                        <a href="#"><p>{{$strategi->tag3}}</p></a>
+                        <a href="#"><p>{{$strategi->tag4}}</p></a>
+                        <a href="#"><p>{{$strategi->tag5}}</p></a>
                        </div>
                     </div>
 
@@ -1546,10 +1580,10 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah Whatsapp Bisnis Anda Sudah Terverified?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="belum" class="form-check-input" id="exampleInputUsername1 " name="whatsapp_bisnis"><span class="me-2">
+                        <input type="radio" value="belum" class="form-check-input" required id="exampleInputUsername1 " name="whatsapp_bisnis"><span class="me-2">
                             Belum
                         </span>
-                        <input type="radio" value="sudah" class="form-check-input" id="exampleInputUsername1 " name="whatsapp_bisnis"><span class="me-2">
+                        <input type="radio" value="sudah" class="form-check-input" required id="exampleInputUsername1 " name="whatsapp_bisnis"><span class="me-2">
                             Sudah
                         </span>
                         @error('whatsapp_bisnis')
@@ -1558,10 +1592,10 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Menggunakan Google Business?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="gbusiness"><span class="me-2">
+                        <input type="radio" value="iya" class="form-check-input" required id="exampleInputUsername1 " name="gbusiness"><span class="me-2">
                             ya
                         </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="gbusiness"><span class="me-2">
+                        <input type="radio" value="tidak" class="form-check-input" required id="exampleInputUsername1 " name="gbusiness"><span class="me-2">
                             Tidak
                         </span>
                         @error('gbusiness')
@@ -1570,10 +1604,10 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Memiliki Website?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="landing_page"><span class="me-2">
+                        <input type="radio" value="iya" class="form-check-input" required id="exampleInputUsername1 " name="landing_page"><span class="me-2">
                             ya
                         </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="landing_page"><span class="me-2">
+                        <input type="radio" value="tidak" class="form-check-input" required id="exampleInputUsername1 " name="landing_page"><span class="me-2">
                             tidak
                         </span>
                         @error('landing_page')
@@ -1582,10 +1616,10 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Memiliki Katalog Di Social Media Seperti Facebook Dan Instagram?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="sosmed"><span class="me-2">
+                        <input type="radio" value="iya" class="form-check-input" required id="exampleInputUsername1 " name="sosmed"><span class="me-2">
                             ya
                         </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="sosmed"><span class="me-2">
+                        <input type="radio" value="tidak" class="form-check-input" required id="exampleInputUsername1 " name="sosmed"><span class="me-2">
                             tidak
                         </span>
                         @error('sosmed')
@@ -1594,10 +1628,10 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Menggunakan E Commerce Seperti Shopee Atau Tokopedia?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="ecommerce"><span class="me-2">
+                        <input type="radio" value="iya" class="form-check-input" required id="exampleInputUsername1 " name="ecommerce"><span class="me-2">
                             ya
                         </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="ecommerce"><span class="me-2">
+                        <input type="radio" value="tidak" class="form-check-input" required id="exampleInputUsername1 " name="ecommerce"><span class="me-2">
                             tidak
                         </span>
                         @error('ecommerce')
@@ -1606,10 +1640,10 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah Merk Anda Memiliki Team Creative?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="team"><span class="me-2">
+                        <input type="radio" value="iya" class="form-check-input" required id="exampleInputUsername1 " name="team"><span class="me-2">
                             ya
                         </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="team"><span class="me-2">
+                        <input type="radio" value="tidak" class="form-check-input" required id="exampleInputUsername1 " name="team"><span class="me-2">
                             tidak
                         </span>
                         @error('team')
@@ -1639,10 +1673,10 @@
                     {{ csrf_field() }}
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah merk anda sering menggunakan fitur live streaming untuk mengiklankan product anda?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="live_stream"><span class="me-2">
+                        <input type="radio" value="iya" class="form-check-input" required id="exampleInputUsername1 " name="live_stream"><span class="me-2">
                             ya
                         </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="live_stream"><span class="me-2">
+                        <input type="radio" value="tidak" class="form-check-input" required id="exampleInputUsername1 " name="live_stream"><span class="me-2">
                             tidak
                         </span>
                         @error('live_stream')
@@ -1651,10 +1685,10 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah merk anda ingin menggunakan fitur cod<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="cod"><span class="me-2">
+                        <input type="radio" value="iya" class="form-check-input" required id="exampleInputUsername1 " name="cod"><span class="me-2">
                             ya
                         </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="cod"><span class="me-2">
+                        <input type="radio" value="tidak" class="form-check-input" required id="exampleInputUsername1 " name="cod"><span class="me-2">
                             tidak
                         </span>
                         @error('cod')
@@ -1663,10 +1697,10 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah merk anda akan sering mengadakan promo?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="promo"><span class="me-2">
+                        <input type="radio" value="iya" class="form-check-input" required id="exampleInputUsername1 " name="promo"><span class="me-2">
                             ya
                         </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="promo"><span class="me-2">
+                        <input type="radio" value="tidak" class="form-check-input" required id="exampleInputUsername1 " name="promo"><span class="me-2">
                             tidak
                         </span>
                         @error('promo')
@@ -1675,10 +1709,10 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apakah merk anda melayani ekspor?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="iya" class="form-check-input" id="exampleInputUsername1 " name="ekspor"><span class="me-2">
+                        <input type="radio" value="iya" class="form-check-input" required id="exampleInputUsername1 " name="ekspor"><span class="me-2">
                             ya
                         </span>
-                        <input type="radio" value="tidak" class="form-check-input" id="exampleInputUsername1 " name="ekspor"><span class="me-2">
+                        <input type="radio" value="tidak" class="form-check-input" required id="exampleInputUsername1 " name="ekspor"><span class="me-2">
                             tidak
                         </span>
                         @error('ekspor')
@@ -1687,10 +1721,10 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Apa yang anda gunakan untuk mengiklankan merk anda?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="video" class="form-check-input" id="exampleInputUsername1 " name="iklan"><span class="me-2">
+                        <input type="radio" value="video" class="form-check-input" required id="exampleInputUsername1 " name="iklan"><span class="me-2">
                             Video
                         </span>
-                        <input type="radio" value="foto" class="form-check-input" id="exampleInputUsername1 " name="iklan"><span class="me-2">
+                        <input type="radio" value="foto" class="form-check-input" required id="exampleInputUsername1 " name="iklan"><span class="me-2">
                             Poster/Foto Product
                         </span>
                         @error('iklan')
@@ -1699,21 +1733,30 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="exampleInputUsername1" class="mb-1">Produk apa yang anda jual?<span class="text-danger">*</span></label><br>
-                        <input type="radio" value="makanan" class="form-check-input" id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
+                        <input type="radio" value="makanan" class="form-check-input" required id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
                             Makanan/Minuman
                         </span>
-                        <input type="radio" value="pakaian" class="form-check-input" id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
+                        <input type="radio" value="pakaian" class="form-check-input" required id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
                             Pakaian
                         </span><br>
-                        <input type="radio" value="elektronik" class="form-check-input" id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
+                        <input type="radio" value="elektronik" class="form-check-input" required id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
                             Elektronik
                         </span>
-                        <input type="radio" value="aksesoris" class="form-check-input" id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
+                        <input type="radio" value="aksesoris" class="form-check-input" required id="exampleInputUsername1 " name="jenis_product"><span class="me-2">
                             Aksesoris
                         </span>
                         @error('jenis_product')
                                 <p class="text-danger">{{ $message }}</p>
                         @enderror
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="exampleInputUsername1" class="mb-1">Tambahkan 5 Hastag Merk Anda<span class="text-danger">*</span></label><br>
+                        <input class="form-control my-1" required placeholder="Hastag #" name="tag1" value="#" type="text">
+                        <input class="form-control my-1" required placeholder="Hastag #" name="tag2" value="#" type="text">
+                        <input class="form-control my-1" required placeholder="Hastag #" name="tag3" value="#" type="text">
+                        <input class="form-control my-1" required placeholder="Hastag #" name="tag4" value="#" type="text">
+                        <input class="form-control my-1" required placeholder="Hastag #" name="tag5" value="#" type="text">
                     </div>
                     <div class="modal-footer gap-1">
                     <button type="button" class="btn btn-outline-warning btn-icon-text" data-bs-dismiss="modal" aria-label="Close">Cancel</button>

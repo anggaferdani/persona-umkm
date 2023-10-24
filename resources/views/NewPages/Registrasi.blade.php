@@ -6,8 +6,8 @@
 
 <img class="objectLeft" id="object" src="{{asset('../../images/objectLeft.png')}}" >
     <img class="objectRight" id="object" src="{{asset('../../images/objectRight.png')}}">
-<div class="registrasiContent">
-    <div class="content">
+<div class="registrasiContent1">
+    <div class="content1">
         <h3 class="fw-bold text-center">REGISTRASI UMKM</h3>
         <p class="text-blue text-center">PERSONA BRAND</p>
     <form action="{{route('user.postregister')}}" method="post">
@@ -15,7 +15,7 @@
     <div class="form">
         <div class="form-group my-3">
             <div class="form-input-container">
-                <input type="text" name="name" class="form-control email-input" id="txtemailLogin" placeholder="Nama Umkm Anda">
+                <input type="text" name="name" required class="form-control email-input" id="txtemailLogin" placeholder="Nama">
                 @error('name')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
@@ -23,7 +23,7 @@
         </div>
         <div class="form-group my-3">
             <div class="form-input-container">
-                <input type="email" name="email" class="form-control email-input" id="txtemailLogin" placeholder="Email">
+                <input type="email" name="email" required class="form-control email-input" id="txtemailLogin" placeholder="Email">
                 @error('email')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
@@ -31,7 +31,15 @@
         </div>
         <div class="form-group my-3">
             <div class="form-input-container">
-                <input type="password" id="password" class="form-control email-input" id="txtemailLogin" placeholder="Password">
+                <input type="number" name="no_telp" required class="form-control email-input" id="txtemailLogin" placeholder="Nomor Telepon">
+                @error('no_telp')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+            </div>
+        </div>
+        <div class="form-group my-3">
+            <div class="form-input-container">
+                <input type="password" id="password" required class="form-control email-input" id="txtemailLogin" placeholder="Password">
                 @error('password')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
@@ -39,7 +47,7 @@
         </div>
         <div class="form-group my-3">
             <div class="form-input-container">
-                <input type="password" id="password2" onchange="check()" name="password" class="form-control email-input" id="txtemailLogin" placeholder="Konfirmasi Password">
+                <input type="password" id="password2" onchange="check()" name="password" required class="form-control email-input" id="txtemailLogin" placeholder="Konfirmasi Password">
                 @error('password')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror

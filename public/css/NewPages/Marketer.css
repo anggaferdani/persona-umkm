@@ -7,7 +7,9 @@
     height: auto;
     object-fit: contain;
 }
-
+.qq{
+    margin: auto 0;
+}
 
 .top p{
     padding: .5rem 2rem;

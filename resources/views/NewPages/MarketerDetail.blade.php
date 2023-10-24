@@ -5,7 +5,7 @@
 <link rel="stylesheet" href=" {{ asset('../css/NewPages/MarketerDetail.css')}}">
 
 <div class="container" style="padding-top: 5rem;">
-    <a href="/marketer" class="backButton d-flex align-items-center gap-2">
+    <a href="/umkm/marketer" class="backButton d-flex align-items-center gap-2">
         <i class="fa-solid fa-arrow-left"></i>
         <p>Back</p>
     </a>

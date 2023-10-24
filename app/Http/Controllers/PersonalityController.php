@@ -166,6 +166,7 @@ class PersonalityController extends Controller
     }
 
     public function hasil($id){
+        $bpa = BrandPersonalityAakerModel::where('created_by', $id)->first();
         $bparesult = BrandPersonalityAakerResult::where('created_by', $id)->get();
         $bpamax = BrandPersonalityAakerResult::where('created_by', $id)->orderby('result', 'DESC')->first();
 
@@ -183,11 +184,12 @@ class PersonalityController extends Controller
 
         $bparug = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_ruggedness')->first();
         $bparugpercent = $bparug->result * 20;
-        return view('NewPages.Hasil', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent'));
+        return view('NewPages.Hasil', compact('bpa','bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent'));
     }
 
     public function beranda(){
         $user = Auth::user()->id;
+        $bpa = BrandPersonalityAakerModel::where('created_by', $user)->first();
         $bparesult = BrandPersonalityAakerResult::where('created_by', $user)->get();
         $bpamax = BrandPersonalityAakerResult::where('created_by', $user)->orderby('result', 'DESC')->first();
 
@@ -241,7 +243,7 @@ class PersonalityController extends Controller
         $instagram85 = StrategiDIgital::where('user_id', $user)->where('live_stream', 'tidak')->where('cod', 'tidak')->where('promo', 'tidak')->first();
         // dd($level->team);
 
-        return view('NewPages.Beranda', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent', 'level', 'basic', 'intermediate', 'advance1', 'advance2', 'advance3', 'strategi', 'shope95', 'shope901', 'shope902', 'shope85', 'tokped95', 'tokped901', 'tokped902', 'tokped85', 'tiktok95', 'tiktok901','tiktok902', 'tiktok85', 'instagram95', 'instagram901', 'instagram902', 'instagram85'));
+        return view('NewPages.Beranda', compact('bpa','bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent', 'level', 'basic', 'intermediate', 'advance1', 'advance2', 'advance3', 'strategi', 'shope95', 'shope901', 'shope902', 'shope85', 'tokped95', 'tokped901', 'tokped902', 'tokped85', 'tiktok95', 'tiktok901','tiktok902', 'tiktok85', 'instagram95', 'instagram901', 'instagram902', 'instagram85'));
     }
 
     public function levelumkm(Request $request){
@@ -298,6 +300,7 @@ class PersonalityController extends Controller
 
     public function marketerberanda(){
         $user = Auth::user()->id;
+        $bpa = BrandPersonalityAakerModel::where('created_by', $user)->first();
         $bparesult = BrandPersonalityAakerResult::where('created_by', $user)->get();
         $bpamax = BrandPersonalityAakerResult::where('created_by', $user)->orderby('result', 'DESC')->first();
 
@@ -316,7 +319,7 @@ class PersonalityController extends Controller
         $bparug = BrandPersonalityAakerResult::where('created_by', $user)->where('brand_personality_aaker', 'average_ruggedness')->first();
         $bparugpercent = $bparug->result * 20;
 
-        return view('Marketer.Hasil', compact('bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent'));
+        return view('Marketer.Hasil', compact('bpa','bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent'));
     }
 
     public function marketer(){
@@ -332,6 +335,10 @@ class PersonalityController extends Controller
         return response()->download(public_path('file/'.$file));
     }
 
+    public function downloadcontoh($file){
+        return response()->download(public_path('file/'.$file));
+    }
+
     public function profil(){
         $profil = Profile::where('user_id', Auth::user()->id)->first();
         return view('NewPages.Profile', compact('profil'));
@@ -341,32 +348,54 @@ class PersonalityController extends Controller
         $this->validate($request,[
             'foto' => 'required|file|mimes:png,jpg,jpeg',
             'alamat' => 'required',
-            'no_telepon' => 'required',
         ],[
             'foto' => 'Insert Profile Photo',
             'foto.mimes' => 'Image Must Be .png, .jpeg, .jpg',
             'alamat' => 'Insert Your Address',
-            'no_telepon' => 'Insert Your Phone Number',
         ]);
+        $user = Auth::user()->id;
+        $profil = Profile::where('user_id', $user)->first();
 
-        $newProfile = new Profile();
-        $newProfile->user_id = Auth::user()->id;
-        $newProfile->alamat = $request->alamat;
-        $newProfile->no_telepon = $request->no_telepon;
+        if($profil){
+            $profil->user_id = $user;
+            $profil->alamat = $request->alamat;
+            $profil->no_telepon = $request->no_telepon;
 
-        if($request->hasFile('foto'))
-        {
-            $fotoprofile = 'Profile'.Auth::user()->name.'.'.$request->foto->getClientOriginalExtension();
-            $request->file('foto')->move(public_path().'/img/', $fotoprofile);
-            $newProfile->foto = $fotoprofile;
+            if($request->hasFile('foto'))
+            {
+                $fotoprofile = 'Profile'.Auth::user()->name.'.'.$request->foto->getClientOriginalExtension();
+                $request->file('foto')->move(public_path().'/img/', $fotoprofile);
+                $profil->foto = $fotoprofile;
+                $profil->save();
+            }
+
+            if($request->deskripsi){
+                $profil->deskripsi = $request->deskripsi;
+                $profil->save();
+            }
+            $profil->save();
+
+        }else{
+            $newProfile = new Profile();
+            $newProfile->user_id = Auth::user()->id;
+            $newProfile->alamat = $request->alamat;
+            $newProfile->no_telepon = $request->no_telepon;
+
+            if($request->hasFile('foto'))
+            {
+                $fotoprofile = 'Profile'.Auth::user()->name.'.'.$request->foto->getClientOriginalExtension();
+                $request->file('foto')->move(public_path().'/img/', $fotoprofile);
+                $newProfile->foto = $fotoprofile;
+                $newProfile->save();
+            }
+
+            if($request->deskripsi){
+                $newProfile->deskripsi = $request->deskripsi;
+                $newProfile->save();
+            }
             $newProfile->save();
         }
-
-        if($request->deskripsi){
-            $newProfile->deskripsi = $request->deskripsi;
-            $newProfile->save();
-        }
-        $newProfile->save();
+        
         Alert::success('Success', 'Profile Anda Telah Diupdate');
         return redirect()->back();
 
@@ -405,6 +434,11 @@ class PersonalityController extends Controller
             'ekspor' => 'required',
             'iklan' => 'required',
             'jenis_product' => 'required',
+            'tag1' => 'required',
+            'tag2' => 'required',
+            'tag3' => 'required',
+            'tag4' => 'required',
+            'tag5' => 'required',
         ],[
             'live_stream' => 'Insert Merk Name',
             'cod' => 'Select One',
@@ -412,6 +446,11 @@ class PersonalityController extends Controller
             'ekspor' => 'Select One',
             'iklan' => 'Select One',
             'jenis_product' => 'Select One',
+            'tag1' => 'Input Tag',
+            'tag2' => 'Input Tag',
+            'tag3' => 'Input Tag',
+            'tag4' => 'Input Tag',
+            'tag5' => 'Input Tag',
         ]);
 
 
@@ -426,6 +465,11 @@ class PersonalityController extends Controller
             $strategi->ekspor = $request->ekspor;
             $strategi->iklan = $request->iklan;
             $strategi->jenis_product = $request->jenis_product;
+            $strategi->tag1 = $request->tag1;
+            $strategi->tag2 = $request->tag2;
+            $strategi->tag3 = $request->tag3;
+            $strategi->tag4 = $request->tag4;
+            $strategi->tag5 = $request->tag5;
             $strategi->save();
         }else{
             $newStrategi = new StrategiDigital();
@@ -436,10 +480,44 @@ class PersonalityController extends Controller
             $newStrategi->ekspor = $request->ekspor;
             $newStrategi->iklan = $request->iklan;
             $newStrategi->jenis_product = $request->jenis_product;
+            $newStrategi->tag1 = $request->tag1;
+            $newStrategi->tag2 = $request->tag2;
+            $newStrategi->tag3 = $request->tag3;
+            $newStrategi->tag4 = $request->tag4;
+            $newStrategi->tag5 = $request->tag5;
             $newStrategi->save();
         }
 
         Alert::success('Success', 'Strategi Anda Telah Ditentukan');
         return back();
+    }
+
+    public function listumkm(){
+        $umkm = User::where('role', 3)->get();
+        return view('Marketer.Umkm', compact('umkm'));
+    }
+
+    public function detailumkm($id){
+        $userid = User::find($id);
+        $pp = Profile::where('user_id', $id)->first();
+
+        $bparesult = BrandPersonalityAakerResult::where('created_by', $id)->get();
+        $bpamax = BrandPersonalityAakerResult::where('created_by', $id)->orderby('result', 'DESC')->first();
+
+        $bpasince = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_sincerity')->first();
+        $bpasincepercent = $bpasince->result * 20;
+
+        $bpacompe = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_competence')->first();
+        $bpacompepercent = $bpacompe->result * 20;
+
+        $bpaexci = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_excitement')->first();
+        $bpaexcipercent = $bpaexci->result * 20;
+
+        $bpasophis = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_sophistication')->first();
+        $bpasophispercent = $bpasophis->result * 20;
+
+        $bparug = BrandPersonalityAakerResult::where('created_by', $id)->where('brand_personality_aaker', 'average_ruggedness')->first();
+        $bparugpercent = $bparug->result * 20;
+        return view('Marketer.DetailUmkm', compact('userid', 'bparesult', 'bpamax', 'bpasincepercent', 'bpacompepercent', 'bpaexcipercent', 'bpasophispercent', 'bparugpercent', 'pp'));
     }
 }

@@ -81,8 +81,8 @@ Route::prefix('marketer')->group(function(){
     
         // MARKETER
         // Route::get('/hasil-umkm', function () {return view('Marketer.Hasil');});
-        Route::get('/umkm', function () {return view('Marketer.Umkm');});
-        // Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
+        Route::get('/umkm',[PersonalityController::class, 'listumkm']);
+        Route::get('/detail-umkm/{id}', [PersonalityController::class, 'detailumkm']);
     });
 });
 
@@ -112,4 +112,5 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 Route::get('/dw-cv/{file}', [PersonalityController::class, 'downloadcv'])->name('downloadcv');
 Route::get('/dw-porto/{file}', [PersonalityController::class, 'downloadporto'])->name('downloadporto');
+Route::get('/dw-contoh/{file}', [PersonalityController::class, 'downloadcontoh'])->name('downloadcontoh');
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');

@@ -33,7 +33,42 @@
                 <div class="row justify-content-center">
                   <div class="col-md-4 col-10"> 
                     <div class="imageCover">
-                      <img class="my-3" src="{{asset('../../images/HasilOrangTop.png')}}">
+                    @switch($bpamax->brand_personality_aaker)
+                        @case('average_sincerity')
+                            @if($bpa->gender == 'men')
+                                <img class="my-3" src="{{asset('../../images/sincerity_boy.png')}}">
+                            @else
+                                <img class="my-3" src="{{asset('../../images/sincerity_girl.png')}}">
+                            @endif
+                        @break
+                        @case('average_competence')
+                            @if($bpa->gender == 'men')
+                                <img class="my-3" src="{{asset('../../images/competence_boy.png')}}">
+                            @else
+                                <img class="my-3" src="{{asset('../../images/competence_girl.png')}}">
+                            @endif
+                        @break
+                        @case('average_excitement')
+                            @if($bpa->gender == 'men')
+                                <img class="my-3" src="{{asset('../../images/exitement_boy.png')}}">
+                            @else
+                                <img class="my-3" src="{{asset('../../images/exitement_girl.png')}}">
+                            @endif
+                        @break
+                        @case('average_sophistication')
+                            @if($bpa->gender == 'men')
+                                <img class="my-3" src="{{asset('../../images/shopistication_boy.png')}}">
+                            @else
+                                <img class="my-3" src="{{asset('../../images/shopistication_girl.png')}}">
+                            @endif
+                        @break
+                        @default
+                            @if($bpa->gender == 'men')
+                                <img class="my-3" src="{{asset('../../images/ruggednes_boy.png')}}">
+                            @else
+                                <img class="my-3" src="{{asset('../../images/ruggednes_girl.png')}}">
+                            @endif
+                    @endswitch
                     </div>
                   </div>
                 </div>

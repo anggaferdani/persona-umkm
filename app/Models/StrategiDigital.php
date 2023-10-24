@@ -19,6 +19,11 @@ class StrategiDigital extends Model
         'ekspor',
         'iklan',
         'jenis_product',
+        'tag1', 
+        'tag2',
+        'tag3',
+        'tag4',
+        'tag5',
     ];
 
     public function user(){

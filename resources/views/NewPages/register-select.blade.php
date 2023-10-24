@@ -6,8 +6,8 @@
 
 <img class="objectLeft" id="object" src="{{asset('../../images/objectLeft.png')}}" >
     <img class="objectRight" id="object" src="{{asset('../../images/objectRight.png')}}">
-<div class="registrasiContent">
-    <div class="content">
+<div class="registrasiContent1">
+    <div class="content1">
         <h3 class="fw-bold text-center text-dark">PILIH ROLE ANDA</h3>
         <p class="text-blue text-center">PERSONA BRAND</p>
         <div class="d-flex justify-content-center gap-2 my-2">
