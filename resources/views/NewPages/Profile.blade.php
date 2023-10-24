@@ -79,7 +79,7 @@
                 @enderror
             </div>
             <div class="form-group mb-3">
-                <label for="exampleInputUsername1">Alamat Anda<span class="text-danger">*</span></label>
+                <label for="exampleInputUsername1">No Telepon<span class="text-danger">*</span></label>
                 <input type="number" class="form-control" id="exampleInputUsername1" placeholder="Input No Telepon..." name="no_telepon">
                 @error('no_telepon')
                         <p class="text-danger">{{ $message }}</p>
@@ -117,7 +117,7 @@
                 @enderror
             </div>
             <div class="form-group mb-3">
-                <label for="exampleInputUsername1">Alamat Anda<span class="text-danger">*</span></label>
+                <label for="exampleInputUsername1">No Telepon<span class="text-danger">*</span></label>
                 <input type="number" class="form-control" id="exampleInputUsername1" placeholder="Input No Telepon..." name="no_telepon">
                 @error('no_telepon')
                         <p class="text-danger">{{ $message }}</p>

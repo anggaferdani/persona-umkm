@@ -97,11 +97,12 @@ class LoginController extends Controller
             'password.min' => 'Password Must Be 8 Character',
         ]);
 
-        $otp = rand(10000,999999);
+        $otp = rand(100000,999999);
 
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->no_telp = $request->no_telp;
         $user->password = bcrypt($request->password);
         $user->otp = $otp;
         $user->role = 3;
@@ -134,7 +135,7 @@ class LoginController extends Controller
     }
 
     public function otpresent($id){
-        $otp = rand(10000,999999);
+        $otp = rand(100000,999999);
         $user = User::find($id);
         $user->otp = $otp;
         $user->save();
@@ -192,6 +193,7 @@ class LoginController extends Controller
         $this->validate($request,[
             'email' => 'required|email',
             'name' => 'required',
+            'no_telp' => 'required',
             'password' => 'required|min:8',
             'cv' => 'required|file|mimes:png,jpg,jpeg,csv,txt,xlx,xls,xlsx,pdf,doc,docx,ppt,pptx',
             'portofolio' => 'required|file|mimes:png,jpg,jpeg,csv,txt,xlx,xls,xlsx,pdf,doc,docx,ppt,pptx',
@@ -200,6 +202,7 @@ class LoginController extends Controller
             'email' => 'Input Your Email',
             'email.email' => 'Must Be Email',
             'name' => 'Input Your Username',
+            'no_telp' => 'Input Your Number Phone',
             'password' => 'Input Your Password',
             'password.min' => 'Password Must Be 8 Character',
             'portofolio' => 'Upload Your Portofolio',
@@ -209,11 +212,12 @@ class LoginController extends Controller
             'link_portofolio_1' => 'Input Your Portofiolio',
         ]);
 
-        $otp = rand(10000,999999);
+        $otp = rand(100000,999999);
 
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->no_telp = $request->no_telp;
         $user->password = bcrypt($request->password);
         $user->otp = $otp;
         $user->role = 4;
@@ -291,7 +295,7 @@ class LoginController extends Controller
     }
 
     public function marketerotpresent($id){
-        $otp = rand(10000,999999);
+        $otp = rand(100000,999999);
         $user = User::find($id);
         $user->otp = $otp;
         $user->save();

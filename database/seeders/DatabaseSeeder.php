@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Superadmin',
                 'email' => 'superadmin@gmail.com',
+                'no_telp' => 123,
                 'password' => bcrypt(12345678),
                 'otp' => 1,
                 'verification' => 'verified',
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ], [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
+                'no_telp' => 123,
                 'password' => bcrypt(12345678),
                 'otp' => 2,
                 'verification' => 'verified',
@@ -31,6 +33,7 @@ class DatabaseSeeder extends Seeder
             ],[
                 'name' => 'User',
                 'email' => 'user@gmail.com',
+                'no_telp' => 123,
                 'password' => bcrypt(12345678),
                 'otp' => 3,
                 'verification' => 'verified',

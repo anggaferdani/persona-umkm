@@ -5,7 +5,7 @@
 <link rel="stylesheet" href=" {{ asset('../css/NewPages/Beranda.css')}}">
 
 <div class="header"  style="padding-top: 2.75rem;">
-    <img src="{{asset('../../images/banner_persona.png')}}">
+    <img src="{{asset('../../images/beranda_marketer.png')}}">
 </div>
 
 
@@ -13,30 +13,65 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 d-flex align-items-center gap-2">
                 <div class="marketerIcon">
-                    <img src="{{asset('../../images/hasilIcon.png')}}">
+                @switch($bpamax->brand_personality_aaker)
+                        @case('average_sincerity')
+                            @if($bpa->gender == 'men')
+                                <img src="{{asset('../../images/sincerity_boy.png')}}">
+                            @else
+                                <img src="{{asset('../../images/sincerity_girl.png')}}">
+                            @endif
+                        @break
+                        @case('average_competence')
+                            @if($bpa->gender == 'men')
+                                <img src="{{asset('../../images/competence_boy.png')}}">
+                            @else
+                                <img src="{{asset('../../images/competence_girl.png')}}">
+                            @endif
+                        @break
+                        @case('average_excitement')
+                            @if($bpa->gender == 'men')
+                                <img src="{{asset('../../images/exitement_boy.png')}}">
+                            @else
+                                <img src="{{asset('../../images/exitement_girl.png')}}">
+                            @endif
+                        @break
+                        @case('average_sophistication')
+                            @if($bpa->gender == 'men')
+                                <img src="{{asset('../../images/shopistication_boy.png')}}">
+                            @else
+                                <img src="{{asset('../../images/shopistication_girl.png')}}">
+                            @endif
+                        @break
+                        @default
+                            @if($bpa->gender == 'men')
+                                <img src="{{asset('../../images/ruggednes_boy.png')}}">
+                            @else
+                                <img src="{{asset('../../images/ruggednes_girl.png')}}">
+                            @endif
+                    @endswitch
                 </div>
                <div class="desc">
-                <p class="fw-bold">Persona Brand Anda :</p>
+                <p class="fw-bold">Persona Marketer Anda :</p>
                 @switch($bpamax->brand_personality_aaker)
                     @case('average_sincerity')
                     <h3 class="text-blue fw-bolder">SINCERITY</h3>
-                    <p class="mt-3">SINCERITY adalah orang yang  jujur, tulus, dan memiliki integritas. Personal Brand ini sering kali dilihat sebagai dapat dipercaya dan dapat diandalkan.</p>
+                    <p class="mt-3">SINCERITY adalah orang yang  jujur, tulus, dan memiliki integritas. Personality ini sering kali dilihat sebagai dapat dipercaya dan dapat diandalkan.</p>
                     @break
                     @case('average_competence')
                     <h3 class="text-blue fw-bolder">COMPETENCE</h3>
-                    <p class="mt-3">COMPETENCE adalah orang yang  kompeten, efisien, dan ahli dalam bidangnya. Personal Brand ini handal dan memiliki keunggulan dalam hal kualitas dan kinerja.</p>
+                    <p class="mt-3">COMPETENCE adalah orang yang  kompeten, efisien, dan ahli dalam bidangnya. Personality ini handal dan memiliki keunggulan dalam hal kualitas dan kinerja.</p>
                     @break
                     @case('average_excitement')
                     <h3 class="text-blue fw-bolder">EXCITEMENT</h3>
-                    <p class="mt-3">EXCITEMENT adalah orang yang berenergi, bersemangat, dan menarik perhatian konsumen. Personal Brand ini sering dihubungkan dengan inovasi dan kegembiraan.</p>
+                    <p class="mt-3">EXCITEMENT adalah orang yang berenergi, bersemangat, dan menarik perhatian konsumen. Personality ini sering dihubungkan dengan inovasi dan kegembiraan.</p>
                     @break
                     @case('average_sophistication')
                     <h3 class="text-blue fw-bolder">SOPHISTICATION</h3>
-                    <p class="mt-3">SOPHISTICATION adalah orang yang elegan, anggun, dan mewah. Personal Brand ini sering dihubungkan dengan keanggunan dan gaya yang tinggi.</p>
+                    <p class="mt-3">SOPHISTICATION adalah orang yang elegan, anggun, dan mewah. Personality ini sering dihubungkan dengan keanggunan dan gaya yang tinggi.</p>
                     @break
                     @default
                     <h3 class="text-blue fw-bolder">RUGGEDNESS</h3>
-                    <p class="mt-3">RUGGEDNESS adalah orang yang Maskulin, Terbuka, Aktif, dan Tangguh. Personal Brand ini sering diidentifikasi dengan kekuatan dan daya tahan.</p>
+                    <p class="mt-3">RUGGEDNESS adalah orang yang Maskulin, Terbuka, Aktif, dan Tangguh. Personality ini sering diidentifikasi dengan kekuatan dan daya tahan.</p>
                 @endswitch
                </div>
             </div>

@@ -2,12 +2,12 @@
     width: 40%;
 }
 .objectLeft{
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
 }
 .objectRight{
-    position: absolute;
+    position: fixed;
     Right: 0;
     bottom: 0;
 }
@@ -21,6 +21,8 @@
 
 .registrasiContent{
     /* height: 100vh; */
+    margin-top: 15rem;
+    margin-bottom: 1rem;
     display: grid;
     place-items: center;
 }

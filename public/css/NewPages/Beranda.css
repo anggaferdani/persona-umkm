@@ -26,6 +26,9 @@
     margin: 1rem 0;
     padding: 0;
 }
+.marketerIcon img{
+    width: 110px;
+}
 .tpcImage img{
     width: 115px;
     height: auto;
@@ -100,6 +103,6 @@
         width: 25%;
     }
     .marketerIcon img{
-        width: 100%;
+        width: 75px;
     }
 }
