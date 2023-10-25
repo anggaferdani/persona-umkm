@@ -24,23 +24,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($umkm as $item)
+                  @foreach($marketer1Comparison as $item)
                   <tr class="text-center mt-2">
                     <td>1</td>
-                    <td><p>{{$item->name}}</p></td>
+                    <td><p>{{$item['name']}}</p></td>
                     <td class="parentImage">
                       <img src="{{asset('../../images/marketerImage.png')}}">
                     </td>
                     <td class="precentage">
                       <div class="progressBar d-flex align-items-center gap-2 my-3">
                         <div class="progress w-100" role="progressbar" aria-label="Basic example"
-                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar w-75"></div>
+                            aria-valuenow="{{$item['percentage']}}" aria-valuemin="{{100 - $item['percentage']}}" aria-valuemax="100">
+                            <div class="progress-bar" style="width: {{$item['percentage']}}%"></div>
                         </div>
-                        <p class="fw-bolder">95%</p>
+                        <p class="fw-bolder">{{substr($item['percentage'],0,2)}}%</p>
                       </div>
                     </td>
-                    <td><a href="{{ url('/marketer/detail-umkm/'.$item->id) }}" class="btn btn-primary">Detail Umkm</a></td>
+                    <td><a href="{{ url('/marketer/detail-umkm/'.$item['id']) }}" class="btn btn-primary">Detail Umkm</a></td>
                   </tr>
                   @endforeach
                 </tbody>
