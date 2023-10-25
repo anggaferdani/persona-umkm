@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Marketer;
 use App\Models\LevelUmkm;
 use Illuminate\Http\Request;
 use App\Models\StrategiDigital;
@@ -323,8 +324,73 @@ class PersonalityController extends Controller
     }
 
     public function marketer(){
-        $marketer = User::where('role', 4)->get();
-        return view('NewPages.Marketer', compact('marketer'));
+        // $marketer = User::where('role', 4)->get();
+        $umkm = BrandPersonalityAakerModel::where('created_by', Auth::id())->first();
+        $umkm1Results = [
+            $umkm->average_sincerity,
+            $umkm->average_competence,
+            $umkm->average_excitement,
+            $umkm->average_sophistication,
+            $umkm->average_ruggedness,
+        ];
+        $userIds = User::where('role', 4)->get();
+        // $marketercocok = BrandPersonalityAakerModel::with('user')->whereHas('user', function ($query){
+        //     $query->where('role', 4);
+        // })->get();
+        
+        $marketers = [];
+        foreach($userIds as $userId){
+            $bpaData = BrandPersonalityAakerModel::select('created_by', 'average_sincerity', 'average_competence', 'average_excitement', 'average_sophistication', 'average_ruggedness')->where('created_by', $userId->id)->first();
+            $kelengkapan = Marketer::select('user_id', 'cv', 'portofolio', 'link_portofolio_1', 'link_portofolio_2', 'link_portofolio_3')->where('user_id', $userId->id)->first();
+            // dd($bpaData);
+
+            if($bpaData){
+                $marketers[] = [
+                    'name' => $userId->name,
+                    'id' => $userId->id,
+                    'cv' => $kelengkapan->cv,
+                    'portofolio' => $kelengkapan->portofolio,
+                    'link_portofolio_1' => $kelengkapan->link_portofolio_1,
+                    'link_portofolio_2' => $kelengkapan->link_portofolio_2,
+                    'link_portofolio_3' => $kelengkapan->link_portofolio_3,
+                    'results' => [
+                        $bpaData->average_sincerity,
+                        $bpaData->average_competence,
+                        $bpaData->average_excitement,
+                        $bpaData->average_sophistication,
+                        $bpaData->average_ruggedness,
+                    ],
+                ];
+            }
+
+
+        }
+        $umkm1Comparison = [];
+        foreach ($marketers as $marketer) {
+            $marketerResults = $marketer['results'];
+            $difference = 0;
+    
+            for ($i = 0; $i < count($umkm1Results); $i++) {
+                $difference += abs($umkm1Results[$i] - $marketerResults[$i]);
+            }
+    
+            $umkm1Comparison[] = [
+                'id' => $marketer['id'],
+                'name' => $marketer['name'],
+                'cv' => $marketer['cv'],
+                'portofolio' => $marketer['portofolio'],
+                'link_portofolio_1' => $marketer['link_portofolio_1'],
+                'link_portofolio_2' => $marketer['link_portofolio_2'],
+                'link_portofolio_3' => $marketer['link_portofolio_3'],
+                'difference' => $difference,
+                'percentage' => 100 - ($difference / array_sum($umkm1Results) * 100),
+            ];
+            // dd($umkm1Comparison);
+        }
+        usort($umkm1Comparison, function ($a, $b) {
+            return $b['percentage'] - $a['percentage']; // Assuming percentage is in the last index (index 4)
+        });
+        return view('NewPages.Marketer', compact('umkm1Comparison'));
     }
 
     public function downloadcv($file){
@@ -491,8 +557,62 @@ class PersonalityController extends Controller
     }
 
     public function listumkm(){
-        $umkm = User::where('role', 3)->get();
-        return view('Marketer.Umkm', compact('umkm'));
+        // $umkm = User::where('role', 3)->get();
+        $marketer = BrandPersonalityAakerModel::where('created_by', Auth::id())->first();
+        $marketer1Results = [
+            $marketer->average_sincerity,
+            $marketer->average_competence,
+            $marketer->average_excitement,
+            $marketer->average_sophistication,
+            $marketer->average_ruggedness,
+        ];
+        $userIds = User::where('role', 3)->get();
+        // $marketercocok = BrandPersonalityAakerModel::with('user')->whereHas('user', function ($query){
+        //     $query->where('role', 4);
+        // })->get();
+        
+        $umkms = [];
+        foreach($userIds as $userId){
+            $bpaData = BrandPersonalityAakerModel::select('created_by', 'average_sincerity', 'average_competence', 'average_excitement', 'average_sophistication', 'average_ruggedness')->where('created_by', $userId->id)->first();
+            // dd($bpaData);
+
+            if($bpaData){
+                $umkms[] = [
+                    'name' => $userId->name,
+                    'id' => $userId->id,
+                    'results' => [
+                        $bpaData->average_sincerity,
+                        $bpaData->average_competence,
+                        $bpaData->average_excitement,
+                        $bpaData->average_sophistication,
+                        $bpaData->average_ruggedness,
+                    ],
+                ];
+            }
+
+
+        }
+        $marketer1Comparison = [];
+        foreach ($umkms as $umkm) {
+            $umkmResults = $umkm['results'];
+            $difference = 0;
+    
+            for ($i = 0; $i < count($marketer1Results); $i++) {
+                $difference += abs($umkmResults[$i] - $marketer1Results[$i]);
+            }
+    
+            $marketer1Comparison[] = [
+                'id' => $umkm['id'],
+                'name' => $umkm['name'],
+                'difference' => $difference,
+                'percentage' => 100 - ($difference / array_sum($umkmResults) * 100),
+            ];
+            // dd($marketer1Comparison);
+        }
+        usort($marketer1Comparison, function ($a, $b) {
+            return $b['percentage'] - $a['percentage']; // Assuming percentage is in the last index (index 4)
+        });
+        return view('Marketer.Umkm', compact('marketer1Comparison'));
     }
 
     public function detailumkm($id){
