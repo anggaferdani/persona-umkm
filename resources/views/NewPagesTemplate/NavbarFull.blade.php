@@ -23,8 +23,11 @@
             @endif
           </div>
           <div class="navbarNotif d-flex align-items-center gap-4 my-md-0 my-3">
-            <a href=""><i class="fa-solid fa-bell"></i></a>
+          @if(Auth::user()->role == 3)
             <a href="/umkm/profile"><i class="fa-solid fa-user"></i></a>
+            @elseif(Auth::user()->role == 4)
+            <a href="/marketer/profile"><i class="fa-solid fa-user"></i></a>
+            @endif
           </div>
         </div>
        

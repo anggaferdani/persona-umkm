@@ -18,7 +18,6 @@
             <a class="nav-link text-start" href="/marketer/umkm"><p>UMKM</p></a>
           </div>
           <div class="navbarNotif d-flex align-items-center gap-4 my-md-0 my-3">
-            <a href=""><i class="fa-solid fa-bell"></i></a>
             <a href="/marketer/profile"><i class="fa-solid fa-user"></i></a>
           </div>
         </div>
