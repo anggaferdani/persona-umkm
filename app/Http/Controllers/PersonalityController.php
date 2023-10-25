@@ -398,11 +398,11 @@ class PersonalityController extends Controller
     }
 
     public function downloadporto($file){
-        return response()->download(public_path('file/'.$file));
+        return response()->download(public_path('images/'.$file));
     }
 
     public function downloadcontoh($file){
-        return response()->download(public_path('file/'.$file));
+        return response()->download(public_path('images/'.$file));
     }
 
     public function profil(){
