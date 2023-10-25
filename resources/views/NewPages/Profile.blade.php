@@ -14,7 +14,7 @@
                 @if($profil)
                 <img class="orang" src="{{asset('img/'.$profil->foto)}}" alt="orang">
                 @else
-                <img class="orang" src="{{asset('../images/profile.jpg')}}" alt="orang">
+                <img class="orang" src="{{asset('images/profile.jpg')}}" alt="orang">
                 @endif
                 <a class="btn w-100 mt-1 ms-auto text-white" href="/logout" role="button" style="background-color: #2388FF;">LOG OUT</a>
             </div>
@@ -23,11 +23,7 @@
                 <div class="contact_profile justify-content-md-start justify-content-center d-flex gap-3 align-items-center">
                     <p class="mb-0">{{Auth::user()->email}}</p>
                     <div class="vr" style="width: .15rem;"></div>
-                    @if($profil)
-                    <p class="mb-0">{{$profil->no_telepon}}</p>
-                    @else
-                    <p class="mb-0">no telepon</p>
-                    @endif
+                    <p class="mb-0">{{Auth::user()->no_telp}}</p>
                 </div>
 
                 <div class="address_profile text-black">
@@ -79,13 +75,6 @@
                 @enderror
             </div>
             <div class="form-group mb-3">
-                <label for="exampleInputUsername1">No Telepon<span class="text-danger">*</span></label>
-                <input type="number" class="form-control" id="exampleInputUsername1" placeholder="Input No Telepon..." name="no_telepon">
-                @error('no_telepon')
-                        <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="form-group mb-3">
                 <label for="exampleInputUsername1">Deskripsi UKM Anda<span class="text-danger">*</span></label>
                 <textarea class="form-control" style="height: 200px" placeholder="Input Deskripsi UKM Anda..." id="floatingTextarea" name="deskripsi"></textarea>
                 @error('deskripsi')
@@ -113,13 +102,6 @@
                 <label for="exampleInputUsername1">Alamat Anda<span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Input Alamat UKM Anda..." name="alamat">
                 @error('alamat')
-                        <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="form-group mb-3">
-                <label for="exampleInputUsername1">No Telepon<span class="text-danger">*</span></label>
-                <input type="number" class="form-control" id="exampleInputUsername1" placeholder="Input No Telepon..." name="no_telepon">
-                @error('no_telepon')
                         <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>

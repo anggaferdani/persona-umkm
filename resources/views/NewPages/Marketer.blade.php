@@ -37,9 +37,7 @@
                             aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                             <div class="progress-bar w-75"></div>
                         </div>
-                        @foreach($item->bpar as $result)
-                        <p class="fw-bolder">{{$result->sum('result')}}%</p>
-                        @endforeach
+                        <p class="fw-bolder">95%</p>
                     </div></td>
                     <td>
                         <div class="top d-flex gap-1 justify-content-center">

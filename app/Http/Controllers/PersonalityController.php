@@ -359,7 +359,6 @@ class PersonalityController extends Controller
         if($profil){
             $profil->user_id = $user;
             $profil->alamat = $request->alamat;
-            $profil->no_telepon = $request->no_telepon;
 
             if($request->hasFile('foto'))
             {
@@ -379,7 +378,6 @@ class PersonalityController extends Controller
             $newProfile = new Profile();
             $newProfile->user_id = Auth::user()->id;
             $newProfile->alamat = $request->alamat;
-            $newProfile->no_telepon = $request->no_telepon;
 
             if($request->hasFile('foto'))
             {
