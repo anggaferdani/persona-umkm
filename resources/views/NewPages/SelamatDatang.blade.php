@@ -8,7 +8,7 @@
 <div class="selamatDatangContent text-center">
     <p>Selamat Datang !</p>
     <p class="text-blue fw-bold">{{Auth::user()->name}}</p>
-    <p class="mt-5">Ayo mulai dan Tentukan Persona Brandmu
+    <p class="mt-5">Ayo mulai dan Tentukan Kepribadian anda
         disini dengan mengisi kuisoner yang ada</p>
         @if(Auth::user()->role == 3)
         <div class="btn-isi d-flex justify-content-center mt-5">

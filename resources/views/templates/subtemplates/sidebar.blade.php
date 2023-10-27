@@ -26,6 +26,7 @@
     </div>
     <div class="collapse navbar-collapse" id="sidebar-menu">
       <ul class="navbar-nav pt-lg-3">
+        @if(Auth::user()->role == 1)
         <li class="nav-item {{ str_contains(Route::currentRouteName(), 'superadmin.dashboard') ? 'active' : '' }}"><a class="nav-link" href="{{ route('superadmin.dashboard') }}"><span class="nav-link-title">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0"></path><path d="M4 6v6a8 3 0 0 0 16 0v-6"></path><path d="M4 12v6a8 3 0 0 0 16 0v-6"></path></svg>
           Dashboard</span></a></li>
@@ -35,9 +36,14 @@
         <li class="nav-item {{ str_contains(Route::currentRouteName(), 'superadmin.customer') ? 'active' : '' }}"><a class="nav-link" href="{{ route('superadmin.customer') }}"><span class="nav-link-title">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg>
           Customer</span></a></li>
-        <li class="nav-item {{ str_contains(Route::currentRouteName(), 'superadmin.user') ? 'active' : '' }}"><a class="nav-link" href="{{ route('superadmin.user') }}"><span class="nav-link-title">
+          @elseif(Auth::user()->role == 2)
+        <li class="nav-item {{ str_contains(Route::currentRouteName(), 'admin.dashboard') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.dashboard') }}"><span class="nav-link-title">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0"></path><path d="M4 6v6a8 3 0 0 0 16 0v-6"></path><path d="M4 12v6a8 3 0 0 0 16 0v-6"></path></svg>
+          Dashboard</span></a></li>
+        <li class="nav-item {{ str_contains(Route::currentRouteName(), 'admin.user') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.user') }}"><span class="nav-link-title">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg>
           User Management</span></a></li>
+          @endif
       </ul>
     </div>
   </div>
