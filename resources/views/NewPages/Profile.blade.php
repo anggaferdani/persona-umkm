@@ -21,9 +21,15 @@
             <div class="col-md-8 p-2 my-md-auto" id="descProfile">
                 <h1 class="text-md-start text-center">{{Auth::user()->name}}</h1>
                 <div class="contact_profile justify-content-md-start justify-content-center d-flex gap-3 align-items-center">
+                @if(!$profil)
+                    <p class="mb-0 text-black">{{Auth::user()->email}}</p>
+                    <div class="vr text-black" style="width: .15rem;"></div>
+                    <p class="mb-0 text-black">{{Auth::user()->no_telp}}</p>
+                @else
                     <p class="mb-0">{{Auth::user()->email}}</p>
                     <div class="vr" style="width: .15rem;"></div>
                     <p class="mb-0">{{Auth::user()->no_telp}}</p>
+                @endif
                 </div>
 
                 <div class="address_profile text-black">

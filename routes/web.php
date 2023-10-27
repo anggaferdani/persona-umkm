@@ -108,7 +108,8 @@ Route::prefix('superadmin')->name('superadmin.')->group(function(){
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:web', 'disableBackButton', 'admin'])->group(function(){
         Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
-        Route::get('/user', [UserController::class, 'index'])->name('user');
+        Route::get('/umkm', [UserController::class, 'index'])->name('user');
+        Route::get('/marketer', [UserController::class, 'indexmarketer'])->name('userm');
     });
 });
 
