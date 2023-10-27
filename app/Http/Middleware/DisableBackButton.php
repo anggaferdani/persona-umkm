@@ -13,14 +13,10 @@ class DisableBackButton
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next)
     {
         $response = $next($request);
-        $response->headers->set('Cache-Control', 'nocache, no-store, max-age=0, must-revalidate');
-        $response->headers->set('Pragma', 'no-cache');
-        $response->headers->set('Expires', 'Fri 31 Dec 1999 00:00:00 GMT');
-        return $response;
-
-        return redirect()->route('user.login');
+        
+        return $response->header('Cache-Control','nocache, no-store, max-age=0, must-revalidate')->header('Pragma','no-cache')->header('Expires','Sun, 02 Jan 1990 00:00:00 GMT');
     }
 }

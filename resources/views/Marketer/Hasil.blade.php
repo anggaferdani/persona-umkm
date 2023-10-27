@@ -16,37 +16,37 @@
                 @switch($bpamax->brand_personality_aaker)
                         @case('average_sincerity')
                             @if($bpa->gender == 'men')
-                                <img src="{{asset('../../images/sincerity_boy.png')}}">
+                                <img class="my-3" src="{{asset('../../images/sincerity_boy.png')}}">
                             @else
-                                <img src="{{asset('../../images/sincerity_girl.png')}}">
+                                <img class="my-3" src="{{asset('../../images/sincerity_hijab.png')}}">
                             @endif
                         @break
                         @case('average_competence')
                             @if($bpa->gender == 'men')
-                                <img src="{{asset('../../images/competence_boy.png')}}">
+                                <img class="my-3" src="{{asset('../../images/competence_boy.png')}}">
                             @else
-                                <img src="{{asset('../../images/competence_girl.png')}}">
+                                <img class="my-3" src="{{asset('../../images/competence_hijab.png')}}">
                             @endif
                         @break
                         @case('average_excitement')
                             @if($bpa->gender == 'men')
-                                <img src="{{asset('../../images/exitement_boy.png')}}">
+                                <img class="my-3" src="{{asset('../../images/exitement_boy.png')}}">
                             @else
-                                <img src="{{asset('../../images/exitement_girl.png')}}">
+                                <img class="my-3" src="{{asset('../../images/excitement_hijab.png')}}">
                             @endif
                         @break
                         @case('average_sophistication')
                             @if($bpa->gender == 'men')
-                                <img src="{{asset('../../images/shopistication_boy.png')}}">
+                                <img class="my-3" src="{{asset('../../images/shopistication_boy.png')}}">
                             @else
-                                <img src="{{asset('../../images/shopistication_girl.png')}}">
+                                <img class="my-3" src="{{asset('../../images/sophistication_hijab.png')}}">
                             @endif
                         @break
                         @default
                             @if($bpa->gender == 'men')
-                                <img src="{{asset('../../images/ruggednes_boy.png')}}">
+                                <img class="my-3" src="{{asset('../../images/ruggednes_boy.png')}}">
                             @else
-                                <img src="{{asset('../../images/ruggednes_girl.png')}}">
+                                <img class="my-3" src="{{asset('../../images/ruggednes_hijab.png')}}">
                             @endif
                     @endswitch
                 </div>
