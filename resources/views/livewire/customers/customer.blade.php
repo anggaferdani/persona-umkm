@@ -52,7 +52,7 @@
             </div>
             <div class="card-body border-bottom py-3">
               <label class="form-label required">Survei Pelanggan (Responses).xlsx</label>
-              <form action="" wire:submit.prevent="importCustomer" class="row mb-0 g-0 g-md-2 gap-2 gap-md-0" enctype="multipart/form-data">
+              <form action="" method="post" wire:submit.prevent="importCustomer" class="row mb-0 g-0 g-md-2 gap-2 gap-md-0" enctype="multipart/form-data">
                 <div class="col-md-11">
                   <input type="file" wire:model="survei_pelanggan" class="form-control @error('survei_pelanggan') is-invalid @enderror" placeholder="" aria-label="">
                 </div>
