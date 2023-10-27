@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Customers;
+namespace App\Livewire\Customers;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -142,7 +142,7 @@ class Customer extends Component
         Excel::import(new CustomerImport, $this->survei_pelanggan);
 
         $this->resetInput();
-        $this->emit('success');
+        $this->dispatch('success');
     }
 
     public function selectCustomerId($customerId){
@@ -393,6 +393,6 @@ class Customer extends Component
 
         return view('livewire.customers.customer', [
             'customers' => $customers,
-        ]);
+        ])->extends('templates.pages')->section('content');
     }
 }
