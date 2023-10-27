@@ -52,7 +52,7 @@
             </div>
             <div class="card-body border-bottom py-3">
               <label class="form-label required">Penggunaan Digital Marketing oleh UKM (Jawaban).xlsx</label>
-              <form action="" wire:submit.prevent="importKuesioner" class="row mb-0 g-0 g-md-2 gap-2 gap-md-0" enctype="multipart/form-data">
+              <form action="" method="post" wire:submit.prevent="importKuesioner" class="row mb-0 g-0 g-md-2 gap-2 gap-md-0" enctype="multipart/form-data">
                 <div class="col-md-11">
                   <input type="file" wire:model="penggunaan_digital_marketing_oleh_ukm" class="form-control @error('penggunaan_digital_marketing_oleh_ukm') is-invalid @enderror" placeholder="" aria-label="">
                 </div>

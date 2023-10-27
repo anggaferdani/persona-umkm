@@ -19,20 +19,26 @@
             <div class="table-responsive">
               <table class="table table-vcenter card-table datatable">
                 <thead>
-                  <tr>
+                  <tr class="text-center">
                     <th>No.</th>
-                    <th>Action</th>
-                    <th>Produk UKM Anda</th>
-                    <th>UKM Anda berdomisili di</th>
-                    <th>Nomor ponsel Anda</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Role</th>
                   </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-
-                        </td>
+                    @foreach($user as $item)
+                    <tr class="text-center">
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$item->name}}</td>
+                        <td>{{$item->email}}</td>
+                        @if($item->role == 3)
+                        <td>UMKM</td>
+                        @else
+                        <td>Marketer</td>
+                        @endif
                     </tr>
+                    @endforeach
                 </tbody>
               </table>
             </div>
