@@ -102,13 +102,13 @@ Route::prefix('superadmin')->name('superadmin.')->group(function(){
         Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
         Route::get('/kuesioner', [KuesionerController::class, 'index'])->name('kuesioner');
         Route::get('/customer', [CustomerController::class, 'index'])->name('customer');
-        Route::get('/user', [UserController::class, 'index'])->name('user');
     });
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:web', 'disableBackButton', 'admin'])->group(function(){
         Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
+        Route::get('/user', [UserController::class, 'index'])->name('user');
     });
 });
 
