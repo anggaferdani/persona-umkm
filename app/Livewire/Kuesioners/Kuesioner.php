@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Kuesioners;
+namespace App\Livewire\Kuesioners;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -162,7 +162,7 @@ class Kuesioner extends Component
         Excel::import(new KuesionerImport, $this->penggunaan_digital_marketing_oleh_ukm);
 
         $this->resetInput();
-        $this->emit('success');
+        $this->dispatch('success');
     }
 
     public function selectKuesionerId($kuesionerId){
@@ -442,6 +442,6 @@ class Kuesioner extends Component
 
         return view('livewire.kuesioners.kuesioner', [
             'kuesioners' => $kuesioners,
-        ]);
+        ])->extends('templates.pages')->section('content');
     }
 }
