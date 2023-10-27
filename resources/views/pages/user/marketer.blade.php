@@ -32,7 +32,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->email}}</td>
-                        <td>UMKM</td>
+                        <td>Marketer</td>
                     </tr>
                     @endforeach
                 </tbody>
