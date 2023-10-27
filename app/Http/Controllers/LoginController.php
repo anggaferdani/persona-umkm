@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Marketer;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ResetPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,8 +22,102 @@ class LoginController extends Controller
         return view('NewPages.Registrasi');
     }
 
+    public function login(){
+        return view('pages.authentications.login');
+    }
+
+    public function postLogin(Request $request){
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required',
+        ]);
+
+        $credentials = array(
+            'email' => $request['email'],
+            'password' => $request['password'],
+        );
+
+        if(Auth::guard('web')->attempt($credentials)){
+            if(auth()->user()->status == 1){
+                if(auth()->user()->role == 1){
+                    return redirect()->route('superadmin.dashboard');
+                }elseif(auth()->user()->role == 2){
+                    return redirect()->route('admin.dashboard');
+                }else{
+                    return back();
+                }
+            }elseif(auth()->user()->status == 2){
+                Auth::guard('web')->logout();
+                return redirect()->route('login')->with('fail', 'Your account has been deactivated');
+            }
+        }else{
+            return redirect()->route('login')->with('fail', 'The email or password you entered is incorrect. Please try again');
+        }
+    }
+
     public function resetpassword(){
         return view('NewPages.LupaPassword');
+    }
+
+    public function postresetpassword(Request $request){
+        $this->validate($request, [
+            'email' => 'required|email',
+        ],[
+            'email' => 'Email Harus Diisi!',
+            'email.email' => 'Format Email Salah!',
+        ]);
+        $token = Str::random(64);
+        $verify = route('mailreset', $token);
+        $userforgot = User::where('email', $request->email)->count();
+        if($userforgot > 0){
+
+            $resetpassword = new ResetPassword();
+            $resetpassword->email = $request->email;
+            $resetpassword->token = $token;
+            $resetpassword->save();
+            $mail = [ 
+                'kepada' => $request->email,
+                'email' => 'personaumkm@gmail.com', 
+                'dari' => 'Persona UMKM', 
+                'subject' => 'Reset Password',
+                'url' => $verify,
+            ]; 
+        
+            Mail::send('mail-reset-password', $mail, function($message) use ($mail){ 
+                $message->to($mail['kepada']) 
+                ->from($mail['email'], $mail['dari']) 
+                ->subject($mail['subject']); 
+            });
+            
+        Alert::success('Success', 'Link Telah Dikirim Ke Email Anda');
+        return redirect()->back();
+        }else{
+            Alert::error('Error', 'Email Anda Tidak Terdaftar');
+            return redirect()->back();
+        }
+    }
+
+    public function mailreset($token){
+        $email = ResetPassword::where('token', $token)->first();
+        return view('NewPages.after-mail-reset', compact('email', 'token'));
+    }
+
+    public function aftermailreset(Request $request){
+        $this->validate($request, [
+            'password' => 'required|min:8',
+        ],[
+            'password' => 'Password Harus Diisi',
+            'password.min' => 'Password Harus Diisi Minimal 8 Karakter',
+        ]);
+
+        $email = ResetPassword::where('token', $request->token);
+        $user = User::where('email', $request->email)->first();
+
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        Alert::success('Success', 'Password Telah Di Ubah Silahkan Login');
+        return redirect('/');
     }
 
     public function afterlogin(Request $request){
@@ -113,8 +209,8 @@ class LoginController extends Controller
         $mail = [
             'subject' => 'Otp Code',
             'to' => $user->email,
-            'email' => 'testing@gmail.com',
-            'from' => 'Testing',
+            'email' => 'personaumkm@gmail.com',
+            'from' => 'Persona UMKM',
             'otp' => $user->otp,
         ];
 
@@ -143,8 +239,8 @@ class LoginController extends Controller
         $mail = [
             'subject' => 'Otp Code',
             'to' => $user->email,
-            'email' => 'testing@gmail.com',
-            'from' => 'Testing',
+            'email' => 'personaumkm@gmail.com',
+            'from' => 'Persona UMKM',
             'otp' => $user->otp,
         ];
 
@@ -254,8 +350,8 @@ class LoginController extends Controller
         $mail = [
             'subject' => 'Otp Code',
             'to' => $user->email,
-            'email' => 'testing@gmail.com',
-            'from' => 'Testing',
+            'email' => 'personaumkm@gmail.com',
+            'from' => 'Persona UMKM',
             'otp' => $user->otp,
         ];
 
@@ -303,8 +399,8 @@ class LoginController extends Controller
         $mail = [
             'subject' => 'Otp Code',
             'to' => $user->email,
-            'email' => 'testing@gmail.com',
-            'from' => 'Testing',
+            'email' => 'personaumkm@gmail.com',
+            'from' => 'Persona UMKM',
             'otp' => $user->otp,
         ];
 

@@ -19,7 +19,7 @@ class Authenticated
         if(!Auth::check()){
             return $next($request);
         }else{
-            return back();
+            return redirect('/');
         }
     }
 }

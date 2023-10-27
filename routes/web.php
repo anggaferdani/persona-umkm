@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KuesionerController;
@@ -31,6 +32,9 @@ Route::get('/', [LoginController::class, 'index'])->name('user.login');
 Route::post('/postlogin', [LoginController::class, 'afterlogin'])->name('user.postlogin');
 Route::get('/reset-password', [LoginController::class, 'resetpassword'])->name('user.resetpassword');
 Route::get('/register', [LoginController::class, 'registerselect'])->name('user.registerselect');
+Route::post('/post-password', [LoginController::class, 'postresetpassword'])->name('postresetpassword');
+Route::get('/forgot-password/{token}', [LoginController::class, 'mailreset'])->name('mailreset');
+Route::post('/forgot-password', [LoginController::class, 'aftermailreset'])->name('aftermailreset.user');
 
 
 
@@ -88,10 +92,8 @@ Route::prefix('marketer')->group(function(){
 
 
 Route::middleware(['web', 'disableBackButton'])->group(function(){
-    Route::middleware(['authenticated'])->group(function(){
-        Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
-        Route::post('/post-login', [AuthenticationController::class, 'postLogin'])->name('post-login');
-    });
+        Route::get('/login', [LoginController::class, 'login'])->name('login');
+        Route::post('/post-login', [LoginController::class, 'postLogin'])->name('post-login');
     
 });
 
@@ -100,6 +102,7 @@ Route::prefix('superadmin')->name('superadmin.')->group(function(){
         Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
         Route::get('/kuesioner', [KuesionerController::class, 'index'])->name('kuesioner');
         Route::get('/customer', [CustomerController::class, 'index'])->name('customer');
+        Route::get('/user', [UserController::class, 'index'])->name('user');
     });
 });
 

@@ -19,7 +19,7 @@ class Superadmin
         if(Auth::user()->role == 1){
             return $next($request);
         }else{
-            return back();
+            return redirect('/');
         }
     }
 }
