@@ -11,7 +11,7 @@
     <div class="content">
         <h3 class="fw-bold text-center">REGISTRASI MARKETER</h3>
         <p class="text-blue text-center">PERSONA BRAND</p>
-    <form action="{{route('marketer.postregister')}}" method="post" enctype="multipart/form-data">
+    <form id="myform" action="{{route('marketer.postregister')}}" method="post" enctype="multipart/form-data">
         @csrf
     <div class="form">
         <div class="form-group my-3">
@@ -114,5 +114,11 @@ if (x.value === y.value) {
   z.disabled = true;
 }
 }
+</script>
+
+<script>
+  document.getElementById('myform').addEventListener('submit', function () {
+    document.getElementById('dis').disabled = true;
+  });
 </script>
 @endsection

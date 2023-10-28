@@ -10,7 +10,7 @@
     <div class="content1">
         <h3 class="fw-bold text-center">REGISTRASI UMKM</h3>
         <p class="text-blue text-center">PERSONA BRAND</p>
-    <form action="{{route('user.postregister')}}" method="post">
+    <form id="myform" action="{{route('user.postregister')}}" method="post">
         @csrf
     <div class="form">
         <div class="form-group my-3">
@@ -75,5 +75,10 @@ if (x.value === y.value) {
   z.disabled = true;
 }
 }
+</script>
+<script>
+  document.getElementById('myform').addEventListener('submit', function () {
+    document.getElementById('dis').disabled = true;
+  });
 </script>
 @endsection
