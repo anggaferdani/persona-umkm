@@ -182,7 +182,7 @@ class LoginController extends Controller
 
     public function postregister(Request $request){
         $this->validate($request,[
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'name' => 'required',
             'password' => 'required|min:8',
         ],[
@@ -287,7 +287,7 @@ class LoginController extends Controller
     public function marketerpostregister(Request $request){
         // dd($request);
         $this->validate($request,[
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'name' => 'required',
             'no_telp' => 'required',
             'password' => 'required|min:8',
