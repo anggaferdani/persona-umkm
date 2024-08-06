@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class MarketerController extends Controller
 {
     public function index(Request $request){
-        $query = User::where('role', 3)->where('status', 1);
+        $query = User::where('role', 4)->where('status', 1);
 
         if ($request->has('search') && !empty($request->input('search'))) {
             $search = $request->input('search');
@@ -18,9 +18,9 @@ class UserController extends Controller
             });
         }
 
-        $users = $query->paginate(10);
-        return view('pages.user.index', compact(
-            'users',
+        $marketers = $query->paginate(10);
+        return view('pages.marketer.index', compact(
+            'marketers',
         ));
     }
 }

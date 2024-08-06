@@ -22,7 +22,7 @@
                   
                 </div>
                 <div class="d-flex w-100 flex-md-row flex-column gap-2 justify-content-end">
-                  <form id="searchForm" method="GET" action="{{ route('admin.user.index') }}" class="d-flex">
+                  <form id="searchForm" method="GET" action="{{ route('admin.marketer.index') }}" class="d-flex">
                     <input type="text" class="form-control" placeholder="Search" name="search" value="">
                     <button type="submit" class="btn btn-primary">Search</button>
                     <button id="clearSearchButton" type="button" class="btn btn-danger">Clear</button>
@@ -40,11 +40,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach($users as $user)
+                    @foreach($marketers as $item)
                     <tr class="text-center">
-                        <td>{{ ($users->currentPage() - 1) * $users->perPage() + $loop->iteration }}</td>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
+                        <td>{{ ($marketers->currentPage() - 1) * $marketers->perPage() + $loop->iteration }}</td>
+                        <td>{{$item->name}}</td>
+                        <td>{{$item->email}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -52,8 +52,8 @@
             </div>
             <div class="card-footer d-flex align-items-center">
               <ul class="pagination m-0 ms-auto">
-                @if($users->hasPages())
-                  {{ $users->appends(request()->query())->links('pagination::bootstrap-4') }}
+                @if($marketers->hasPages())
+                  {{ $marketers->appends(request()->query())->links('pagination::bootstrap-4') }}
                 @else
                   <li class="page-item">No more records</li>
                 @endif

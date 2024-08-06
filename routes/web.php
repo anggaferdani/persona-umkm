@@ -10,6 +10,7 @@ use App\Http\Controllers\KuesionerController;
 use App\Http\Controllers\PersonalityController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BrandPersonalityAakerController;
+use App\Http\Controllers\MarketerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,8 +111,8 @@ Route::prefix('superadmin')->name('superadmin.')->group(function(){
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:web', 'disableBackButton', 'admin'])->group(function(){
         Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
-        Route::get('/umkm', [UserController::class, 'index'])->name('user');
-        Route::get('/marketer', [UserController::class, 'indexmarketer'])->name('userm');
+        Route::resource('/user', UserController::class);
+        Route::resource('/marketer', MarketerController::class);
     });
 });
 
