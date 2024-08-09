@@ -37,6 +37,11 @@
                 </a>
                 <div class="hr-beranda"></div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('umkm.detail-produk') }}">
+                    <p>Detail Produk</p>
+                </a>
+            </li>
         </ul>
         <div class="tab-content responsive-tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"

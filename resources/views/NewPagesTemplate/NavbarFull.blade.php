@@ -17,16 +17,18 @@
             @if(Auth::user()->role == 3)
             <a class="nav-link text-start" aria-current="page" href="/umkm/beranda"><p>Hasil</p></a>
             <a class="nav-link text-start" href="/umkm/marketer"><p>Marketer</p></a>
+            <a class="nav-link text-start" href="{{ route('umkm.ai') }}"><p>AI <span class="badge bg-primary">NEW</span></p></a>
             @elseif(Auth::user()->role == 4)
             <a class="nav-link text-start" aria-current="page" href="/marketer/beranda"><p>Hasil</p></a>
             <a class="nav-link text-start" href="/marketer/umkm"><p>Umkm</p></a>
             @endif
           </div>
           <div class="navbarNotif d-flex align-items-center gap-4 my-md-0 my-3">
-          @if(Auth::user()->role == 3)
-            <a href="/umkm/profile"><i class="fa-solid fa-user"></i></a>
+            @if(Auth::user()->role == 3)
+            <div class="d-flex gap-2"><i class="fa-solid fa-coins text-primary"></i><span class="small"> {{ Auth::user()->credits }}</span></div>
+              <div><a href="/umkm/profile"><i class="fa-solid fa-user"></i></a></div>
             @elseif(Auth::user()->role == 4)
-            <a href="/marketer/profile"><i class="fa-solid fa-user"></i></a>
+              <div><a href="/marketer/profile"><i class="fa-solid fa-user"></i></a></div>
             @endif
           </div>
         </div>

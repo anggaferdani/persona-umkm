@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AIController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\KuesionerController;
 use App\Http\Controllers\PersonalityController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BrandPersonalityAakerController;
+use App\Http\Controllers\DetailProdukController;
 use App\Http\Controllers\MarketerController;
 
 /*
@@ -65,7 +67,22 @@ Route::prefix('umkm')->group(function(){
         // Route::get('/umkm', function () {return view('Marketer.Umkm');});
         // Route::get('/detail-umkm', function () {return view('Marketer.DetailUmkm');});
     
-        
+        Route::name('umkm.')->group(function() {
+            Route::get('/detail-produk', [DetailProdukController::class, 'detailProduk'])->name('detail-produk');
+            Route::post('/detail-produk/store', [DetailProdukController::class, 'store'])->name('detail-produk.store');
+            Route::put('/detail-produk/update/{id}', [DetailProdukController::class, 'update'])->name('detail-produk.update');
+            Route::get('/ai', [AIController::class, 'ai'])->name('ai');
+            Route::get('/ai-generate-text', [AIController::class, 'generateText'])->name('ai.generate-text');
+            Route::post('/ai-generate-text/store', [AIController::class, 'generateTextStore'])->name('ai.generate-text.store');
+            Route::get('/ai-generate-text/histories', [AIController::class, 'generateTextHistories'])->name('ai.generate-text.histories');
+            Route::get('/ai-generate-image', [AIController::class, 'generateImage'])->name('ai.generate-image');
+            Route::post('/ai-generate-image/store', [AIController::class, 'generateImageStore'])->name('ai.generate-image.store');
+            Route::get('/ai-generate-image/histories', [AIController::class, 'generateImageHistories'])->name('ai.generate-image.histories');
+            Route::get('/ai-generate-tag', [AIController::class, 'generateTag'])->name('ai.generate-tag');
+            Route::post('/ai-generate-tag/store', [AIController::class, 'generateTagStore'])->name('ai.generate-tag.store');
+            Route::get('/ai-generate-tag/histories', [AIController::class, 'generateTagHistories'])->name('ai.generate-tag.histories');
+            Route::get('/calendarific', [AIController::class, 'calendarific'])->name('calendarific');
+        });
     });
 });
 
