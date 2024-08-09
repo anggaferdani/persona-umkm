@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'credits',
         'status',
         'created_by',
         'updated_by',
@@ -70,5 +71,9 @@ class User extends Authenticatable
 
     public function strategi(){
         return $this->hasMany(StrategiDigital::class, 'user_id');
+    }
+
+    public function detailProduk(){
+        return $this->hasOne(DetailProduk::class);
     }
 }
