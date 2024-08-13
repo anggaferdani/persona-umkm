@@ -1,5 +1,4 @@
 @extends('NewPagesTemplate.NavbarLengkap')
-@section('judul_tab','Beranda')
 @push('styles')
 <style>
   ::-webkit-resizer{

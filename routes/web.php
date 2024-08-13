@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AIController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -11,7 +13,9 @@ use App\Http\Controllers\KuesionerController;
 use App\Http\Controllers\PersonalityController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BrandPersonalityAakerController;
+use App\Http\Controllers\CategoryImageTemplateController;
 use App\Http\Controllers\DetailProdukController;
+use App\Http\Controllers\ImageTemplateController;
 use App\Http\Controllers\MarketerController;
 
 /*
@@ -76,6 +80,9 @@ Route::prefix('umkm')->group(function(){
             Route::post('/ai-generate-text/store', [AIController::class, 'generateTextStore'])->name('ai.generate-text.store');
             Route::get('/ai-generate-text/histories', [AIController::class, 'generateTextHistories'])->name('ai.generate-text.histories');
             Route::get('/ai-generate-image', [AIController::class, 'generateImage'])->name('ai.generate-image');
+            Route::get('/ai-generate-image/temporary/{id}', [AIController::class, 'generateImageTemporary'])->name('ai.generate-image.temporary');
+            Route::post('/ai-generate-image/temporary/', [AIController::class, 'generateImageTemporaryPost'])->name('ai.generate-image.temporary.post');
+            Route::get('/ai-generate-image/{id}/response', [AIController::class, 'generateImageResponse'])->name('ai.generate-image.response');
             Route::post('/ai-generate-image/store', [AIController::class, 'generateImageStore'])->name('ai.generate-image.store');
             Route::get('/ai-generate-image/histories', [AIController::class, 'generateImageHistories'])->name('ai.generate-image.histories');
             Route::get('/ai-generate-tag', [AIController::class, 'generateTag'])->name('ai.generate-tag');
@@ -126,8 +133,25 @@ Route::prefix('superadmin')->name('superadmin.')->group(function(){
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
+    Route::middleware(['web', 'disableBackButton'])->group(function(){
+        Route::middleware(['disableRedirect'])->group(function(){
+            Route::get('/login', [AdminController::class, 'login'])->name('login');
+            Route::post('/postlogin', [AdminController::class, 'postLogin'])->name('postlogin');
+        });
+    
+        Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+
+        Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
+        Route::post('/postimagegenerate', [AIController::class, 'postImageGenerate'])->name('postimagegenerate');
+        Route::resource('/category-image-template', CategoryImageTemplateController::class);
+        Route::resource('/image-template', ImageTemplateController::class);
+    });
+
+
+
+
     Route::middleware(['auth:web', 'disableBackButton', 'admin'])->group(function(){
-        Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
+        // Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
         Route::resource('/user', UserController::class);
         Route::resource('/marketer', MarketerController::class);
     });

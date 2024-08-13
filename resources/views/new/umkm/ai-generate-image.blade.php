@@ -1,5 +1,4 @@
 @extends('NewPagesTemplate.NavbarLengkap')
-@section('judul_tab','AI Generate Image')
 @push('styles')
 <style>
   ::-webkit-resizer{
@@ -32,9 +31,52 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div class="fs-3 text-center text-primary">Image</div>
-            <div class="col-md-6 m-auto text-center mb-3">Photo seperti apa yang akan kamu buat hari ini?</div>
-              @if(Session::get('success'))
+            <div class="fs-3 text-center text-primary">1. Template</div>
+            <div class="col-md-6 m-auto text-center mb-5">Pilih template yang diinginkan dari berbagai opsi yang tersedia.</div>
+
+            <div class="row g-3 mb-5">
+              @foreach ($imageTemplates as $imageTemplate)
+                <div class="col-md-3 col-4">
+                  <a href="{{ route('umkm.ai.generate-image.temporary', $imageTemplate->id) }}"><img src="/image-template/contoh/{{ $imageTemplate->contoh }}" alt="" class="img-fluid w-100"></a>
+                </div>
+              @endforeach
+            </div>
+            <div class="d-flex justify-content-center">
+              <div class="">{{ $imageTemplates->appends(request()->query())->links('pagination::bootstrap-4') }}</div>
+            </div>
+
+            {{-- @foreach ($imageTemplates as $imageTemplate)
+                <div class="col-md-3 col-4">
+                  <div class="" style="position: relative; aspect-ratio: 1;">
+                    <img src="/image-template/contoh/{{ $imageTemplate->contoh }}" alt="" class="img-fluid w-100" style="position: absolute;">
+                  </div>
+                </div>
+              @endforeach --}}
+
+              {{-- @if(Session::get('success'))
+                <div class="alert alert-important alert-success" role="alert">
+                  {{ Session::get('success') }}
+                </div>
+              @endif
+
+              <form action="{{ route('umkm.ai.generate-image.temporary') }}" method="POSt" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                  <label>Image</label>
+                  <input type="file" class="form-control" name="image">
+                </div>
+                <div class="mb-3">
+                  <label>Judul</label>
+                  <input type="text" class="form-control" name="judul">
+                </div>
+                <div class="mb-3">
+                  <label>Deskripsi</label>
+                  <input type="text" class="form-control" name="deskripsi">
+                </div>
+                <button class="btn btn-primary mb-5">Submit</button>
+              </form> --}}
+
+              {{-- @if(Session::get('success'))
                 <div class="alert alert-important alert-success" role="alert">
                   {{ Session::get('success') }}
                 </div>
@@ -83,7 +125,7 @@
                 </div>
               @endforeach
             </div>
-            @endif
+            @endif --}}
         </div>
     </div>
 </div>

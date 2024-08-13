@@ -1,5 +1,4 @@
 @extends('NewPagesTemplate.NavbarLengkap')
-@section('judul_tab','History')
 @push('styles')
 <style>
   ::-webkit-resizer{
@@ -33,14 +32,14 @@
         </div>
         <div class="col-md-9">
           <div class="fs-3 text-center text-primary">History</div>
-            <div class="col-md-6 m-auto text-center mb-3">Tambahkan catatan, kerangka, atau konten yang ingin Anda gunakan.</div>
+          <div class="col-md-6 m-auto text-center mb-3">Tambahkan catatan, kerangka, atau konten yang ingin Anda gunakan.</div>
           <div class="d-flex justify-content-center mb-3">
             <ul class="nav nav-pills">
               <li class="nav-item">
                 <a class="nav-link {{ Route::is('umkm.ai.generate-text.histories') ? 'active' : '' }}" href="{{ route('umkm.ai.generate-text.histories') }}">Text</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ Route::is('umkm.ai.generate-image.histories') ? 'active' : '' }}" href="">Image</a>
+                <a class="nav-link {{ Route::is('umkm.ai.generate-image.histories') ? 'active' : '' }}" href="{{ route('umkm.ai.generate-image.histories') }}">Image</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {{ Route::is('umkm.ai.generate-tag.histories') ? 'active' : '' }}" href="{{ route('umkm.ai.generate-tag.histories') }}">Tag</a>

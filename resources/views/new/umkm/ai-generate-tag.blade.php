@@ -1,5 +1,4 @@
 @extends('NewPagesTemplate.NavbarLengkap')
-@section('judul_tab','AI Generate Tag')
 @push('styles')
 <style>
   ::-webkit-resizer{
