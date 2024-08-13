@@ -8,6 +8,7 @@ use App\Models\Marketer;
 use App\Models\Response;
 use App\Models\LevelUmkm;
 use Illuminate\Http\Request;
+use App\Models\TemporaryImage;
 use App\Models\StrategiDigital;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -16,6 +17,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use App\Models\BrandPersonalityAakerResult;
 use App\Models\BrandPersonalityAaker as BrandPersonalityAakerModel;
+use App\Models\ImageTemplate;
 
 class AIController extends Controller
 {
@@ -128,6 +130,79 @@ class AIController extends Controller
         ));
     }
 
+    public function postImageGenerate(Request $request) {
+        try {
+            $request->validate([
+                'image' => 'required',
+                'judul' => 'required',
+                'deskripsi' => 'required',
+            ]);
+    
+            $array = [
+                'user_id' => Auth::id(),
+                'image' => $this->handleFileUpload($request->file('image'), 'temporary/'),
+                'judul' => $request['judul'],
+                'deskripsi' => $request['deskripsi'],
+            ];
+
+            TemporaryImage::create($array);
+    
+            return back()->with('success', 'Success');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+        }
+    }
+
+    // public function generateImage(Request $request) {
+    //     $temporaryImage = null;
+
+    //     if ($request->isMethod('post')) {
+    //         $request->validate([
+    //             'judul' => 'required',
+    //             'image' => 'required',
+    //         ]);
+    
+    //         $array = [
+    //             'user_id' => Auth::id(),
+    //             'image' => $this->handleFileUpload($request->file('image'), 'temporary/'),
+    //             'judul' => $request['judul'],
+    //             'deskripsi' => $request['deskripsi'],
+    //         ];
+
+    //         $temporaryImage = TemporaryImage::create($array);
+
+    //         $user = User::with('detailProduk')->find(Auth::id());
+    //         $dayEvents = $this->getDayEvents();
+    //         $today = now()->year;
+    //         $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
+    //             return $event['tanggal'] === $today;
+    //         });
+
+    //         $imageTemplates = ImageTemplate::where('status', 1)->paginate(1);
+
+    //         return redirect()->route('umkm.ai.generate-image')
+    //                         ->with('temporaryImage', $temporaryImage)
+    //                         ->with('imageTemplates', $imageTemplates)
+    //                         ->with('user', $user)
+    //                         ->with('todayEvent', $todayEvent);
+    //     }
+
+    //     $user = User::with('detailProduk')->find(Auth::id());
+    //     $dayEvents = $this->getDayEvents();
+    //     $today = now()->year;
+    //     $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
+    //         return $event['tanggal'] === $today;
+    //     });
+
+    //     $imageTemplates = ImageTemplate::where('status', 1)->paginate(1);
+
+    //     return view('new.umkm.ai-generate-image', compact(
+    //         'user',
+    //         'todayEvent',
+    //         'imageTemplates'
+    //     ));
+    // }
+
     public function generateImage() {
         $user = User::with('detailProduk')->find(Auth::id());
         $dayEvents = $this->getDayEvents();
@@ -135,15 +210,66 @@ class AIController extends Controller
         $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
             return $event['tanggal'] === $today;
         });
+        $imageTemplates = ImageTemplate::where('status', 1)->paginate(12);
         return view('new.umkm.ai-generate-image', compact(
             'user',
             'todayEvent',
+            'imageTemplates',
         ));
     }
 
-    public function generateImageStore(Request $request) {
-        
+    public function generateImageTemporary(Request $request) {
+        $imageTemplate = ImageTemplate::where('id', $request->id)->first();
+        return view('new.umkm.ai-generate-image-temporary', compact(
+            'imageTemplate',
+        ));
     }
+
+    public function generateImageTemporaryPost(Request $request) {
+        try {
+            $request->validate([
+                'image_template_id' => 'required',
+                'judul' => 'required',
+            ]);
+    
+            $array = [
+                'user_id' => Auth::id(),
+                'image_template_id' => $request['image_template_id'],
+                'judul' => $request['judul'],
+                'deskripsi' => $request['deskripsi'],
+            ];
+
+            if ($request->hasFile('image')) {
+                $array['image'] = $this->handleFileUpload($request->file('image'), 'temporary/');
+            }
+
+            $temporaryImage = TemporaryImage::create($array);
+    
+            return redirect()->route('umkm.ai.generate-image.response', $temporaryImage->id)->with('success', 'Success');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+        }
+    }
+
+    public function generateImageResponse($id) {
+        $temporaryImage = TemporaryImage::find($id);
+        $imageTemplate = ImageTemplate::find($temporaryImage->image_template_id);
+        return view('new.umkm.ai-generate-image-response', compact(
+            'temporaryImage',
+            'imageTemplate',
+        ));
+    }
+
+    public function generateImageHistories() {
+        $user = User::with('detailProduk')->find(Auth::id());
+        $temporaryImages = TemporaryImage::where('user_id', $user->id)->where('status', 1)->latest()->paginate(12);
+        return view('new.umkm.ai-generate-image-history', compact(
+            'user',
+            'temporaryImages',
+        ));
+    }
+
+    public function generateImageStore(Request $request) {}
 
     public function generateTag() {
         $user = User::with('detailProduk')->find(Auth::id());
@@ -248,6 +374,16 @@ class AIController extends Controller
             'user',
             'responses',
         ));
+    }
+
+    private function handleFileUpload($file, $path)
+    {
+        if ($file) {
+            $fileName = date('YmdHis') . rand(999999999, 9999999999) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($path), $fileName);
+            return $fileName;
+        }
+        return null;
     }
 
     public function getDayEvents() {
