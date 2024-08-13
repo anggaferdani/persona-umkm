@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('responses', function (Blueprint $table) {
+        Schema::create('temporary_images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('request_id')->nullable();
-            $table->foreign('request_id')->references('id')->on('requests')->onDelete('cascade');
-            $table->text('text_response')->nullable();
-            $table->text('image_url')->nullable();
-            $table->string('type_response');
-            $table->dateTime('tanggal_response');
+            $table->unsignedBigInteger('image_template_id');
+            $table->foreign('image_template_id')->references('id')->on('image_templates')->onDelete('cascade');
+            $table->text('image')->nullable();
+            $table->string('judul')->nullable();
+            $table->string('deskripsi')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('responses');
+        Schema::dropIfExists('temporary_images');
     }
 };
