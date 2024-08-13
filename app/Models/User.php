@@ -76,4 +76,8 @@ class User extends Authenticatable
     public function detailProduk(){
         return $this->hasOne(DetailProduk::class);
     }
+
+    public function temporaryImages(){
+        return $this->hasMany(TemporaryImage::class);
+    }
 }
