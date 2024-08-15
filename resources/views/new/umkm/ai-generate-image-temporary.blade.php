@@ -34,7 +34,7 @@
             <div class="fs-3 text-center text-primary">2. Form</div>
             <div class="col-md-6 m-auto text-center mb-5">Lengkapi yang diperlukan untuk diolah dan digenerate oleh AI.</div>
 
-            <form action="{{ route('umkm.ai.generate-image.temporary.post') }}" method="POSt" enctype="multipart/form-data">
+            <form action="{{ route('umkm.ai.generate-image.temporary.post') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="col-3 mb-3">
                 <label>Template *contoh</label>

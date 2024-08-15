@@ -48,12 +48,15 @@
             </div>
             <div class="row g-3 mb-5">
               @foreach ($temporaryImages as $temporaryImage)
-                <div class="col-md-3 col-4">
-                  <div id="canvas-{{ $temporaryImage->id }}" class="mb-2" style="position: relative; aspect-ratio: 1; pointer-events: none;">
-                    <img src="/temporary/{{ $temporaryImage->image }}" alt="" class="img-fluid w-100" style="position: absolute;">
-                    <img src="/image-template/template/{{ $temporaryImage->imageTemplate->template }}" alt="" class="img-fluid w-100" style="position: absolute;">
-                  </div>
-                  <button class="btn btn-primary w-100 mb-2" onclick="downloadImage('{{ $temporaryImage->id }}', '{{ $temporaryImage->image }}')">Download</button>
+                <div class="d-flex justify-content-center mb-2">
+                    <div id="canvas-{{ $temporaryImage->id }}" class="mb-2" style="position: relative; width: 300px; height: 300px; pointer-events: none;">
+                        <img src="/temporary/{{ $temporaryImage->image }}" alt="" class="img-fluid w-100" style="position: absolute; width: 100%; height: 100%;">
+                        <img src="/image-template/template/{{ $temporaryImage->imageTemplate->template }}" alt="" class="img-fluid w-100" style="position: absolute; width: 100%; height: 100%;">
+                        {!! $temporaryImage->finalHtml !!}
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 m-auto mb-5">
+                    <button class="btn btn-primary w-100 mb-2" onclick="downloadImage('{{ $temporaryImage->id }}', '{{ $temporaryImage->image }}')">Download</button>
                 </div>
               @endforeach
             </div>
@@ -84,16 +87,20 @@
   function downloadImage(canvasId, imageFilename) {
     const canvasElement = document.getElementById('canvas-' + canvasId);
     
-    domtoimage.toPng(canvasElement)
-        .then(function (dataUrl) {
-            var link = document.createElement('a');
-            link.href = dataUrl;
-            link.download = imageFilename; 
-            link.click();
-        })
-        .catch(function (error) {
-            console.error('Error', error);
-        });
+    if (canvasElement) {
+        domtoimage.toPng(canvasElement)
+            .then(function (dataUrl) {
+                var link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = imageFilename;
+                link.click();
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    } else {
+        console.error('Canvas element not found:', canvasId);
+    }
   }
 </script>
 @endpush

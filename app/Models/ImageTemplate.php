@@ -9,11 +9,11 @@ class ImageTemplate extends Model
 {
     use HasFactory;
 
-    protected $table = 'image_templates';
+        protected $table = 'image_templates';
 
-    protected $primaryKey = 'id';
+        protected $primaryKey = 'id';
 
-    protected $guarded = [];
+        protected $guarded = [];
 
     public function categoryImageTemplate(){
         return $this->belongsTo(CategoryImageTemplate::class, 'category_image_template_id');

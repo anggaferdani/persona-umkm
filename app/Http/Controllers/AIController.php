@@ -229,7 +229,8 @@ class AIController extends Controller
         try {
             $request->validate([
                 'image_template_id' => 'required',
-                'judul' => 'required',
+                'judul' => 'required|max:50',
+                'deskripsi' => 'required|max:100',
             ]);
     
             $array = [
@@ -254,18 +255,37 @@ class AIController extends Controller
     public function generateImageResponse($id) {
         $temporaryImage = TemporaryImage::find($id);
         $imageTemplate = ImageTemplate::find($temporaryImage->image_template_id);
+
+        $template = $imageTemplate->text;
+        $finalHtml = str_replace(
+            ['{{ $temporaryImage->judul }}', '{{ $temporaryImage->deskripsi }}'],
+            [$temporaryImage->judul, $temporaryImage->deskripsi],
+            $template
+        );
         return view('new.umkm.ai-generate-image-response', compact(
             'temporaryImage',
             'imageTemplate',
+            'finalHtml',
         ));
     }
 
     public function generateImageHistories() {
         $user = User::with('detailProduk')->find(Auth::id());
-        $temporaryImages = TemporaryImage::where('user_id', $user->id)->where('status', 1)->latest()->paginate(12);
+        $temporaryImages = TemporaryImage::where('user_id', $user->id)->where('status', 1)->latest()->paginate(5);
+    
+        foreach ($temporaryImages as $temporaryImage) {
+            $imageTemplate = ImageTemplate::find($temporaryImage->image_template_id);
+            $template = $imageTemplate->text;
+            $temporaryImage->finalHtml = str_replace(
+                ['{{ $temporaryImage->judul }}', '{{ $temporaryImage->deskripsi }}'],
+                [$temporaryImage->judul, $temporaryImage->deskripsi],
+                $template
+            );
+        }
+    
         return view('new.umkm.ai-generate-image-history', compact(
             'user',
-            'temporaryImages',
+            'temporaryImages'
         ));
     }
 

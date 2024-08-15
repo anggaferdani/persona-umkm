@@ -44,7 +44,7 @@
                 <div class="mb-3">
                   <label class="form-label">Foto Produk</label>
                   <input type="file" class="form-control" name="foto_produk" value="{{ $user->detailProduk->foto_produk }}">
-                  <div><a href="/detail-produk/foto-produk/{{ $user->detailProduk->foto_produk }}">{{ $user->detailProduk->foto_produk }}</a></div>
+                  <div><a href="/detail-produk/foto-produk/{{ $user->detailProduk->foto_produk }}" target="_blank">{{ $user->detailProduk->foto_produk }}</a></div>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Nama Produk</label>

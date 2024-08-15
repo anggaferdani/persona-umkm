@@ -105,6 +105,11 @@
             <input type="file" class="form-control" name="template">
             @error('template')<div class="text-danger">{{ $message }}</div>@enderror
           </div>
+          <div class="form-group">
+            <label for="">Text <span class="text-danger">*</span></label>
+            <textarea class="form-control" rows="3" name="text"></textarea>
+            @error('text')<div class="text-danger">{{ $message }}</div>@enderror
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -150,6 +155,11 @@
             <input type="file" class="form-control" name="template" value="{{ $imageTemplate->template }}">
             <div><a href="/image-template/template/{{ $imageTemplate->template }}" target="_blank">{{ $imageTemplate->template }}</a></div>
             @error('template')<div class="text-danger">{{ $message }}</div>@enderror
+          </div>
+          <div class="form-group">
+            <label for="">Text <span class="text-danger">*</span></label>
+            <textarea class="form-control" rows="3" name="text">{{ $imageTemplate->text }}</textarea>
+            @error('text')<div class="text-danger">{{ $message }}</div>@enderror
           </div>
         </div>
         <div class="modal-footer">

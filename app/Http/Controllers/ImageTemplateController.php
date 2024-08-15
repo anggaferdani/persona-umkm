@@ -26,10 +26,12 @@ class ImageTemplateController extends Controller
                 'category_image_template_id' => 'required',
                 'contoh' => 'required',
                 'template' => 'required',
+                'text' => 'required',
             ]);
     
             $array = [
                 'category_image_template_id' => $request['category_image_template_id'],
+                'text' => $request['text'],
                 'contoh' => $this->handleFileUpload($request->file('contoh'), 'image-template/contoh/'),
                 'template' => $this->handleFileUpload($request->file('template'), 'image-template/template/'),
             ];
@@ -52,14 +54,18 @@ class ImageTemplateController extends Controller
     
             $request->validate([
                 'category_image_template_id' => 'required',
+                'text' => 'required',
             ]);
     
             $array = [
                 'category_image_template_id' => $request['category_image_template_id'],
+                'text' => $request['text'],
             ];
 
-            if ($request->hasFile('file')) {
+            if ($request->hasFile('contoh')) {
                 $array['contoh'] = $this->handleFileUpload($request->file('contoh'), 'image-template/contoh/');
+            }
+            if ($request->hasFile('template')) {
                 $array['template'] = $this->handleFileUpload($request->file('template'), 'image-template/template/');
             }
     

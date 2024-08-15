@@ -34,15 +34,16 @@
           <div class="fs-3 text-center text-primary">3. Response</div>
           <div class="col-md-6 m-auto text-center mb-5">Tampilkan hasil atau tanggapan setelah proses generasi data oleh AI.</div>
 
-          <div class="m-auto col-4 mb-3">
-            <div id="canvas" class="mb-2" style="position: relative; aspect-ratio: 1; pointer-events: none;">
-              <img src="/temporary/{{ $temporaryImage->image }}" alt="" class="img-fluid w-100" style="position: absolute;">
-              <img src="/image-template/template/{{ $imageTemplate->template }}" alt="" class="img-fluid w-100" style="position: absolute;">
+          <div class="d-flex justify-content-center mb-2">
+            <div id="canvas" class="mb-2" style="position: relative; width: 300px; height: 300px;  pointer-events: none;">
+              <img src="/temporary/{{ $temporaryImage->image }}" alt="" class="img-fluid w-100" style="position: absolute; width: 100%; height: 100%;">
+              <img src="/image-template/template/{{ $imageTemplate->template }}" alt="" class="img-fluid w-100" style="position: absolute; width: 100%; height: 100%;">
+              {!! $finalHtml !!}
             </div>
-            <div>
-              <button class="btn btn-primary w-100 mb-2" onclick="downloadImage()">Download</button>
-              <a href="{{ route('umkm.ai.generate-image.temporary', $imageTemplate->id) }}" class="btn btn-secondary w-100 confirmation-when-i-click-back">Back</a>
-            </div>
+          </div>
+          <div class="col-md-3 col-6 m-auto">
+            <button class="btn btn-primary w-100 mb-2" onclick="downloadImage()">Download</button>
+            <a href="{{ route('umkm.ai.generate-image.temporary', $imageTemplate->id) }}" class="btn btn-secondary w-100 confirmation-when-i-click-back">Back</a>
           </div>
         </div>
     </div>

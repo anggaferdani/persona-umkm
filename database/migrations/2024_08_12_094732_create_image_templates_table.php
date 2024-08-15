@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('category_image_template_id')->references('id')->on('category_image_templates')->onDelete('cascade');
             $table->text('contoh');
             $table->text('template');
+            $table->text('text');
             $table->integer('status')->default(1);
             $table->timestamps();
         });
