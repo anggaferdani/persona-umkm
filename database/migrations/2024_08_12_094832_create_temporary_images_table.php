@@ -17,9 +17,12 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('image_template_id');
             $table->foreign('image_template_id')->references('id')->on('image_templates')->onDelete('cascade');
+            $table->unsignedBigInteger('response_id')->nullable();
+            $table->foreign('response_id')->references('id')->on('responses')->onDelete('cascade');
             $table->text('image')->nullable();
             $table->string('judul')->nullable();
             $table->string('deskripsi')->nullable();
+            $table->integer('type');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

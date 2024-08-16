@@ -107,7 +107,7 @@ class AIController extends Controller
                 Response::create($responseArray);
             }
 
-            $responses = Response::where('request_id', $requestModel->id)->get();   
+            $responses = Response::where('request_id', $requestModel->id)->get();
 
             return back()->with([
                 'success' => 'Success',
@@ -153,56 +153,6 @@ class AIController extends Controller
         }
     }
 
-    // public function generateImage(Request $request) {
-    //     $temporaryImage = null;
-
-    //     if ($request->isMethod('post')) {
-    //         $request->validate([
-    //             'judul' => 'required',
-    //             'image' => 'required',
-    //         ]);
-    
-    //         $array = [
-    //             'user_id' => Auth::id(),
-    //             'image' => $this->handleFileUpload($request->file('image'), 'temporary/'),
-    //             'judul' => $request['judul'],
-    //             'deskripsi' => $request['deskripsi'],
-    //         ];
-
-    //         $temporaryImage = TemporaryImage::create($array);
-
-    //         $user = User::with('detailProduk')->find(Auth::id());
-    //         $dayEvents = $this->getDayEvents();
-    //         $today = now()->year;
-    //         $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
-    //             return $event['tanggal'] === $today;
-    //         });
-
-    //         $imageTemplates = ImageTemplate::where('status', 1)->paginate(1);
-
-    //         return redirect()->route('umkm.ai.generate-image')
-    //                         ->with('temporaryImage', $temporaryImage)
-    //                         ->with('imageTemplates', $imageTemplates)
-    //                         ->with('user', $user)
-    //                         ->with('todayEvent', $todayEvent);
-    //     }
-
-    //     $user = User::with('detailProduk')->find(Auth::id());
-    //     $dayEvents = $this->getDayEvents();
-    //     $today = now()->year;
-    //     $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
-    //         return $event['tanggal'] === $today;
-    //     });
-
-    //     $imageTemplates = ImageTemplate::where('status', 1)->paginate(1);
-
-    //     return view('new.umkm.ai-generate-image', compact(
-    //         'user',
-    //         'todayEvent',
-    //         'imageTemplates'
-    //     ));
-    // }
-
     public function generateImage() {
         $user = User::with('detailProduk')->find(Auth::id());
         $dayEvents = $this->getDayEvents();
@@ -219,8 +169,10 @@ class AIController extends Controller
     }
 
     public function generateImageTemporary(Request $request) {
+        $user = User::with('detailProduk')->find(Auth::id());
         $imageTemplate = ImageTemplate::where('id', $request->id)->first();
         return view('new.umkm.ai-generate-image-temporary', compact(
+            'user',
             'imageTemplate',
         ));
     }
@@ -228,25 +180,92 @@ class AIController extends Controller
     public function generateImageTemporaryPost(Request $request) {
         try {
             $request->validate([
+                'image_option' => 'required',
+                'image' => 'required_if:image_option,manual|mimes:jpeg,png,jpg|dimensions:ratio=1/1',
+                'text_request' => 'required_if:image_option,ai',
                 'image_template_id' => 'required',
                 'judul' => 'required|max:50',
                 'deskripsi' => 'required|max:100',
             ]);
-    
-            $array = [
-                'user_id' => Auth::id(),
-                'image_template_id' => $request['image_template_id'],
-                'judul' => $request['judul'],
-                'deskripsi' => $request['deskripsi'],
-            ];
 
-            if ($request->hasFile('image')) {
-                $array['image'] = $this->handleFileUpload($request->file('image'), 'temporary/');
+            $user = Auth::user();
+            $requestModel = null;
+    
+            if ($request->image_option == 'ai') {
+                $detailProduk = $user->detailProduk;
+                $userModel = User::where('id', $user->id)->first();
+                
+                if ($userModel->credits >= 10) {
+                    $userModel->decrement('credits', 10);
+                } else {
+                    return back()->with('error', 'Credits tidak cukup');
+                }
+    
+                $apiKey = env('OPENAI_API_KEY');
+                $prompt = "prompt {$request->text_request} prompt {$detailProduk}";
+    
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $apiKey,
+                    'Content-Type' => 'application/json',
+                ])->post('https://api.openai.com/v1/images/generations', [
+                    'prompt' => $prompt,
+                    'n' => 1,
+                    'size' => '1024x1024',
+                ]);
+    
+                $responseData = $response->json();
+
+                $imageUrl = $responseData['data'][0]['url'] ?? '';
+    
+                $array = [
+                    'user_id' => $user->id,
+                    'detail_produk_id' => $request['detail_produk_id'],
+                    'text_request' => $request['text_request'],
+                    'type_request' => 2,
+                    'tanggal_request' => now(),
+                ];
+    
+                $requestModel = RequestModel::create($array);
+    
+                $responseArray = [
+                    'user_id' => $user->id,
+                    'request_id' => $requestModel->id,
+                    'image_url' => $imageUrl,
+                    'type_response' => 2,
+                    'tanggal_response' => now(),
+                ];
+    
+                $response = Response::create($responseArray);
+
+                $arrayTemporaryImage = [
+                    'user_id' => Auth::id(),
+                    'image_template_id' => $request['image_template_id'],
+                    'response_id' => $response->id,
+                    'image' => $imageUrl,
+                    'judul' => $request['judul'],
+                    'deskripsi' => $request['deskripsi'],
+                    'type' => 2,
+                ];
+    
+                $temporary = TemporaryImage::create($arrayTemporaryImage);
+            } else {
+                if ($request->hasFile('image')) {
+                    $array = [
+                        'user_id' => Auth::id(),
+                        'image_template_id' => $request['image_template_id'],
+                        'image' => $this->handleFileUpload($request->file('image'), 'temporary/'),
+                        'judul' => $request['judul'],
+                        'deskripsi' => $request['deskripsi'],
+                        'type' => 1,
+                    ];
+
+                    $temporary = TemporaryImage::create($array);
+                } else {
+                    return back()->with('error', 'Gagal Upload Image.');
+                }
             }
-
-            $temporaryImage = TemporaryImage::create($array);
     
-            return redirect()->route('umkm.ai.generate-image.response', $temporaryImage->id)->with('success', 'Success');
+            return redirect()->route('umkm.ai.generate-image.response', $temporary->id)->with('success', 'Success');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }

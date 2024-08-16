@@ -22,4 +22,8 @@ class TemporaryImage extends Model
     public function imageTemplate(){
         return $this->belongsTo(ImageTemplate::class, 'image_template_id');
     }
+    
+    public function response(){
+        return $this->belongsTo(Response::class, 'response_id');
+    }
 }
