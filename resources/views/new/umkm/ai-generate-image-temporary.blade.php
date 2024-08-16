@@ -42,7 +42,7 @@
 
             <form action="{{ route('umkm.ai.generate-image.temporary.post') }}" method="POST" enctype="multipart/form-data">
               @csrf
-              <div class="col-3 mb-3">
+              <div class="col-2 mb-3">
                 <label>Template *contoh</label>
                 <img src="/image-template/contoh/{{ $imageTemplate->contoh }}" alt="" class="img-fluid w-100" style="pointer-events: none;">
               </div>

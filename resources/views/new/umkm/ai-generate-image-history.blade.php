@@ -50,7 +50,11 @@
               @foreach ($temporaryImages as $temporaryImage)
                 <div class="d-flex justify-content-center mb-2">
                     <div id="canvas-{{ $temporaryImage->id }}" class="mb-2" style="position: relative; width: 300px; height: 300px; pointer-events: none;">
+                      @if($temporaryImage->type == 1)
                         <img src="/temporary/{{ $temporaryImage->image }}" alt="" class="img-fluid w-100" style="position: absolute; width: 100%; height: 100%;">
+                      @else
+                        <img src="{{ $temporaryImage->image }}" alt="" class="img-fluid w-100" style="position: absolute; width: 100%; height: 100%;">
+                      @endif
                         <img src="/image-template/template/{{ $temporaryImage->imageTemplate->template }}" alt="" class="img-fluid w-100" style="position: absolute; width: 100%; height: 100%;">
                         {!! $temporaryImage->finalHtml !!}
                     </div>
