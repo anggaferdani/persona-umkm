@@ -187,7 +187,7 @@ class AIController extends Controller
                 'judul' => 'required|max:50',
                 'deskripsi' => 'required|max:100',
             ]);
-
+    
             $user = Auth::user();
             $requestModel = null;
     
@@ -214,8 +214,18 @@ class AIController extends Controller
                 ]);
     
                 $responseData = $response->json();
-
                 $imageUrl = $responseData['data'][0]['url'] ?? '';
+    
+                if ($imageUrl) {
+                    $imageContent = Http::get($imageUrl)->body();
+                    $fileExtension = 'jpg';
+                    $fileName = date('YmdHis') . rand(999999999, 9999999999) . '.' . $fileExtension;
+                    $imagePath = public_path('temporary/' . $fileName);
+                    file_put_contents($imagePath, $imageContent);
+                    $savedImageUrl = asset('temporary/' . $fileName);
+                } else {
+                    return back()->with('error', 'Failed to generate image.');
+                }
     
                 $array = [
                     'user_id' => $user->id,
@@ -230,18 +240,18 @@ class AIController extends Controller
                 $responseArray = [
                     'user_id' => $user->id,
                     'request_id' => $requestModel->id,
-                    'image_url' => $imageUrl,
+                    'image_url' => $savedImageUrl,
                     'type_response' => 2,
                     'tanggal_response' => now(),
                 ];
     
                 $response = Response::create($responseArray);
-
+    
                 $arrayTemporaryImage = [
                     'user_id' => Auth::id(),
                     'image_template_id' => $request['image_template_id'],
                     'response_id' => $response->id,
-                    'image' => $imageUrl,
+                    'image' => $savedImageUrl,
                     'judul' => $request['judul'],
                     'deskripsi' => $request['deskripsi'],
                     'type' => 2,
@@ -258,7 +268,7 @@ class AIController extends Controller
                         'deskripsi' => $request['deskripsi'],
                         'type' => 1,
                     ];
-
+    
                     $temporary = TemporaryImage::create($array);
                 } else {
                     return back()->with('error', 'Gagal Upload Image.');
