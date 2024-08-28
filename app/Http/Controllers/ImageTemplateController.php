@@ -24,8 +24,8 @@ class ImageTemplateController extends Controller
         try {
             $request->validate([
                 'category_image_template_id' => 'required',
-                'contoh' => 'required',
-                'template' => 'required',
+                'contoh' => 'required|dimensions:ratio=1/1',
+                'template' => 'required|dimensions:ratio=1/1',
                 'text' => 'required',
             ]);
     
@@ -54,6 +54,8 @@ class ImageTemplateController extends Controller
     
             $request->validate([
                 'category_image_template_id' => 'required',
+                'contoh' => 'dimensions:ratio=1/1',
+                'template' => 'dimensions:ratio=1/1',
                 'text' => 'required',
             ]);
     
