@@ -32,7 +32,7 @@
       </form>
       <p id="timer" class="text-center text-danger mt-4"></p>
       <p class="fw-bold text-center mt-4">Tidak Menerima Kode OTP?</p>
-      <form class="mx-auto" action="{{url('/otp/resent', $user->id)}}" method="post">
+      <form class="mx-auto" action="{{ route('user.otpresent', $user->id) }}" method="post">
         @csrf
         <button class="btn" id="resent" type="submit" style="border: none;"><p class=" text-center">Kirim Ulang Kode</p></button>
       </form>
