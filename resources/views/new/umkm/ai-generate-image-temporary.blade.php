@@ -56,31 +56,32 @@
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="image_option" id="inlineRadio2" value="ai">
-                    <label class="form-check-label" for="inlineRadio2">AI</label>
+                    <label class="form-check-label" for="inlineRadio2">AI <span class="badge bg-blue">NEW</span></label>
                   </div>
                 </div>
                 <div class="manual">
                   <input type="file" class="form-control" name="image">
-                  <div class="text-danger small mt-1">Ukuran harus 1:1 *persegi</div>
+                  <div class="text-danger small mt-1">Ukuran dimensi ratio harus 1:1 *persegi</div>
                   @error('image')<div class="text-danger">{{ $message }}</div>@enderror
                 </div>
                 <div class="ai">
                   @if($user->detailProduk)
                     <input type="hidden" class="form-control" name="detail_produk_id" value="{{ $user->detailProduk->id }}">
                   @endif
-                  <div class="d-md-flex d-block border border-primary rounded p-3 mb-3">
-                    <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" rows="1" placeholder="Apa yang kamu ingin buat?" oninput="adjustHeight(this)"></textarea>
+                  <div class="d-md-flex d-block border border-primary rounded p-3 mb-1">
+                    <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" rows="1" placeholder="Deskripsikan apa yang mau digenerate? lebih detail lebih baik hasilnya" oninput="adjustHeight(this)"></textarea>
                   </div>
+                  <div class="small text-muted mb-3">Contoh : Buatkan gambar untuk postingan Instagram bertema burger 17 Agustus yang menonjolkan semangat kemerdekaan dengan desain burger unik berwarna merah putih.</div>
                 </div>
               </div>
               <div class="mb-3">
                 <label>Judul</label>
-                <input type="text" class="form-control" name="judul">
+                <input type="text" class="form-control" name="judul" required>
                 @error('judul')<div class="text-danger">{{ $message }}</div>@enderror
               </div>
               <div class="mb-3">
                 <label>Deskripsi</label>
-                <input type="text" class="form-control" name="deskripsi">
+                <input type="text" class="form-control" name="deskripsi" required>
                 @error('deskripsi')<div class="text-danger">{{ $message }}</div>@enderror
               </div>
               <div class="d-flex gap-1">
@@ -103,6 +104,14 @@
       element.style.height = 'auto';
       element.style.height = element.scrollHeight + 'px';
   }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var textareas = document.querySelectorAll("textarea");
+    
+    textareas.forEach(function(textarea) {
+        adjustHeight(textarea);
+    });
+  });
 
   function copyText(text) {
     navigator.clipboard.writeText(text).then(() => {

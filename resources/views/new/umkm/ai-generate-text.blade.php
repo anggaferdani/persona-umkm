@@ -60,12 +60,13 @@
               @if($user->detailProduk)
                 <input type="hidden" class="form-control" name="detail_produk_id" value="{{ $user->detailProduk->id }}">
               @endif
-              <div class="d-md-flex d-block border border-primary rounded p-3 mb-3">
-                <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" rows="1" placeholder="Apa yang kamu ingin buat?" oninput="adjustHeight(this)">{{ old('text_request', session('text_request', '')) }}</textarea>
+              <div class="d-md-flex d-block border border-primary rounded p-3 mb-1">
+                <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" rows="1" placeholder="Deskripsikan apa yang mau digenerate? lebih detail lebih baik hasilnya" oninput="adjustHeight(this)">{{ old('text_request', session('text_request', '')) }}</textarea>
                 <div>
                   <button id="submitButton" type="submit" class="btn btn-primary px-3 w-100 d-flex align-items-center gap-2" @if(!$user->detailProduk || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
                 </div>
               </div>
+              <div class="small text-muted mb-3">Contoh : Buatkan deskripsi menarik untuk postingan Instagram tentang burger bertema 17 Agustus, dengan menekankan semangat kemerdekaan, keunikan warna merah putih pada burger, dan ajakan kepada followers untuk mencoba burger spesial ini.</div>
             </form>
             @if(session('responses') && count(session('responses')) > 0)
             <div class="row g-3">
@@ -93,6 +94,14 @@
       element.style.height = 'auto';
       element.style.height = element.scrollHeight + 'px';
   }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var textareas = document.querySelectorAll("textarea");
+    
+    textareas.forEach(function(textarea) {
+        adjustHeight(textarea);
+    });
+  });
 
   function copyText(text) {
     navigator.clipboard.writeText(text).then(() => {

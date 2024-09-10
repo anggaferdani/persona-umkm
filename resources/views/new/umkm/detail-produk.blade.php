@@ -52,7 +52,8 @@
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Deskripsi Produk</label>
-                  <textarea class="form-control" rows="3" name="deskripsi_produk">{{ $user->detailProduk->deskripsi_produk }}</textarea>
+                  <textarea class="form-control mb-1" rows="3" name="deskripsi_produk">{{ $user->detailProduk->deskripsi_produk }}</textarea>
+                  <div class="small text-danger">Masukan deskripsi lengkap tentang produk untuk hasil generate yang lebih baik.</div>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Jenis Produk</label>

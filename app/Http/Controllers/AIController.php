@@ -57,7 +57,7 @@ class AIController extends Controller
 
             $apiKey = env('OPENAI_API_KEY');
 
-            $prompt = "Buatkan 3 variasi deskripsi media sosial yang sesuai dan sedang trending dengan nama produk = {$detailProduk->nama_produk}, deskripsi yang menjelaskan produk = {$detailProduk->deskripsi_produk}, dan prompt = {$request->text_request}. Berikan hasil dalam format list dengan setiap deskripsi pada baris baru. Dengan bahasa indonesia.";
+            $prompt = "Buatkan 3 variasi deskripsi media sosial yang kreatif, engaging, dan sesuai dengan tren terkini di platform seperti Instagram, Facebook, atau TikTok. Ingat, hanya buatkan DESKRIPSI-nya saja. Pastikan semua variasi deskripsi dari 1-3 yang digenerate berkaitan atau mengandung nama produk({$detailProduk->nama_produk}), deskripsi produk({$detailProduk->deskripsi_produk}, {$request->text_request}). Gunakan bahasa Indonesia yang santai, menarik perhatian, serta dapat memancing interaksi audiens. Setiap variasi deskripsi harus memiliki pendekatan yang berbeda, semisalnya deskripsi yang informatif dan langsung, deskripsi yang lucu dan menghibur, deskripsi yang inspiratif dan mendorong pengguna untuk mengambil tindakan. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap deskripsi pada baris baru.";
 
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $apiKey,
@@ -76,7 +76,9 @@ class AIController extends Controller
             // dd($responseData);
 
             $text = $responseData['choices'][0]['message']['content'] ?? '';
-            $generatedDescriptions = array_filter(array_map('trim', explode("\n", $text)));
+            $generatedDescriptions = array_filter(array_map(function($desc) {
+                return preg_replace('/^\d+[\.\)]\s*/', '', trim($desc));
+            }, explode("\n", $text)));
 
             // dd($generatedDescriptions);
     
@@ -196,68 +198,74 @@ class AIController extends Controller
                 $userModel = User::where('id', $user->id)->first();
                 
                 if ($userModel->credits >= 10) {
+                    $apiKey = env('OPENAI_API_KEY');
+                    $prompt = "Buat gambar realistis dari sebuah produk({$detailProduk}) dengan resolusi minimum 1024x1024 piksel, menggabungkan tema {$request->text_request}. Pastikan gambar mencerminkan esensi dan detail produk, serta secara kreatif mengintegrasikan tema yang diminta. Gaya gambar harus terlihat nyata, menarik secara visual, dan sesuai dengan identitas produk.";
+
+
+
+                    if (strlen($prompt) > 1000) {
+                        return back()->with('error', 'Panjang prompt melebihi 1000 karakter. Silakan perpendek prompt Anda.');
+                    }
+        
+                    $response = Http::withHeaders([
+                        'Authorization' => 'Bearer ' . $apiKey,
+                        'Content-Type' => 'application/json',
+                    ])->post('https://api.openai.com/v1/images/generations', [
+                        'prompt' => $prompt,
+                        'n' => 1,
+                        'size' => '1024x1024',
+                    ]);
+        
+                    $responseData = $response->json();
+                    $imageUrl = $responseData['data'][0]['url'] ?? '';
+
+                    if ($imageUrl) {
+                        $imageContent = Http::get($imageUrl)->body();
+                        $fileExtension = 'jpg';
+                        $fileName = date('YmdHis') . rand(999999999, 9999999999) . '.' . $fileExtension;
+                        $imagePath = public_path('temporary/' . $fileName);
+                        file_put_contents($imagePath, $imageContent);
+                        $savedImageUrl = asset('temporary/' . $fileName);
+                    } else {
+                        return back()->with('error', 'Failed to generate image.');
+                    }
+        
+                    $array = [
+                        'user_id' => $user->id,
+                        'detail_produk_id' => $request['detail_produk_id'],
+                        'text_request' => $request['text_request'],
+                        'type_request' => 2,
+                        'tanggal_request' => now(),
+                    ];
+        
+                    $requestModel = RequestModel::create($array);
+        
+                    $responseArray = [
+                        'user_id' => $user->id,
+                        'request_id' => $requestModel->id,
+                        'image_url' => $savedImageUrl,
+                        'type_response' => 2,
+                        'tanggal_response' => now(),
+                    ];
+        
+                    $response = Response::create($responseArray);
+        
+                    $arrayTemporaryImage = [
+                        'user_id' => Auth::id(),
+                        'image_template_id' => $request['image_template_id'],
+                        'response_id' => $response->id,
+                        'image' => $savedImageUrl,
+                        'judul' => $request['judul'],
+                        'deskripsi' => $request['deskripsi'],
+                        'type' => 2,
+                    ];
+        
+                    $temporary = TemporaryImage::create($arrayTemporaryImage);
+
                     $userModel->decrement('credits', 10);
                 } else {
                     return back()->with('error', 'Credits tidak cukup');
                 }
-    
-                $apiKey = env('OPENAI_API_KEY');
-                $prompt = "prompt {$request->text_request} prompt {$detailProduk}";
-    
-                $response = Http::withHeaders([
-                    'Authorization' => 'Bearer ' . $apiKey,
-                    'Content-Type' => 'application/json',
-                ])->post('https://api.openai.com/v1/images/generations', [
-                    'prompt' => $prompt,
-                    'n' => 1,
-                    'size' => '1024x1024',
-                ]);
-    
-                $responseData = $response->json();
-                $imageUrl = $responseData['data'][0]['url'] ?? '';
-    
-                if ($imageUrl) {
-                    $imageContent = Http::get($imageUrl)->body();
-                    $fileExtension = 'jpg';
-                    $fileName = date('YmdHis') . rand(999999999, 9999999999) . '.' . $fileExtension;
-                    $imagePath = public_path('temporary/' . $fileName);
-                    file_put_contents($imagePath, $imageContent);
-                    $savedImageUrl = asset('temporary/' . $fileName);
-                } else {
-                    return back()->with('error', 'Failed to generate image.');
-                }
-    
-                $array = [
-                    'user_id' => $user->id,
-                    'detail_produk_id' => $request['detail_produk_id'],
-                    'text_request' => $request['text_request'],
-                    'type_request' => 2,
-                    'tanggal_request' => now(),
-                ];
-    
-                $requestModel = RequestModel::create($array);
-    
-                $responseArray = [
-                    'user_id' => $user->id,
-                    'request_id' => $requestModel->id,
-                    'image_url' => $savedImageUrl,
-                    'type_response' => 2,
-                    'tanggal_response' => now(),
-                ];
-    
-                $response = Response::create($responseArray);
-    
-                $arrayTemporaryImage = [
-                    'user_id' => Auth::id(),
-                    'image_template_id' => $request['image_template_id'],
-                    'response_id' => $response->id,
-                    'image' => $savedImageUrl,
-                    'judul' => $request['judul'],
-                    'deskripsi' => $request['deskripsi'],
-                    'type' => 2,
-                ];
-    
-                $temporary = TemporaryImage::create($arrayTemporaryImage);
             } else {
                 if ($request->hasFile('image')) {
                     $array = [
@@ -352,7 +360,7 @@ class AIController extends Controller
 
             $apiKey = env('OPENAI_API_KEY');
 
-            $prompt = "Buatkan 9 variasi hastag # media sosial yang sesuai dan sedang trending dengan nama produk = {$detailProduk->nama_produk}, {$detailProduk->deskripsi_produk}, dan prompt = {$request->text_request}. Berikan hasil dalam format list dengan setiap hastag pada baris baru. Dengan bahasa indonesia.";
+            $prompt = "Buatkan 9 hashtag/tag media sosial yang sesuai dan sedang trending belakangan ini sesuai dengan nama produk({$detailProduk->nama_produk}), deskripsi produk({$detailProduk->deskripsi_produk}, {$request->text_request}). Gunakan bahasa Indonesia yang santai, menarik perhatian, serta dapat memancing interaksi audiens. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap hashtag pada baris baru. 9 hastag saja";
 
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $apiKey,
@@ -371,7 +379,9 @@ class AIController extends Controller
             // dd($responseData);
 
             $text = $responseData['choices'][0]['message']['content'] ?? '';
-            $generatedDescriptions = array_filter(array_map('trim', explode("\n", $text)));
+            $generatedDescriptions = array_filter(array_map(function($desc) {
+                return preg_replace('/^\d+[\.\)]\s*/', '', trim($desc));
+            }, explode("\n", $text)));
 
             // dd($generatedDescriptions);
     
@@ -418,7 +428,7 @@ class AIController extends Controller
 
     public function generateTagHistories() {
         $user = User::with('detailProduk')->find(Auth::id());
-        $responses = Response::where('user_id', $user->id)->where('type_response', 3)->where('status', 1)->latest()->paginate(9);
+        $responses = Response::where('user_id', $user->id)->where('type_response', 3)->where('status', 1)->latest()->paginate(18);
         return view('new.umkm.ai-generate-tag-history', compact(
             'user',
             'responses',
