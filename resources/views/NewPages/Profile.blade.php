@@ -31,8 +31,8 @@
                     @else
                         @if(Auth::user()->role == 3)
                         <h5 class="text-md-start text-center fw-bold mb-3">Alamat & Deskripsi UKM :</h5>
-                        <p class="text-md-start text-center mb-3">{{$profil->alamat}}</p>
-                        <p class="text-md-start text-center mb-3">{{$profil->deskripsi}}</p>
+                        <p class="text-md-start text-center mb-3">{{$profil->alamat ?? '-'}}</p>
+                        <p class="text-md-start text-center mb-3">{{$profil->deskripsi ?? '-'}}</p>
 
                         <div class="d-flex justify-content-center justify-content-md-start">
                             <button type="button" class="btn btn-sm btn-primary mt-2 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModaProfil">
@@ -41,7 +41,7 @@
                         </div>
                         @elseif(Auth::user()->role == 4)
                         <h4 class="fw-bold">Alamat :</h4>
-                        <p class="text-md-start text-center mb-3">{{$profil->alamat}}</p>
+                        <p class="text-md-start text-center mb-3">{{$profil->alamat ?? '-'}}</p>
 
                         <div class="d-flex justify-content-center justify-content-md-start">
                             <button type="button" class="btn btn-sm btn-primary mt-2 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModaProfil">
