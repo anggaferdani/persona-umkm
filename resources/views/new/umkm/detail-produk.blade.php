@@ -54,7 +54,7 @@
                 <tr>
                   <td class="small">{{ $loop->iteration }}</td>
                   <td class="small">{{ $detailProduk->nama_produk }}</td>
-                  <td class="small">{{ $detailProduk->jenisProduk->jenis_produk }}</td>
+                  <td class="small">{{ $detailProduk->jenisProduk->jenis_produk ?? '-' }}</td>
                   <td>
                     <form action="{{ route('umkm.detail-produk.destroy', $detailProduk->id) }}" method="POST">
                       @csrf
