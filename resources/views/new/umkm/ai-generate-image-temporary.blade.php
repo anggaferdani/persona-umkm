@@ -91,7 +91,7 @@
               </div>
               <div class="mb-3">
                 <label>Deskripsi <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="deskripsi" required>
+                <textarea class="form-control" name="deksripsi" rows="3" oninput="adjustHeight(this)"></textarea>
                 <div class="text-muted small mt-1">Maksimal 20 kata</div>
                 @error('deskripsi')<div class="text-danger">{{ $message }}</div>@enderror
               </div>
