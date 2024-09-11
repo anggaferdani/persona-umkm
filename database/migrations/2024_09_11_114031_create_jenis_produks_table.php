@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detail_produks', function (Blueprint $table) {
+        Schema::create('jenis_produks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('foto_produk');
-            $table->string('nama_produk');
-            $table->text('deskripsi_produk');
-            $table->unsignedBigInteger('jenis_produk_id')->nullable();
+            $table->string('jenis_produk');
             $table->integer('status')->default(1);
             $table->timestamps();
         });
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detail_produks');
+        Schema::dropIfExists('jenis_produks');
     }
 };

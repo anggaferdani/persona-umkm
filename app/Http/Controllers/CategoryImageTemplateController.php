@@ -73,7 +73,7 @@ class CategoryImageTemplateController extends Controller
             $categoryImageTemplate = CategoryImageTemplate::find($id);
 
             $categoryImageTemplate->update([
-                'status' => 0,
+                'status' => 2,
             ]);
 
             return redirect()->route('admin.category-image-template.index')->with('success', 'Success');

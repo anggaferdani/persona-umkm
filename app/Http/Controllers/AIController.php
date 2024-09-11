@@ -17,6 +17,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use App\Models\BrandPersonalityAakerResult;
 use App\Models\BrandPersonalityAaker as BrandPersonalityAakerModel;
+use App\Models\DetailProduk;
 use App\Models\ImageTemplate;
 
 class AIController extends Controller
@@ -26,15 +27,17 @@ class AIController extends Controller
     }
 
     public function generateText() {
-        $user = User::with('detailProduk')->find(Auth::id());
+        $user = User::with('detailProduks')->find(Auth::id());
         $dayEvents = $this->getDayEvents();
         $today = now()->year;
         $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
             return $event['tanggal'] === $today;
         });
+        $detailProduks = DetailProduk::where('user_id', $user->id)->where('status', 1)->get();
         return view('new.umkm.ai-generate-text', compact(
             'user',
             'todayEvent',
+            'detailProduks',
         ));
     }
 
@@ -46,85 +49,85 @@ class AIController extends Controller
             ]);
 
             $user = Auth::user();
-            $detailProduk = $user->detailProduk;
-
+            $detailProduk = DetailProduk::where('user_id', $user->id)->where('id', $request['detail_produk_id'])->first();
             $userModel = User::where('id', $user->id)->first();
+
             if ($userModel->credits >= 10) {
                 $userModel->decrement('credits', 10);
+
+                $apiKey = env('OPENAI_API_KEY');
+
+                $prompt = "Buatkan 3 variasi deskripsi media sosial yang kreatif, engaging, dan sesuai dengan tren terkini di platform seperti Instagram, Facebook, atau TikTok. Ingat, hanya buatkan DESKRIPSI-nya saja. Pastikan semua variasi deskripsi dari 1-3 yang digenerate berkaitan atau mengandung nama produk({$detailProduk->nama_produk}), deskripsi produk({$detailProduk->deskripsi_produk}, {$request->text_request}). Gunakan bahasa Indonesia yang santai, menarik perhatian, serta dapat memancing interaksi audiens. Setiap variasi deskripsi harus memiliki pendekatan yang berbeda, semisalnya deskripsi yang informatif dan langsung, deskripsi yang lucu dan menghibur, deskripsi yang inspiratif dan mendorong pengguna untuk mengambil tindakan. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap deskripsi pada baris baru.";
+
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $apiKey,
+                    'Content-Type' => 'application/json',
+                ])->post('https://api.openai.com/v1/chat/completions', [
+                    'model' => 'gpt-3.5-turbo',
+                    'messages' => [
+                        ['role' => 'user', 'content' => $prompt],
+                    ],
+                    'max_tokens' => 1000,
+                    'n' => 1,
+                ]);
+
+                $responseData = $response->json();
+
+                // dd($responseData);
+
+                $text = $responseData['choices'][0]['message']['content'] ?? '';
+                $generatedDescriptions = array_filter(array_map(function($desc) {
+                    return preg_replace('/^\d+[\.\)]\s*/', '', trim($desc));
+                }, explode("\n", $text)));
+
+                // dd($generatedDescriptions);
+        
+                if (count($generatedDescriptions) < 3) {
+                    $generatedDescriptions = array_pad($generatedDescriptions, 3, '');
+                }
+
+                $array = [
+                    'user_id' => $user->id,
+                    'detail_produk_id' => $request['detail_produk_id'],
+                    'text_request' => $request['text_request'],
+                    'type_request' => 1,
+                    'tanggal_request' => now(),
+                ];
+
+                $requestModel = RequestModel::create($array);
+
+                foreach ($generatedDescriptions as $description) {
+                    $responseArray = [
+                        'user_id' => $user->id,
+                        'request_id' => $requestModel->id,
+                        'text_response' => $description,
+                        'image_url' => null,
+                        'type_response' => 1,
+                        'tanggal_response' => now(),
+                    ];
+
+                    Response::create($responseArray);
+                }
+
+                $responses = Response::where('request_id', $requestModel->id)->get();
+
+                return back()->with([
+                    'success' => 'Success',
+                    'text_request' => $request['text_request'],
+                    'user' => $user,
+                    'responses' => $responses,
+                ]);
+                return ;
             } else {
                 return back()->with('error', 'Credits tidak cukup');
             }
-
-            $apiKey = env('OPENAI_API_KEY');
-
-            $prompt = "Buatkan 3 variasi deskripsi media sosial yang kreatif, engaging, dan sesuai dengan tren terkini di platform seperti Instagram, Facebook, atau TikTok. Ingat, hanya buatkan DESKRIPSI-nya saja. Pastikan semua variasi deskripsi dari 1-3 yang digenerate berkaitan atau mengandung nama produk({$detailProduk->nama_produk}), deskripsi produk({$detailProduk->deskripsi_produk}, {$request->text_request}). Gunakan bahasa Indonesia yang santai, menarik perhatian, serta dapat memancing interaksi audiens. Setiap variasi deskripsi harus memiliki pendekatan yang berbeda, semisalnya deskripsi yang informatif dan langsung, deskripsi yang lucu dan menghibur, deskripsi yang inspiratif dan mendorong pengguna untuk mengambil tindakan. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap deskripsi pada baris baru.";
-
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $apiKey,
-                'Content-Type' => 'application/json',
-            ])->post('https://api.openai.com/v1/chat/completions', [
-                'model' => 'gpt-3.5-turbo',
-                'messages' => [
-                    ['role' => 'user', 'content' => $prompt],
-                ],
-                'max_tokens' => 1000,
-                'n' => 1,
-            ]);
-
-            $responseData = $response->json();
-
-            // dd($responseData);
-
-            $text = $responseData['choices'][0]['message']['content'] ?? '';
-            $generatedDescriptions = array_filter(array_map(function($desc) {
-                return preg_replace('/^\d+[\.\)]\s*/', '', trim($desc));
-            }, explode("\n", $text)));
-
-            // dd($generatedDescriptions);
-    
-            if (count($generatedDescriptions) < 3) {
-                $generatedDescriptions = array_pad($generatedDescriptions, 3, '');
-            }
-
-            $array = [
-                'user_id' => $user->id,
-                'detail_produk_id' => $request['detail_produk_id'],
-                'text_request' => $request['text_request'],
-                'type_request' => 1,
-                'tanggal_request' => now(),
-            ];
-
-            $requestModel = RequestModel::create($array);
-
-            foreach ($generatedDescriptions as $description) {
-                $responseArray = [
-                    'user_id' => $user->id,
-                    'request_id' => $requestModel->id,
-                    'text_response' => $description,
-                    'image_url' => null,
-                    'type_response' => 1,
-                    'tanggal_response' => now(),
-                ];
-
-                Response::create($responseArray);
-            }
-
-            $responses = Response::where('request_id', $requestModel->id)->get();
-
-            return back()->with([
-                'success' => 'Success',
-                'text_request' => $request['text_request'],
-                'user' => $user,
-                'responses' => $responses,
-            ]);
-            return ;
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }
     }
 
     public function generateTextHistories() {
-        $user = User::with('detailProduk')->find(Auth::id());
+        $user = User::with('detailProduks')->find(Auth::id());
         $responses = Response::where('user_id', $user->id)->where('type_response', 1)->where('status', 1)->latest()->paginate(9);
         return view('new.umkm.ai-generate-text-history', compact(
             'user',
@@ -156,7 +159,7 @@ class AIController extends Controller
     }
 
     public function generateImage() {
-        $user = User::with('detailProduk')->find(Auth::id());
+        $user = User::with('detailProduks')->find(Auth::id());
         $dayEvents = $this->getDayEvents();
         $today = now()->year;
         $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
@@ -171,11 +174,13 @@ class AIController extends Controller
     }
 
     public function generateImageTemporary(Request $request) {
-        $user = User::with('detailProduk')->find(Auth::id());
+        $user = User::with('detailProduks')->find(Auth::id());
         $imageTemplate = ImageTemplate::where('id', $request->id)->first();
+        $detailProduks = DetailProduk::where('user_id', $user->id)->where('status', 1)->get();
         return view('new.umkm.ai-generate-image-temporary', compact(
             'user',
             'imageTemplate',
+            'detailProduks',
         ));
     }
 
@@ -194,14 +199,12 @@ class AIController extends Controller
             $requestModel = null;
     
             if ($request->image_option == 'ai') {
-                $detailProduk = $user->detailProduk;
+                $detailProduk = DetailProduk::where('user_id', $user->id)->where('id', $request['detail_produk_id'])->first();
                 $userModel = User::where('id', $user->id)->first();
                 
                 if ($userModel->credits >= 10) {
                     $apiKey = env('OPENAI_API_KEY');
-                    $prompt = "Buat gambar realistis dari sebuah produk({$detailProduk}) dengan resolusi minimum 1024x1024 piksel, menggabungkan tema {$request->text_request}. Pastikan gambar mencerminkan esensi dan detail produk, serta secara kreatif mengintegrasikan tema yang diminta. Gaya gambar harus terlihat nyata, menarik secara visual, dan sesuai dengan identitas produk.";
-
-
+                    $prompt = "buat gambar dengan reference {$detailProduk->deskripsi_produk} dan {$request->text_request}";
 
                     if (strlen($prompt) > 1000) {
                         return back()->with('error', 'Panjang prompt melebihi 1000 karakter. Silakan perpendek prompt Anda.');
@@ -232,7 +235,7 @@ class AIController extends Controller
         
                     $array = [
                         'user_id' => $user->id,
-                        'detail_produk_id' => $request['detail_produk_id'],
+                        'detail_produk_id' => 1,
                         'text_request' => $request['text_request'],
                         'type_request' => 2,
                         'tanggal_request' => now(),
@@ -307,7 +310,7 @@ class AIController extends Controller
     }
 
     public function generateImageHistories() {
-        $user = User::with('detailProduk')->find(Auth::id());
+        $user = User::with('detailProduks')->find(Auth::id());
         $temporaryImages = TemporaryImage::where('user_id', $user->id)->where('status', 1)->latest()->paginate(5);
     
         foreach ($temporaryImages as $temporaryImage) {
@@ -329,15 +332,17 @@ class AIController extends Controller
     public function generateImageStore(Request $request) {}
 
     public function generateTag() {
-        $user = User::with('detailProduk')->find(Auth::id());
+        $user = User::with('detailProduks')->find(Auth::id());
         $dayEvents = $this->getDayEvents();
         $today = now()->year;
         $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
             return $event['tanggal'] === $today;
         });
+        $detailProduks = DetailProduk::where('user_id', $user->id)->where('status', 1)->get();
         return view('new.umkm.ai-generate-tag', compact(
             'user',
             'todayEvent',
+            'detailProduks',
         ));
     }
 
@@ -349,85 +354,85 @@ class AIController extends Controller
             ]);
 
             $user = Auth::user();
-            $detailProduk = $user->detailProduk;
+            $detailProduk = DetailProduk::where('user_id', $user->id)->where('id', $request['detail_produk_id'])->first();
 
             $userModel = User::where('id', $user->id)->first();
             if ($userModel->credits >= 10) {
                 $userModel->decrement('credits', 10);
+
+                $apiKey = env('OPENAI_API_KEY');
+
+                $prompt = "Buatkan 9 hashtag/tag media sosial yang sesuai dan sedang trending belakangan ini sesuai dengan nama produk({$detailProduk->nama_produk}), deskripsi produk({$detailProduk->deskripsi_produk}, {$request->text_request}). Gunakan bahasa Indonesia yang santai, menarik perhatian, serta dapat memancing interaksi audiens. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap hashtag pada baris baru. 9 hastag saja";
+
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $apiKey,
+                    'Content-Type' => 'application/json',
+                ])->post('https://api.openai.com/v1/chat/completions', [
+                    'model' => 'gpt-3.5-turbo',
+                    'messages' => [
+                        ['role' => 'user', 'content' => $prompt],
+                    ],
+                    'max_tokens' => 1000,
+                    'n' => 1,
+                ]);
+
+                $responseData = $response->json();
+
+                // dd($responseData);
+
+                $text = $responseData['choices'][0]['message']['content'] ?? '';
+                $generatedDescriptions = array_filter(array_map(function($desc) {
+                    return preg_replace('/^\d+[\.\)]\s*/', '', trim($desc));
+                }, explode("\n", $text)));
+
+                // dd($generatedDescriptions);
+        
+                if (count($generatedDescriptions) < 9) {
+                    $generatedDescriptions = array_pad($generatedDescriptions, 9, '');
+                }
+
+                $array = [
+                    'user_id' => $user->id,
+                    'detail_produk_id' => $request['detail_produk_id'],
+                    'text_request' => $request['text_request'],
+                    'type_request' => 3,
+                    'tanggal_request' => now(),
+                ];
+
+                $requestModel = RequestModel::create($array);
+
+                foreach ($generatedDescriptions as $description) {
+                    $responseArray = [
+                        'user_id' => $user->id,
+                        'request_id' => $requestModel->id,
+                        'text_response' => $description,
+                        'image_url' => null,
+                        'type_response' => 3,
+                        'tanggal_response' => now(),
+                    ];
+
+                    Response::create($responseArray);
+                }
+
+                $responses = Response::where('request_id', $requestModel->id)->get();
+
+                return back()->with([
+                    'success' => 'Success',
+                    'text_request' => $request['text_request'],
+                    'user' => $user,
+                    'responses' => $responses,
+                ]);
+                return ;
             } else {
                 return back()->with('error', 'Credits tidak cukup');
             }
-
-            $apiKey = env('OPENAI_API_KEY');
-
-            $prompt = "Buatkan 9 hashtag/tag media sosial yang sesuai dan sedang trending belakangan ini sesuai dengan nama produk({$detailProduk->nama_produk}), deskripsi produk({$detailProduk->deskripsi_produk}, {$request->text_request}). Gunakan bahasa Indonesia yang santai, menarik perhatian, serta dapat memancing interaksi audiens. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap hashtag pada baris baru. 9 hastag saja";
-
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $apiKey,
-                'Content-Type' => 'application/json',
-            ])->post('https://api.openai.com/v1/chat/completions', [
-                'model' => 'gpt-3.5-turbo',
-                'messages' => [
-                    ['role' => 'user', 'content' => $prompt],
-                ],
-                'max_tokens' => 1000,
-                'n' => 1,
-            ]);
-
-            $responseData = $response->json();
-
-            // dd($responseData);
-
-            $text = $responseData['choices'][0]['message']['content'] ?? '';
-            $generatedDescriptions = array_filter(array_map(function($desc) {
-                return preg_replace('/^\d+[\.\)]\s*/', '', trim($desc));
-            }, explode("\n", $text)));
-
-            // dd($generatedDescriptions);
-    
-            if (count($generatedDescriptions) < 9) {
-                $generatedDescriptions = array_pad($generatedDescriptions, 9, '');
-            }
-
-            $array = [
-                'user_id' => $user->id,
-                'detail_produk_id' => $request['detail_produk_id'],
-                'text_request' => $request['text_request'],
-                'type_request' => 3,
-                'tanggal_request' => now(),
-            ];
-
-            $requestModel = RequestModel::create($array);
-
-            foreach ($generatedDescriptions as $description) {
-                $responseArray = [
-                    'user_id' => $user->id,
-                    'request_id' => $requestModel->id,
-                    'text_response' => $description,
-                    'image_url' => null,
-                    'type_response' => 3,
-                    'tanggal_response' => now(),
-                ];
-
-                Response::create($responseArray);
-            }
-
-            $responses = Response::where('request_id', $requestModel->id)->get();
-
-            return back()->with([
-                'success' => 'Success',
-                'text_request' => $request['text_request'],
-                'user' => $user,
-                'responses' => $responses,
-            ]);
-            return ;
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }
     }
 
     public function generateTagHistories() {
-        $user = User::with('detailProduk')->find(Auth::id());
+        $user = User::with('detailProduks')->find(Auth::id());
         $responses = Response::where('user_id', $user->id)->where('type_response', 3)->where('status', 1)->latest()->paginate(18);
         return view('new.umkm.ai-generate-tag-history', compact(
             'user',

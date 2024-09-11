@@ -37,11 +37,6 @@
                 </a>
                 <div class="hr-beranda"></div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('umkm.detail-produk') }}">
-                    <p>Detail Produk</p>
-                </a>
-            </li>
         </ul>
         <div class="tab-content responsive-tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
@@ -1756,7 +1751,7 @@
                     </div>
                     
                     <div class="form-group mb-3">
-                        <label for="exampleInputUsername1" class="mb-1">Tambahkan 5 Hastag Merk Anda<span class="text-danger">*</span></label><br>
+                        <label for="exampleInputUsername1" class="mb-1">Tambahkan 5 Hastag Merk Anda</label><br>
                         <input class="form-control my-1" required placeholder="Hastag #" name="tag1" value="#" type="text">
                         <input class="form-control my-1" required placeholder="Hastag #" name="tag2" value="#" type="text">
                         <input class="form-control my-1" required placeholder="Hastag #" name="tag3" value="#" type="text">

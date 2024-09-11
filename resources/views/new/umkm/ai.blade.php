@@ -21,14 +21,7 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-3">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active disabled" style="background: #2388FF;">Menu</a>
-                <a href="{{ route('umkm.ai') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai') ? 'text-primary' : '' }}">Kenapa AI?</a>
-                <a href="{{ route('umkm.ai.generate-text') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-text') ? 'text-primary' : '' }}">AI Generate Text</a>
-                <a href="{{ route('umkm.ai.generate-image') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-image') ? 'text-primary' : '' }}">AI Generate Image</a>
-                <a href="{{ route('umkm.ai.generate-tag') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-tag') ? 'text-primary' : '' }}">AI Generate Tag</a>
-                <a href="{{ route('umkm.ai.generate-text.histories') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-text.histories', 'umkm.ai.generate-image.histories', 'umkm.ai.generate-tag.histories') ? 'text-primary' : '' }}">History</a>
-            </div>
+          @include('new.umkm.sidebar')
         </div>
         <div class="col-md-9">
           <div class="fs-3 text-center text-primary mb-2">Kenapa AI?</div>
@@ -42,6 +35,7 @@
                     </div>
                     <div class="fs-5 mb-2 text-primary text-center">Generate Image</div>
                     <div class="text-center">Dengan AI, deskripsi teks dapat diubah menjadi gambar visual sesuai kebutuhan, mempermudah pembuatan konten visual yang tepat dan menarik.</div>
+                    <a href="{{ route('umkm.ai.generate-image') }}" class="stretched-link"></a>
                   </div>
                 </div>
               </div>
@@ -53,6 +47,7 @@
                     </div>
                     <div class="fs-5 mb-2 text-primary text-center">Generate Text</div>
                     <div class="text-center">ChatGPT dapat menciptakan deskripsi media sosial yang menarik dan relevan, membantu meningkatkan keterlibatan audiens di platform media sosial.</div>
+                    <a href="{{ route('umkm.ai.generate-text') }}" class="stretched-link"></a>
                   </div>
                 </div>
               </div>
@@ -64,6 +59,7 @@
                     </div>
                     <div class="fs-5 mb-2 text-primary text-center">Generate Tag</div>
                     <div class="text-center">AI dapat menghasilkan tag yang efektif dan sesuai dengan konten yang diposting, meningkatkan jangkauan dan visibilitas di media sosial.</div>
+                    <a href="{{ route('umkm.ai.generate-tag') }}" class="stretched-link"></a>
                   </div>
                 </div>
               </div>

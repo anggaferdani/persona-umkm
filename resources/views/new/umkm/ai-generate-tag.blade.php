@@ -21,49 +21,54 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-3">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active disabled" style="background: #2388FF;">Menu</a>
-                <a href="{{ route('umkm.ai') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai') ? 'text-primary' : '' }}">Kenapa AI?</a>
-                <a href="{{ route('umkm.ai.generate-text') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-text') ? 'text-primary' : '' }}">AI Generate Text</a>
-                <a href="{{ route('umkm.ai.generate-image') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-image') ? 'text-primary' : '' }}">AI Generate Image</a>
-                <a href="{{ route('umkm.ai.generate-tag') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-tag') ? 'text-primary' : '' }}">AI Generate Tag</a>
-                <a href="{{ route('umkm.ai.generate-text.histories') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-text.histories', 'umkm.ai.generate-image.histories', 'umkm.ai.generate-tag.histories') ? 'text-primary' : '' }}">History</a>
-            </div>
+          @include('new.umkm.sidebar')
         </div>
         <div class="col-md-9">
             <div class="fs-3 text-center text-primary">Tag</div>
             <div class="col-md-6 m-auto text-center mb-3">Buat Hastag agar produkmu terkenal.</div>
-              @if(Session::get('success'))
-                <div class="alert alert-important alert-success" role="alert">
-                  {{ Session::get('success') }}
-                </div>
-              @endif
+            @if(Session::get('success'))
+              <div class="alert alert-important alert-primary" role="alert">
+                {{ Session::get('success') }}
+              </div>
+            @endif
+
+            @if(Session::get('error'))
+              <div class="alert alert-important alert-danger" role="alert">
+                {{ Session::get('error') }}
+              </div>
+            @endif
               @if($todayEvent)
               <form action="{{ route('umkm.ai.generate-tag.store') }}" method="post">
                 @csrf
-                @if($user->detailProduk)
-                  <input type="hidden" class="form-control" name="detail_produk_id" value="{{ $user->detailProduk->id }}">
-                @endif
+                <select class="form-select border border-primary mb-3" name="detail_produk_id" required>
+                  <option selected>Pilih Produk</option>
+                  @foreach($detailProduks as $detailProduk)
+                    <option value="{{ $detailProduk->id }}">{{ $detailProduk->nama_produk }}</option>
+                  @endforeach
+                </select>
                 <input type="hidden" class="form-control" name="text_request" value="buat yang bertemakan {{ $todayEvent['keterangan'] }}">
                 <div class="alert alert-important alert-success" role="alert">
                   <div class="d-flex justify-content-center mb-2"><img src="{{ asset('images/bouncy-calendar-with-marked-day-and-pencil.gif') }}" alt="" class="" width="100"></div>
                   <div class="text-center mb-3">Bertepatan dengan <span class="fw-bold">{{ $todayEvent['keterangan'] }}</span> pada tanggal <span class="fw-bold">{{ $todayEvent['tanggal'] }}</span> apakah anda ingin membuat tag bertemakan <span class="fw-bold">{{ $todayEvent['keterangan'] }}</span>?</div>
-                  <button id="submitButton" type="submit" class="btn btn-primary m-auto px-3 d-flex align-items-center gap-2" @if(!$user->detailProduk || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
+                  <button id="submitButton" type="submit" class="btn btn-primary m-auto px-3 d-flex align-items-center gap-2" @if($detailProduks->isEmpty() || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
                 </div>
               </form>
               @endif
-              @if(!$user->detailProduk)
+              @if($detailProduks->isEmpty())
                 <div class="alert alert-important alert-danger" role="alert">Lengkapi detail produk anda <a href="{{ route('umkm.detail-produk') }}">disini.</a></div>
               @endif
             <form action="{{ route('umkm.ai.generate-tag.store') }}" method="post">
               @csrf
-              @if($user->detailProduk)
-                <input type="hidden" class="form-control" name="detail_produk_id" value="{{ $user->detailProduk->id }}">
-              @endif
+              <select class="form-select border border-primary mb-3" name="detail_produk_id" required>
+                <option selected>Pilih Produk</option>
+                @foreach($detailProduks as $detailProduk)
+                  <option value="{{ $detailProduk->id }}">{{ $detailProduk->nama_produk }}</option>
+                @endforeach
+              </select>
               <div class="d-md-flex d-block border border-primary rounded p-3 mb-1">
                 <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" rows="1" placeholder="Deskripsikan apa yang mau digenerate? lebih detail lebih baik hasilnya" oninput="adjustHeight(this)">{{ old('text_request', session('text_request', '')) }}</textarea>
                 <div>
-                  <button id="submitButton" type="submit" class="btn btn-primary px-3 w-100 d-flex align-items-center gap-2" @if(!$user->detailProduk || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
+                  <button id="submitButton" type="submit" class="btn btn-primary px-3 w-100 d-flex align-items-center gap-2" @if($detailProduks->isEmpty() || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
                 </div>
               </div>
               <div class="small text-muted mb-3">Contoh : Buatkan tag yang sedang trending tentang produk saya bertemakan 17 Agustus.</div>

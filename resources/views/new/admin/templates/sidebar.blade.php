@@ -16,6 +16,9 @@
       <li class="{{ Route::is('admin.image-template.*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.image-template.index') }}"><i class="fas fa-quote-right"></i><span>Image Template</span></a>
       </li>
+      <li class="{{ Route::is('admin.jenis-produk.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.jenis-produk.index') }}"><i class="fas fa-quote-right"></i><span>Jenis Produk</span></a>
+      </li>
     </ul>
   </aside>
 </div>

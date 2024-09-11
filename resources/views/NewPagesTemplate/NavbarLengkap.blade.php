@@ -33,9 +33,9 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/8def9595b8.js" crossorigin="anonymous"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
     @stack('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
     <script type="text/javascript">
       $(document).ready( function () {
         $('form').on('submit', function() {
@@ -48,6 +48,29 @@
       });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.5/sweetalert2.all.js" integrity="sha512-AINSNy+d2WG9ts1uJvi8LZS42S8DT52ceWey5shLQ9ArCmIFVi84nXNrvWyJ6bJ+qIb1MnXR46+A4ic/AUcizQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+      $('.delete').click(function(){
+        Swal.fire({
+          title: "Are you sure?",
+          text: "Are you sure you want to delete this data?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "Yes, delete it",
+          closeOnConfirm: false
+        }).then((result) => {
+          if(result.isConfirmed){
+            $(this).closest("form").submit();
+            Swal.fire(
+              'Deleted',
+              'You have successfully deleted',
+              'success',
+            );
+          }
+        });
+      });
+    </script>
     
     <script type="text/javascript">
       $('.confirmation-when-i-click-back').click(function(event){

@@ -66,15 +66,15 @@ class User extends Authenticatable
     }
 
     public function profile(){
-        return $this->hasMany(Profile::class, 'user_id');
+        return $this->hasOne(Profile::class, 'user_id');
     }
 
     public function strategi(){
         return $this->hasMany(StrategiDigital::class, 'user_id');
     }
 
-    public function detailProduk(){
-        return $this->hasOne(DetailProduk::class);
+    public function detailProduks(){
+        return $this->hasMany(DetailProduk::class);
     }
 
     public function temporaryImages(){

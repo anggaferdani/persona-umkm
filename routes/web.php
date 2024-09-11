@@ -16,6 +16,7 @@ use App\Http\Controllers\BrandPersonalityAakerController;
 use App\Http\Controllers\CategoryImageTemplateController;
 use App\Http\Controllers\DetailProdukController;
 use App\Http\Controllers\ImageTemplateController;
+use App\Http\Controllers\JenisProdukController;
 use App\Http\Controllers\MarketerController;
 
 /*
@@ -33,8 +34,6 @@ use App\Http\Controllers\MarketerController;
 
 // Route::get('/lupapassword', function () {return view('NewPages.LupaPassword');});
 
-
-
 Route::get('/brand-personality-aaker', [BrandPersonalityAakerController::class, 'index'])->name('brand-personality-aaker');
 
 Route::get('/', [LoginController::class, 'index'])->name('user.login');
@@ -44,8 +43,6 @@ Route::get('/register', [LoginController::class, 'registerselect'])->name('user.
 Route::post('/post-password', [LoginController::class, 'postresetpassword'])->name('postresetpassword');
 Route::get('/forgot-password/{token}', [LoginController::class, 'mailreset'])->name('mailreset');
 Route::post('/forgot-password', [LoginController::class, 'aftermailreset'])->name('aftermailreset.user');
-
-
 
 Route::prefix('umkm')->group(function(){
     Route::get('/register', [LoginController::class, 'register'])->name('user.register');
@@ -75,6 +72,7 @@ Route::prefix('umkm')->group(function(){
             Route::get('/detail-produk', [DetailProdukController::class, 'detailProduk'])->name('detail-produk');
             Route::post('/detail-produk/store', [DetailProdukController::class, 'store'])->name('detail-produk.store');
             Route::put('/detail-produk/update/{id}', [DetailProdukController::class, 'update'])->name('detail-produk.update');
+            Route::delete('/detail-produk/{id}', [DetailProdukController::class, 'destroy'])->name('detail-produk.destroy');
             Route::get('/ai', [AIController::class, 'ai'])->name('ai');
             Route::get('/ai-generate-text', [AIController::class, 'generateText'])->name('ai.generate-text');
             Route::post('/ai-generate-text/store', [AIController::class, 'generateTextStore'])->name('ai.generate-text.store');
@@ -117,7 +115,6 @@ Route::prefix('marketer')->group(function(){
     });
 });
 
-
 Route::middleware(['web', 'disableBackButton'])->group(function(){
         Route::get('/login', [LoginController::class, 'login'])->name('login');
         Route::post('/post-login', [LoginController::class, 'postLogin'])->name('post-login');
@@ -133,7 +130,7 @@ Route::prefix('superadmin')->name('superadmin.')->group(function(){
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
-    Route::middleware(['web', 'disableBackButton'])->group(function(){
+    Route::middleware(['auth:web', 'disableBackButton'])->group(function(){
         Route::middleware(['disableRedirect'])->group(function(){
             Route::get('/login', [AdminController::class, 'login'])->name('login');
             Route::post('/postlogin', [AdminController::class, 'postLogin'])->name('postlogin');
@@ -145,10 +142,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::post('/postimagegenerate', [AIController::class, 'postImageGenerate'])->name('postimagegenerate');
         Route::resource('/category-image-template', CategoryImageTemplateController::class);
         Route::resource('/image-template', ImageTemplateController::class);
+        Route::resource('/jenis-produk', JenisProdukController::class);
     });
-
-
-
 
     Route::middleware(['auth:web', 'disableBackButton', 'admin'])->group(function(){
         // Route::get('/dashboard', function(){ return view('pages.dashboard'); })->name('dashboard');
@@ -156,7 +151,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::resource('/marketer', MarketerController::class);
     });
 });
-
 
 Route::get('/dw-cv/{file}', [PersonalityController::class, 'downloadcv'])->name('downloadcv');
 Route::get('/dw-porto/{file}', [PersonalityController::class, 'downloadporto'])->name('downloadporto');

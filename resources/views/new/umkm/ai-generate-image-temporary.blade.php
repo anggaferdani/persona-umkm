@@ -21,23 +21,26 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-3">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active disabled" style="background: #2388FF;">Menu</a>
-                <a href="{{ route('umkm.ai') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai') ? 'text-primary' : '' }}">Kenapa AI?</a>
-                <a href="{{ route('umkm.ai.generate-text') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-text') ? 'text-primary' : '' }}">AI Generate Text</a>
-                <a href="{{ route('umkm.ai.generate-image') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-image.temporary') ? 'text-primary' : '' }}">AI Generate Image</a>
-                <a href="{{ route('umkm.ai.generate-tag') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-tag') ? 'text-primary' : '' }}">AI Generate Tag</a>
-                <a href="{{ route('umkm.ai.generate-text.histories') }}" class="list-group-item list-group-item-action {{ Route::is('umkm.ai.generate-text.histories', 'umkm.ai.generate-image.histories', 'umkm.ai.generate-tag.histories') ? 'text-primary' : '' }}">History</a>
-            </div>
+          @include('new.umkm.sidebar')
         </div>
         <div class="col-md-9">
             <div class="fs-3 text-center text-primary">2. Form</div>
             <div class="col-md-6 m-auto text-center mb-5">Lengkapi yang diperlukan untuk diolah dan digenerate oleh AI.</div>
 
+            @if(Session::get('success'))
+              <div class="alert alert-important alert-primary" role="alert">
+                {{ Session::get('success') }}
+              </div>
+            @endif
+
             @if(Session::get('error'))
               <div class="alert alert-important alert-danger" role="alert">
                 {{ Session::get('error') }}
               </div>
+            @endif
+
+            @if($detailProduks->isEmpty())
+              <div class="alert alert-important alert-danger" role="alert">Lengkapi detail produk anda <a href="{{ route('umkm.detail-produk') }}">disini.</a></div>
             @endif
 
             <form action="{{ route('umkm.ai.generate-image.temporary.post') }}" method="POST" enctype="multipart/form-data">
@@ -48,7 +51,16 @@
               </div>
               <input type="hidden" class="form-control" name="image_template_id" value="{{ $imageTemplate->id }}">
               <div class="mb-3">
-                <label>Image</label>
+                <label>Produk <span class="text-danger">*</span></label>
+                <select class="form-select border border-primary mb-3" name="detail_produk_id" required>
+                  <option selected value="">Pilih Produk</option>
+                  @foreach($detailProduks as $detailProduk)
+                    <option value="{{ $detailProduk->id }}">{{ $detailProduk->nama_produk }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="mb-3">
+                <label>Image <span class="text-danger">*</span></label>
                 <div class="mb-1">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="image_option" id="inlineRadio1" value="manual" checked>
@@ -61,36 +73,35 @@
                 </div>
                 <div class="manual">
                   <input type="file" class="form-control" name="image">
-                  <div class="text-danger small mt-1">Ukuran dimensi ratio harus 1:1 *persegi</div>
+                  <div class="text-muted small mt-1">Ukuran dimensi ratio harus 1:1 *persegi</div>
                   @error('image')<div class="text-danger">{{ $message }}</div>@enderror
                 </div>
                 <div class="ai">
-                  @if($user->detailProduk)
-                    <input type="hidden" class="form-control" name="detail_produk_id" value="{{ $user->detailProduk->id }}">
-                  @endif
                   <div class="d-md-flex d-block border border-primary rounded p-3 mb-1">
-                    <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" rows="1" placeholder="Deskripsikan apa yang mau digenerate? lebih detail lebih baik hasilnya" oninput="adjustHeight(this)"></textarea>
+                    <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" rows="1" placeholder="Deskripsikan apa yang mau digenerate?" oninput="adjustHeight(this)"></textarea>
                   </div>
-                  <div class="small text-muted mb-3">Contoh : Buatkan gambar untuk postingan Instagram bertema burger 17 Agustus yang menonjolkan semangat kemerdekaan dengan desain burger unik berwarna merah putih.</div>
+                  <div class="small text-muted mb-3">Contoh : Nasi goreng rendang</div>
                 </div>
               </div>
               <div class="mb-3">
-                <label>Judul</label>
+                <label>Judul <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" name="judul" required>
+                <div class="text-muted small mt-1">Maksimal 10 kata</div>
                 @error('judul')<div class="text-danger">{{ $message }}</div>@enderror
               </div>
               <div class="mb-3">
-                <label>Deskripsi</label>
+                <label>Deskripsi <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" name="deskripsi" required>
+                <div class="text-muted small mt-1">Maksimal 20 kata</div>
                 @error('deskripsi')<div class="text-danger">{{ $message }}</div>@enderror
               </div>
               <div class="d-flex gap-1">
                 <a href="{{ route('umkm.ai.generate-image') }}" class="btn btn-secondary">Back</a>
                 <div class="manualButton">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary" @if($detailProduks->isEmpty()) disabled @endif>Submit</button>
                 </div>
                 <div class="aiButton">
-                  <button type="submit" class="btn btn-primary px-3 d-flex align-items-center gap-2" @if(!$user->detailProduk || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
+                  <button type="submit" class="btn btn-primary px-3 d-flex align-items-center gap-2" @if($detailProduks->isEmpty() || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
                 </div>
               </div>
             </form>
@@ -130,6 +141,8 @@
     const aiButton = document.querySelector('.aiButton');
     const radioManual = document.getElementById('inlineRadio1');
     const radioAi = document.getElementById('inlineRadio2');
+    const fileInput = document.querySelector('input[name="image"]');
+    const textRequest = document.querySelector('textarea[name="text_request"]');
 
     function toggleSections() {
       if (radioManual.checked) {
@@ -137,11 +150,13 @@
         aiDiv.style.display = 'none';
         manualButton.style.display = 'block';
         aiButton.style.display = 'none';
+        textRequest.value = '';
       } else if (radioAi.checked) {
         manualDiv.style.display = 'none';
         aiDiv.style.display = 'block';
         manualButton.style.display = 'none';
         aiButton.style.display = 'block';
+        fileInput.value = '';
       }
     }
 

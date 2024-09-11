@@ -411,14 +411,14 @@ class PersonalityController extends Controller
     }
 
     public function profilsubmit(Request $request){
+        dd($request);
+
         $this->validate($request,[
             'foto' => 'required|file|mimes:png,jpg,jpeg',
-            'alamat' => 'required',
-        ],[
-            'foto' => 'Insert Profile Photo',
-            'foto.mimes' => 'Image Must Be .png, .jpeg, .jpg',
-            'alamat' => 'Insert Your Address',
+            'alamat' => 'required|max:100',
+            'deskripsi' => 'required|max:100',
         ]);
+
         $user = Auth::user()->id;
         $profil = Profile::where('user_id', $user)->first();
 
@@ -428,7 +428,7 @@ class PersonalityController extends Controller
 
             if($request->hasFile('foto'))
             {
-                $fotoprofile = 'Profile'.Auth::user()->name.'.'.$request->foto->getClientOriginalExtension();
+                $fotoprofile = 'Profile'.Auth::user()->name.'_'.time().'.'.$request->foto->getClientOriginalExtension();
                 $request->file('foto')->move(public_path().'/img/', $fotoprofile);
                 $profil->foto = $fotoprofile;
                 $profil->save();
@@ -447,7 +447,7 @@ class PersonalityController extends Controller
 
             if($request->hasFile('foto'))
             {
-                $fotoprofile = 'Profile'.Auth::user()->name.'.'.$request->foto->getClientOriginalExtension();
+                $fotoprofile = 'Profile'.Auth::user()->name.'_'.time().'.'.$request->foto->getClientOriginalExtension();
                 $request->file('foto')->move(public_path().'/img/', $fotoprofile);
                 $newProfile->foto = $fotoprofile;
                 $newProfile->save();
@@ -498,11 +498,6 @@ class PersonalityController extends Controller
             'ekspor' => 'required',
             'iklan' => 'required',
             'jenis_product' => 'required',
-            'tag1' => 'required',
-            'tag2' => 'required',
-            'tag3' => 'required',
-            'tag4' => 'required',
-            'tag5' => 'required',
         ],[
             'live_stream' => 'Insert Merk Name',
             'cod' => 'Select One',
@@ -510,11 +505,6 @@ class PersonalityController extends Controller
             'ekspor' => 'Select One',
             'iklan' => 'Select One',
             'jenis_product' => 'Select One',
-            'tag1' => 'Input Tag',
-            'tag2' => 'Input Tag',
-            'tag3' => 'Input Tag',
-            'tag4' => 'Input Tag',
-            'tag5' => 'Input Tag',
         ]);
 
 

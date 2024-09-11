@@ -19,6 +19,10 @@ class DetailProduk extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function jenisProduk(){
+        return $this->belongsTo(JenisProduk::class, 'jenis_produk_id');
+    }
+
     public function requests(){
         return $this->hasMany(Request::class);
     }

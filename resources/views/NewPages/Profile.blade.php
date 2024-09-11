@@ -41,8 +41,9 @@
                     @else
                         @if(Auth::user()->role == 3)
                         <br><br>
-                        <h4 class="fw-bold">Alamat & Deskripsi UKM :</h4>
-                        <p>Kantor Kami Berada di {{$profil->alamat}}. {{$profil->deskripsi}}</p>
+                        <h5 class="fw-bold">Alamat & Deskripsi UKM :</h5>
+                        <p class="mb-2">{{$profil->alamat}}</p>
+                        <p>{{$profil->deskripsi}}</p>
 
                         <button type="button" class="btn btn-sm btn-primary mt-2 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModaProfil">
                             Edit Profil Anda
@@ -75,21 +76,22 @@
             {{ csrf_field() }}
             <div class="form-group mb-3">
                 <label for="exampleInputUsername1">Alamat Anda<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Input Alamat UKM Anda..." name="alamat">
+                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Input Alamat UKM Anda..." name="alamat" value="{{ $profil->alamat }}">
                 @error('alamat')
                         <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-3">
                 <label for="exampleInputUsername1">Deskripsi UKM Anda<span class="text-danger">*</span></label>
-                <textarea class="form-control" style="height: 200px" placeholder="Input Deskripsi UKM Anda..." id="floatingTextarea" name="deskripsi"></textarea>
+                <textarea class="form-control" style="height: 200px" placeholder="Input Deskripsi UKM Anda..." id="floatingTextarea" name="deskripsi">{{ $profil->deskripsi }}</textarea>
                 @error('deskripsi')
                         <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-3">
                 <label for="exampleInputUsername1">Foto Profil<span class="text-danger">* ukuran 1:1</span></label>
-                <input type="file" class="form-control" id="exampleInputUsername1" name="foto">
+                <input type="file" class="form-control" id="exampleInputUsername1" name="foto" value="{{ $profil->foto }}">
+                <a href="/img/{{ $profil->foto }}" target="_blank">{{ $profil->foto }}</a>
                 @error('foto')
                         <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -106,14 +108,15 @@
             {{ csrf_field() }}
             <div class="form-group mb-3">
                 <label for="exampleInputUsername1">Alamat Anda<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Input Alamat UKM Anda..." name="alamat">
+                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Input Alamat UKM Anda..." name="alamat" value="{{ $profil->alamat }}">
                 @error('alamat')
                         <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-3">
                 <label for="exampleInputUsername1">Foto Profil<span class="text-danger">* ukuran 1:1</span></label>
-                <input type="file" class="form-control" id="exampleInputUsername1" name="foto">
+                <input type="file" class="form-control" id="exampleInputUsername1" name="foto" value="{{ $profil->foto }}">
+                <a href="/img/{{ $profil->foto }}" target="_blank">{{ $profil->foto }}</a>
                 @error('foto')
                         <p class="text-danger">{{ $message }}</p>
                 @enderror
