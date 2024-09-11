@@ -69,7 +69,19 @@
 
   function copyText(text) {
     navigator.clipboard.writeText(text).then(() => {
-      alert('copied.');
+        Swal.fire({
+            icon: 'success',
+            title: 'Copied!',
+            text: 'Text has been copied to clipboard.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }).catch(() => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong while copying text.',
+        });
     });
   }
 </script>

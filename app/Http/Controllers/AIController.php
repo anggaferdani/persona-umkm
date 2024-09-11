@@ -57,7 +57,7 @@ class AIController extends Controller
 
                 $apiKey = env('OPENAI_API_KEY');
 
-                $prompt = "Buatkan 3 variasi deskripsi media sosial yang kreatif, engaging, dan sesuai dengan tren terkini di platform seperti Instagram, Facebook, atau TikTok. Ingat, hanya buatkan DESKRIPSI-nya saja. Pastikan semua variasi deskripsi dari 1-3 yang digenerate berkaitan atau mengandung nama produk({$detailProduk->nama_produk}), deskripsi produk({$detailProduk->deskripsi_produk}, {$request->text_request}). Gunakan bahasa Indonesia yang santai, menarik perhatian, serta dapat memancing interaksi audiens. Setiap variasi deskripsi harus memiliki pendekatan yang berbeda, semisalnya deskripsi yang informatif dan langsung, deskripsi yang lucu dan menghibur, deskripsi yang inspiratif dan mendorong pengguna untuk mengambil tindakan. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap deskripsi pada baris baru.";
+                $prompt = "Buatkan 3 variasi deskripsi media sosial yang kreatif dan engaging. Setiap deskripsi harus mengandung nama produk ({$detailProduk->nama_produk}) dan deskripsi produk ({$detailProduk->deskripsi_produk}, {$request->text_request}), setiap deksripisi harus mengandung informatif, lucu, dan inspiratif Dengan bahasa indonesia. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap deskripsi pada baris baru.";
 
                 $response = Http::withHeaders([
                     'Authorization' => 'Bearer ' . $apiKey,
@@ -114,10 +114,10 @@ class AIController extends Controller
                 return back()->with([
                     'success' => 'Success',
                     'text_request' => $request['text_request'],
+                    'detail_produk_id' => $request['detail_produk_id'],
                     'user' => $user,
                     'responses' => $responses,
                 ]);
-                return ;
             } else {
                 return back()->with('error', 'Credits tidak cukup');
             }
@@ -235,7 +235,7 @@ class AIController extends Controller
         
                     $array = [
                         'user_id' => $user->id,
-                        'detail_produk_id' => 1,
+                        'detail_produk_id' => $request['detail_produk_id'],
                         'text_request' => $request['text_request'],
                         'type_request' => 2,
                         'tanggal_request' => now(),
@@ -362,7 +362,7 @@ class AIController extends Controller
 
                 $apiKey = env('OPENAI_API_KEY');
 
-                $prompt = "Buatkan 9 hashtag/tag media sosial yang sesuai dan sedang trending belakangan ini sesuai dengan nama produk({$detailProduk->nama_produk}), deskripsi produk({$detailProduk->deskripsi_produk}, {$request->text_request}). Gunakan bahasa Indonesia yang santai, menarik perhatian, serta dapat memancing interaksi audiens. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap hashtag pada baris baru. 9 hastag saja";
+                $prompt = "{$request->text_request} buat 9 hashtag media sosial yang relevan dan trending sesuai dengan produk ({$detailProduk->nama_produk}), deskripsi produk{$detailProduk->deskripsi_produk}. Gunakan bahasa Indonesia yang santai, menarik perhatian, serta dapat memancing interaksi audiens. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap hashtag pada baris baru, 9 baris hastag saja";
 
                 $response = Http::withHeaders([
                     'Authorization' => 'Bearer ' . $apiKey,
@@ -419,10 +419,10 @@ class AIController extends Controller
                 return back()->with([
                     'success' => 'Success',
                     'text_request' => $request['text_request'],
+                    'detail_produk_id' => $request['detail_produk_id'],
                     'user' => $user,
                     'responses' => $responses,
                 ]);
-                return ;
             } else {
                 return back()->with('error', 'Credits tidak cukup');
             }

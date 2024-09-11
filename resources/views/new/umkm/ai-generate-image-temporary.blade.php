@@ -53,9 +53,9 @@
               <div class="mb-3">
                 <label>Produk <span class="text-danger">*</span></label>
                 <select class="form-select border border-primary mb-3" name="detail_produk_id" required>
-                  <option selected value="">Pilih Produk</option>
+                  <option disabled selected value="">Pilih Produk</option>
                   @foreach($detailProduks as $detailProduk)
-                    <option value="{{ $detailProduk->id }}">{{ $detailProduk->nama_produk }}</option>
+                    <option value="{{ $detailProduk->id }}" {{ old('detail_produk_id', session('detail_produk_id')) == $detailProduk->id ? 'selected' : '' }}>{{ $detailProduk->nama_produk }}</option>
                   @endforeach
                 </select>
               </div>
@@ -91,7 +91,7 @@
               </div>
               <div class="mb-3">
                 <label>Deskripsi <span class="text-danger">*</span></label>
-                <textarea class="form-control" name="deksripsi" rows="3" oninput="adjustHeight(this)"></textarea>
+                <textarea class="form-control" name="deskripsi" rows="3" oninput="adjustHeight(this)"></textarea>
                 <div class="text-muted small mt-1">Maksimal 20 kata</div>
                 @error('deskripsi')<div class="text-danger">{{ $message }}</div>@enderror
               </div>
@@ -126,7 +126,19 @@
 
   function copyText(text) {
     navigator.clipboard.writeText(text).then(() => {
-      alert('copied.');
+        Swal.fire({
+            icon: 'success',
+            title: 'Copied!',
+            text: 'Text has been copied to clipboard.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }).catch(() => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong while copying text.',
+        });
     });
   }
 

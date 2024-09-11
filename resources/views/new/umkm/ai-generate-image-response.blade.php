@@ -65,17 +65,41 @@
 
   const imageFilename = '{{ $temporaryImage->image }}';
 
-  function downloadImage() {
-    domtoimage.toPng(document.getElementById('canvas'))
-      .then(function (dataUrl) {
-          var link = document.createElement('a');
-          link.href = dataUrl;
-          link.download = imageFilename; 
-          link.click();
-      })
-      .catch(function (error) {
-          console.error('Error', error);
-      });
+  function downloadImage(canvasId, imageFilename) {
+    const canvasElement = document.getElementById('canvas-' + canvasId);
+    
+    if (canvasElement) {
+        domtoimage.toPng(canvasElement)
+            .then(function (dataUrl) {
+                var link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = imageFilename;
+                link.click();
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Downloaded!',
+                    text: 'Image has been downloaded successfully.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong while downloading the image.',
+                });
+            });
+    } else {
+        console.error('Canvas element not found:', canvasId);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Canvas element not found.',
+        });
+    }
   }
 </script>
 @endpush

@@ -41,9 +41,9 @@
               <form action="{{ route('umkm.ai.generate-text.store') }}" method="post">
                 @csrf
                 <select class="form-select border border-primary mb-3" name="detail_produk_id" required>
-                  <option selected>Pilih Produk</option>
+                  <option disabled selected value="">Pilih Produk</option>
                   @foreach($detailProduks as $detailProduk)
-                    <option value="{{ $detailProduk->id }}">{{ $detailProduk->nama_produk }}</option>
+                    <option value="{{ $detailProduk->id }}" {{ old('detail_produk_id', session('detail_produk_id')) == $detailProduk->id ? 'selected' : '' }}>{{ $detailProduk->nama_produk }}</option>
                   @endforeach
                 </select>
                 <input type="hidden" class="form-control" name="text_request" value="buat yang bertemakan {{ $todayEvent['keterangan'] }}">
@@ -60,9 +60,9 @@
             <form action="{{ route('umkm.ai.generate-text.store') }}" method="post">
               @csrf
               <select class="form-select border border-primary mb-3" name="detail_produk_id" required>
-                <option selected>Pilih Produk</option>
+                <option disabled selected value="">Pilih Produk</option>
                 @foreach($detailProduks as $detailProduk)
-                  <option value="{{ $detailProduk->id }}">{{ $detailProduk->nama_produk }}</option>
+                  <option value="{{ $detailProduk->id }}" {{ old('detail_produk_id', session('detail_produk_id')) == $detailProduk->id ? 'selected' : '' }}>{{ $detailProduk->nama_produk }}</option>
                 @endforeach
               </select>
               <div class="d-md-flex d-block border border-primary rounded p-3 mb-1">
@@ -71,7 +71,7 @@
                   <button id="submitButton" type="submit" class="btn btn-primary px-3 w-100 d-flex align-items-center gap-2" @if($detailProduks->isEmpty() || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
                 </div>
               </div>
-              <div class="small text-muted mb-3">Contoh : Buatkan deskripsi menarik untuk postingan Instagram tentang burger bertema 17 Agustus, dengan menekankan semangat kemerdekaan, keunikan warna merah putih pada burger, dan ajakan kepada followers untuk mencoba burger spesial ini.</div>
+              <div class="small text-muted mb-3">Contoh : Buatkan deskripsi menarik untuk postingan Instagram bertemakan 17 Agustus, dengan menekankan semangat kemerdekaan.</div>
             </form>
             @if(session('responses') && count(session('responses')) > 0)
             <div class="row g-3">
@@ -110,7 +110,19 @@
 
   function copyText(text) {
     navigator.clipboard.writeText(text).then(() => {
-      alert('copied.');
+        Swal.fire({
+            icon: 'success',
+            title: 'Copied!',
+            text: 'Text has been copied to clipboard.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }).catch(() => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong while copying text.',
+        });
     });
   }
 
