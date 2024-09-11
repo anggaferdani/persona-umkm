@@ -5,7 +5,7 @@
 <link rel="stylesheet" href=" {{ asset('../css/NewPages/Beranda.css')}}">
 
 <div class="header"  style="padding-top: 2.75rem;">
-    <img src="{{asset('../../images/beranda_marketer.png')}}">
+    <img src="{{asset('images/beranda_marketer.png')}}">
 </div>
 
 
@@ -16,37 +16,37 @@
                 @switch($bpamax->brand_personality_aaker)
                         @case('average_sincerity')
                             @if($bpa->gender == 'men')
-                                <img class="my-3" src="{{asset('../../images/sincerity_boy.png')}}">
+                                <img class="my-3" src="{{asset('images/sincerity_boy.png')}}">
                             @else
-                                <img class="my-3" src="{{asset('../../images/sincerity_hijab.png')}}">
+                                <img class="my-3" src="{{asset('images/sincerity_hijab.png')}}">
                             @endif
                         @break
                         @case('average_competence')
                             @if($bpa->gender == 'men')
-                                <img class="my-3" src="{{asset('../../images/competence_boy.png')}}">
+                                <img class="my-3" src="{{asset('images/competence_boy.png')}}">
                             @else
-                                <img class="my-3" src="{{asset('../../images/competence_hijab.png')}}">
+                                <img class="my-3" src="{{asset('images/competence_hijab.png')}}">
                             @endif
                         @break
                         @case('average_excitement')
                             @if($bpa->gender == 'men')
-                                <img class="my-3" src="{{asset('../../images/exitement_boy.png')}}">
+                                <img class="my-3" src="{{asset('images/exitement_boy.png')}}">
                             @else
-                                <img class="my-3" src="{{asset('../../images/excitement_hijab.png')}}">
+                                <img class="my-3" src="{{asset('images/excitement_hijab.png')}}">
                             @endif
                         @break
                         @case('average_sophistication')
                             @if($bpa->gender == 'men')
-                                <img class="my-3" src="{{asset('../../images/shopistication_boy.png')}}">
+                                <img class="my-3" src="{{asset('images/shopistication_boy.png')}}">
                             @else
-                                <img class="my-3" src="{{asset('../../images/sophistication_hijab.png')}}">
+                                <img class="my-3" src="{{asset('images/sophistication_hijab.png')}}">
                             @endif
                         @break
                         @default
                             @if($bpa->gender == 'men')
-                                <img class="my-3" src="{{asset('../../images/ruggednes_boy.png')}}">
+                                <img class="my-3" src="{{asset('images/ruggednes_boy.png')}}">
                             @else
-                                <img class="my-3" src="{{asset('../../images/ruggednes_hijab.png')}}">
+                                <img class="my-3" src="{{asset('images/ruggednes_hijab.png')}}">
                             @endif
                     @endswitch
                 </div>

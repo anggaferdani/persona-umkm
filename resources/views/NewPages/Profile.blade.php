@@ -18,44 +18,36 @@
                 @endif
                 <a class="btn w-100 mt-1 ms-auto text-white" href="/logout" role="button" style="background-color: #2388FF;">LOG OUT</a>
             </div>
-            <div class="col-md-8 p-2 my-md-auto" id="descProfile">
-                <h1 class="text-md-start text-center">{{Auth::user()->name}}</h1>
-                <div class="contact_profile justify-content-md-start justify-content-center d-flex gap-3 align-items-center">
-                @if(!$profil)
-                    <p class="mb-0 text-black">{{Auth::user()->email}}</p>
-                    <div class="vr text-black" style="width: .15rem;"></div>
-                    <p class="mb-0 text-black">{{Auth::user()->no_telp}}</p>
-                @else
-                    <p class="mb-0">{{Auth::user()->email}}</p>
-                    <div class="vr" style="width: .15rem;"></div>
-                    <p class="mb-0">{{Auth::user()->no_telp}}</p>
-                @endif
-                </div>
+            <div class="col-md-8" id="descProfile">
+                <h3 class="text-md-start text-dark text-center mb-1">{{Auth::user()->name}}</h3>
+                <div class="text-md-start text-dark text-center mb-1">{{Auth::user()->email}}</div>
+                <div class="text-md-start text-dark text-center mb-3">{{Auth::user()->no_telp}}</div>
 
                 <div class="address_profile text-black">
                     @if(!$profil)
-                    <br>
                     <button type="button" class="btn btn-lg btn-primary mx-auto fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModaProfil">
                         Lengkapi Profil Anda
                     </button>
                     @else
                         @if(Auth::user()->role == 3)
-                        <br><br>
-                        <h5 class="fw-bold">Alamat & Deskripsi UKM :</h5>
-                        <p class="mb-2">{{$profil->alamat}}</p>
-                        <p>{{$profil->deskripsi}}</p>
+                        <h5 class="text-md-start text-center fw-bold mb-3">Alamat & Deskripsi UKM :</h5>
+                        <p class="text-md-start text-center mb-3">{{$profil->alamat}}</p>
+                        <p class="text-md-start text-center mb-3">{{$profil->deskripsi}}</p>
 
-                        <button type="button" class="btn btn-sm btn-primary mt-2 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModaProfil">
-                            Edit Profil Anda
-                        </button>
+                        <div class="d-flex justify-content-center justify-content-md-start">
+                            <button type="button" class="btn btn-sm btn-primary mt-2 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModaProfil">
+                                Edit Profil Anda
+                            </button>
+                        </div>
                         @elseif(Auth::user()->role == 4)
-                        <br><br>
                         <h4 class="fw-bold">Alamat :</h4>
-                        <p>Alamat Saya ada di {{$profil->alamat}}.</p>
+                        <p class="text-md-start text-center mb-3">{{$profil->alamat}}</p>
 
-                        <button type="button" class="btn btn-sm btn-primary mt-2 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModaProfil">
-                            Edit Profil Anda
-                        </button>
+                        <div class="d-flex justify-content-center justify-content-md-start">
+                            <button type="button" class="btn btn-sm btn-primary mt-2 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModaProfil">
+                                Edit Profil Anda
+                            </button>
+                        </div>
                         @endif
                     @endif
                 </div>

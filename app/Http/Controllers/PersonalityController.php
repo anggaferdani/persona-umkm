@@ -411,12 +411,10 @@ class PersonalityController extends Controller
     }
 
     public function profilsubmit(Request $request){
-        dd($request);
-
         $this->validate($request,[
-            'foto' => 'required|file|mimes:png,jpg,jpeg',
+            'foto' => 'nullable|file|mimes:png,jpg,jpeg',
             'alamat' => 'required|max:100',
-            'deskripsi' => 'required|max:100',
+            'deskripsi' => 'required|max:300',
         ]);
 
         $user = Auth::user()->id;
