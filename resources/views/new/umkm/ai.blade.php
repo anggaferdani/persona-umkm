@@ -31,11 +31,11 @@
                 <div class="card h-100">
                   <div class="card-body">
                     <div class="text-center">
-                      <img src="{{ asset('images/3d-casual-life-chatbot-using-laptop.png') }}" class="img-fluid mb-2" width="150" alt="">
+                      <img src="{{ asset('images/3d-casual-life-chatgpt-robot-holding-loupe.png') }}" class="img-fluid mb-2" width="105" alt="">
                     </div>
-                    <div class="fs-5 mb-2 text-primary text-center">Generate Image</div>
-                    <div class="text-center">Dengan AI, deskripsi teks dapat diubah menjadi gambar visual sesuai kebutuhan, mempermudah pembuatan konten visual yang tepat dan menarik.</div>
-                    <a href="{{ route('umkm.ai.generate-image') }}" class="stretched-link"></a>
+                    <div class="fs-5 mb-2 text-primary text-center">Generate Text</div>
+                    <div class="text-center">ChatGPT dapat menciptakan deskripsi media sosial yang menarik dan relevan, membantu meningkatkan keterlibatan audiens di platform media sosial.</div>
+                    <a href="{{ route('umkm.ai.generate-text') }}" class="stretched-link"></a>
                   </div>
                 </div>
               </div>
@@ -43,11 +43,11 @@
                 <div class="card h-100">
                   <div class="card-body">
                     <div class="text-center">
-                      <img src="{{ asset('images/3d-casual-life-chatgpt-robot-holding-loupe.png') }}" class="img-fluid mb-2" width="105" alt="">
+                      <img src="{{ asset('images/3d-casual-life-chatbot-using-laptop.png') }}" class="img-fluid mb-2" width="150" alt="">
                     </div>
-                    <div class="fs-5 mb-2 text-primary text-center">Generate Text</div>
-                    <div class="text-center">ChatGPT dapat menciptakan deskripsi media sosial yang menarik dan relevan, membantu meningkatkan keterlibatan audiens di platform media sosial.</div>
-                    <a href="{{ route('umkm.ai.generate-text') }}" class="stretched-link"></a>
+                    <div class="fs-5 mb-2 text-primary text-center">Generate Image</div>
+                    <div class="text-center">Dengan AI, deskripsi teks dapat diubah menjadi gambar visual sesuai kebutuhan, mempermudah pembuatan konten visual yang tepat dan menarik.</div>
+                    <a href="{{ route('umkm.ai.generate-image') }}" class="stretched-link"></a>
                   </div>
                 </div>
               </div>

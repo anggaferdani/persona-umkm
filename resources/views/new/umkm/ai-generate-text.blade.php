@@ -37,26 +37,26 @@
                 {{ Session::get('error') }}
               </div>
             @endif
-              @if($todayEvent)
-              <form action="{{ route('umkm.ai.generate-text.store') }}" method="post">
-                @csrf
-                <select class="form-select border border-primary mb-3" name="detail_produk_id" required>
-                  <option disabled selected value="">Pilih Produk</option>
-                  @foreach($detailProduks as $detailProduk)
-                    <option value="{{ $detailProduk->id }}" {{ old('detail_produk_id', session('detail_produk_id')) == $detailProduk->id ? 'selected' : '' }}>{{ $detailProduk->nama_produk }}</option>
-                  @endforeach
-                </select>
-                <input type="hidden" class="form-control" name="text_request" value="buat yang bertemakan {{ $todayEvent['keterangan'] }}">
-                <div class="alert alert-important alert-success" role="alert">
-                  <div class="d-flex justify-content-center mb-2"><img src="{{ asset('images/bouncy-calendar-with-marked-day-and-pencil.gif') }}" alt="" class="" width="100"></div>
-                  <div class="text-center mb-3">Bertepatan dengan <span class="fw-bold">{{ $todayEvent['keterangan'] }}</span> pada tanggal <span class="fw-bold">{{ $todayEvent['tanggal'] }}</span> apakah anda ingin membuat text bertemakan <span class="fw-bold">{{ $todayEvent['keterangan'] }}</span>?</div>
-                  <button id="submitButton" type="submit" class="btn btn-primary m-auto px-3 d-flex align-items-center gap-2" @if($detailProduks->isEmpty() || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
-                </div>
-              </form>
-              @endif
-              @if($detailProduks->isEmpty())
-                <div class="alert alert-important alert-danger" role="alert">Lengkapi detail produk anda <a href="{{ route('umkm.detail-produk') }}">disini.</a></div>
-              @endif
+            @if($todayEvent)
+            <form action="{{ route('umkm.ai.generate-text.store') }}" method="post">
+              @csrf
+              <select class="form-select border border-primary mb-3" name="detail_produk_id" required>
+                <option disabled selected value="">Pilih Produk</option>
+                @foreach($detailProduks as $detailProduk)
+                  <option value="{{ $detailProduk->id }}" {{ old('detail_produk_id', session('detail_produk_id')) == $detailProduk->id ? 'selected' : '' }}>{{ $detailProduk->nama_produk }}</option>
+                @endforeach
+              </select>
+              <input type="hidden" class="form-control" name="text_request" value="buat yang bertemakan {{ $todayEvent['keterangan'] }}">
+              <div class="alert alert-important alert-success" role="alert">
+                <div class="d-flex justify-content-center mb-2"><img src="{{ asset('images/bouncy-calendar-with-marked-day-and-pencil.gif') }}" alt="" class="" width="100"></div>
+                <div class="text-center mb-3">Bertepatan dengan <span class="fw-bold">{{ $todayEvent['keterangan'] }}</span> pada tanggal <span class="fw-bold">{{ $todayEvent['tanggal'] }}</span> apakah anda ingin membuat text bertemakan <span class="fw-bold">{{ $todayEvent['keterangan'] }}</span>?</div>
+                <button id="submitButton" type="submit" class="btn btn-primary m-auto px-3 d-flex align-items-center gap-2" @if($detailProduks->isEmpty() || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
+              </div>
+            </form>
+            @endif
+            @if($detailProduks->isEmpty())
+              <div class="alert alert-important alert-danger" role="alert">Lengkapi detail produk anda <a href="{{ route('umkm.detail-produk') }}">disini.</a></div>
+            @endif
             <form action="{{ route('umkm.ai.generate-text.store') }}" method="post">
               @csrf
               <select class="form-select border border-primary mb-3" name="detail_produk_id" required>
@@ -66,11 +66,12 @@
                 @endforeach
               </select>
               <div class="d-md-flex d-block border border-primary rounded p-3 mb-1">
-                <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" rows="1" placeholder="Deskripsikan apa yang mau digenerate? lebih detail lebih baik hasilnya" oninput="adjustHeight(this)">{{ old('text_request', session('text_request', '')) }}</textarea>
+                <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" id="prompt" rows="1" placeholder="Deskripsikan apa yang mau digenerate? lebih detail lebih baik hasilnya" oninput="adjustHeight(this)">{{ old('text_request', session('text_request', '')) }}</textarea>
                 <div>
                   <button id="submitButton" type="submit" class="btn btn-primary px-3 w-100 d-flex align-items-center gap-2" @if($detailProduks->isEmpty() || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
                 </div>
               </div>
+              <div id="prompt-char-count" class="text-muted small">0/170</div>
               <div class="small text-muted mb-3">Contoh : Buatkan deskripsi menarik untuk postingan Instagram bertemakan 17 Agustus, dengan menekankan semangat kemerdekaan.</div>
             </form>
             @if(session('responses') && count(session('responses')) > 0)
@@ -94,6 +95,27 @@
 </div>
 @endsection
 @push('scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const maxCharPrompt = 170;
+
+    function updateCharCount(inputElement, countElement, maxChar) {
+      const currentLength = inputElement.value.length;
+      countElement.textContent = `${currentLength}/${maxChar}`;
+      if (currentLength > maxChar) {
+        inputElement.value = inputElement.value.substring(0, maxChar);
+        countElement.textContent = `${maxChar}/${maxChar}`;
+      }
+    }
+
+    const promptInput = document.getElementById('prompt');
+    const promptCharCount = document.getElementById('prompt-char-count');
+
+    promptInput.addEventListener('input', function() {
+      updateCharCount(promptInput, promptCharCount, maxCharPrompt);
+    });
+  });
+</script>
 <script>
   function adjustHeight(element) {
       element.style.height = 'auto';

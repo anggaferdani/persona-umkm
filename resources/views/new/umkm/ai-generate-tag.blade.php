@@ -66,11 +66,12 @@
                 @endforeach
               </select>
               <div class="d-md-flex d-block border border-primary rounded p-3 mb-1">
-                <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" rows="1" placeholder="Deskripsikan apa yang mau digenerate? lebih detail lebih baik hasilnya" oninput="adjustHeight(this)">{{ old('text_request', session('text_request', '')) }}</textarea>
+                <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" id="prompt" rows="1" placeholder="Deskripsikan apa yang mau digenerate? lebih detail lebih baik hasilnya" oninput="adjustHeight(this)">{{ old('text_request', session('text_request', '')) }}</textarea>
                 <div>
                   <button id="submitButton" type="submit" class="btn btn-primary px-3 w-100 d-flex align-items-center gap-2" @if($detailProduks->isEmpty() || Auth::user()->credits == 0) disabled @endif>Generate <i class="fa-solid fa-coins"></i> 10</button>
                 </div>
               </div>
+              <div id="prompt-char-count" class="text-muted small">0/170</div>
               <div class="small text-muted mb-3">Contoh : Buatkan tag yang sedang trending bertemakan 17 Agustus.</div>
             </form>
             @if(session('responses') && count(session('responses')) > 0)
@@ -94,6 +95,27 @@
 </div>
 @endsection
 @push('scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const maxCharPrompt = 170;
+
+    function updateCharCount(inputElement, countElement, maxChar) {
+      const currentLength = inputElement.value.length;
+      countElement.textContent = `${currentLength}/${maxChar}`;
+      if (currentLength > maxChar) {
+        inputElement.value = inputElement.value.substring(0, maxChar);
+        countElement.textContent = `${maxChar}/${maxChar}`;
+      }
+    }
+
+    const promptInput = document.getElementById('prompt');
+    const promptCharCount = document.getElementById('prompt-char-count');
+
+    promptInput.addEventListener('input', function() {
+      updateCharCount(promptInput, promptCharCount, maxCharPrompt);
+    });
+  });
+</script>
 <script>
   function adjustHeight(element) {
       element.style.height = 'auto';

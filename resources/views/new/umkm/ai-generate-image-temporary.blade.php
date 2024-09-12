@@ -78,21 +78,22 @@
                 </div>
                 <div class="ai">
                   <div class="d-md-flex d-block border border-primary rounded p-3 mb-1">
-                    <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" rows="1" placeholder="Deskripsikan apa yang mau digenerate?" oninput="adjustHeight(this)"></textarea>
+                    <textarea class="form-control border-0 p-0 mb-3 mb-md-0" name="text_request" id="prompt" rows="1" placeholder="Deskripsikan apa yang mau digenerate?" oninput="adjustHeight(this)"></textarea>
                   </div>
+                  <div id="prompt-char-count" class="text-muted small">0/170</div>
                   <div class="small text-muted mb-3">Contoh : Nasi goreng rendang</div>
                 </div>
               </div>
               <div class="mb-3">
                 <label>Judul <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="judul" required>
-                <div class="text-muted small mt-1">Maksimal 10 kata</div>
+                <input type="text" class="form-control" name="judul" id="judul" required>
+                <div id="judul-char-count" class="text-muted small mt-1">0/30</div>
                 @error('judul')<div class="text-danger">{{ $message }}</div>@enderror
               </div>
               <div class="mb-3">
                 <label>Deskripsi <span class="text-danger">*</span></label>
-                <textarea class="form-control" name="deskripsi" rows="3" oninput="adjustHeight(this)"></textarea>
-                <div class="text-muted small mt-1">Maksimal 20 kata</div>
+                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" oninput="adjustHeight(this)"></textarea>
+                <div id="deskripsi-char-count" class="text-muted small mt-1">0/100</div>
                 @error('deskripsi')<div class="text-danger">{{ $message }}</div>@enderror
               </div>
               <div class="d-flex gap-1">
@@ -110,6 +111,41 @@
 </div>
 @endsection
 @push('scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const maxCharPrompt = 170;
+    const maxCharJudul = 30;
+    const maxCharDeskripsi = 100;
+
+    function updateCharCount(inputElement, countElement, maxChar) {
+      const currentLength = inputElement.value.length;
+      countElement.textContent = `${currentLength}/${maxChar}`;
+      if (currentLength > maxChar) {
+        inputElement.value = inputElement.value.substring(0, maxChar);
+        countElement.textContent = `${maxChar}/${maxChar}`;
+      }
+    }
+
+    const promptInput = document.getElementById('prompt');
+    const judulInput = document.getElementById('judul');
+    const deskripsiInput = document.getElementById('deskripsi');
+    const promptCharCount = document.getElementById('prompt-char-count');
+    const judulCharCount = document.getElementById('judul-char-count');
+    const deskripsiCharCount = document.getElementById('deskripsi-char-count');
+
+    promptInput.addEventListener('input', function() {
+      updateCharCount(promptInput, promptCharCount, maxCharPrompt);
+    });
+
+    judulInput.addEventListener('input', function() {
+      updateCharCount(judulInput, judulCharCount, maxCharJudul);
+    });
+
+    deskripsiInput.addEventListener('input', function() {
+      updateCharCount(deskripsiInput, deskripsiCharCount, maxCharDeskripsi);
+    });
+  });
+</script>
 <script>
   function adjustHeight(element) {
       element.style.height = 'auto';
