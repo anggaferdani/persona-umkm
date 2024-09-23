@@ -15,6 +15,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BrandPersonalityAakerController;
 use App\Http\Controllers\CategoryImageTemplateController;
 use App\Http\Controllers\DetailProdukController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ImageTemplateController;
 use App\Http\Controllers\JenisProdukController;
 use App\Http\Controllers\MarketerController;
@@ -34,9 +35,11 @@ use App\Http\Controllers\MarketerController;
 
 // Route::get('/lupapassword', function () {return view('NewPages.LupaPassword');});
 
+Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('/index', [FrontendController::class, 'index'])->name('index');
+
 Route::get('/brand-personality-aaker', [BrandPersonalityAakerController::class, 'index'])->name('brand-personality-aaker');
 
-Route::get('/', [LoginController::class, 'index'])->name('user.login');
 Route::post('/postlogin', [LoginController::class, 'afterlogin'])->name('user.postlogin');
 Route::get('/reset-password', [LoginController::class, 'resetpassword'])->name('user.resetpassword');
 Route::get('/register', [LoginController::class, 'registerselect'])->name('user.registerselect');
