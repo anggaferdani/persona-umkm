@@ -33,7 +33,7 @@
           <div class="fs-1 fw-bold lh-1 text-center m-auto mb-4 mb-md-4 mb-lg-5 col-12 col-md-10" style="color: #2388FF;">Sebuah Media Baru Untuk Menyajikan Ide Untuk Brand UMKM</div>
           <div class="text-center m-auto mb-4 mb-md-4 mb-lg-5 col-12 col-md-7">Membuat Foto , Tagline, dan Copywriting yang kekinian. Tidak diperlukan keahlian desain atau pengkodean.</div>
           <div class="text-center">
-            <a href="{{ route('login') }}" class="btn rounded-pill px-5 py-3" style="background: linear-gradient(to right, #210253, #EC5AEF); border: none; color: white;">TEST PERSONALITY</a>
+            <a href="{{ route('user.register') }}" class="btn rounded-pill px-5 py-3" style="background: linear-gradient(to right, #210253, #EC5AEF); border: none; color: white;">TEST PERSONALITY</a>
           </div>
         </div>
         <div class="row g-3 mb-5 py-3 py-md-5">

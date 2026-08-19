@@ -31,7 +31,7 @@ class AIController extends Controller
         $dayEvents = $this->getDayEvents();
         $today = now()->year;
         $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
-            return $event['tanggal'] === $today;
+            return is_array($event) && ($event['tanggal'] ?? null) === $today;
         });
         $detailProduks = DetailProduk::where('user_id', $user->id)->where('status', 1)->get();
         return view('new.umkm.ai-generate-text', compact(
@@ -52,10 +52,15 @@ class AIController extends Controller
             $detailProduk = DetailProduk::where('user_id', $user->id)->where('id', $request['detail_produk_id'])->first();
             $userModel = User::where('id', $user->id)->first();
 
+            $apiKey = env('OPENAI_API_KEY');
+
+            if (empty($apiKey)) {
+                return back()->with('error', 'Tidak ada API Key');
+            }
+
             if ($userModel->credits >= 10) {
                 $userModel->decrement('credits', 10);
 
-                $apiKey = env('OPENAI_API_KEY');
 
                 $prompt = "Buatkan 3 variasi deskripsi media sosial yang kreatif dan engaging. Setiap deskripsi harus mengandung nama produk ({$detailProduk->nama_produk}) dan deskripsi produk ({$detailProduk->deskripsi_produk}, {$request->text_request}), setiap deksripisi harus mengandung informatif, lucu, dan inspiratif Dengan bahasa indonesia. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap deskripsi pada baris baru.";
 
@@ -163,7 +168,7 @@ class AIController extends Controller
         $dayEvents = $this->getDayEvents();
         $today = now()->year;
         $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
-            return $event['tanggal'] === $today;
+            return is_array($event) && ($event['tanggal'] ?? null) === $today;
         });
         $imageTemplates = ImageTemplate::where('status', 1)->paginate(12);
         return view('new.umkm.ai-generate-image', compact(
@@ -202,8 +207,13 @@ class AIController extends Controller
                 $detailProduk = DetailProduk::where('user_id', $user->id)->where('id', $request['detail_produk_id'])->first();
                 $userModel = User::where('id', $user->id)->first();
                 
+                $apiKey = env('OPENAI_API_KEY');
+
+                if (empty($apiKey)) {
+                    return back()->with('error', 'Tidak ada API Key');
+                }
+
                 if ($userModel->credits >= 10) {
-                    $apiKey = env('OPENAI_API_KEY');
                     $prompt = "buat gambar dengan reference {$detailProduk->deskripsi_produk} dan {$request->text_request}";
 
                     if (strlen($prompt) > 1000) {
@@ -336,7 +346,7 @@ class AIController extends Controller
         $dayEvents = $this->getDayEvents();
         $today = now()->year;
         $todayEvent = collect($dayEvents)->first(function ($event) use ($today) {
-            return $event['tanggal'] === $today;
+            return is_array($event) && ($event['tanggal'] ?? null) === $today;
         });
         $detailProduks = DetailProduk::where('user_id', $user->id)->where('status', 1)->get();
         return view('new.umkm.ai-generate-tag', compact(
@@ -357,10 +367,15 @@ class AIController extends Controller
             $detailProduk = DetailProduk::where('user_id', $user->id)->where('id', $request['detail_produk_id'])->first();
 
             $userModel = User::where('id', $user->id)->first();
+
+            $apiKey = env('OPENAI_API_KEY');
+
+            if (empty($apiKey)) {
+                return back()->with('error', 'Tidak ada API Key');
+            }
+
             if ($userModel->credits >= 10) {
                 $userModel->decrement('credits', 10);
-
-                $apiKey = env('OPENAI_API_KEY');
 
                 $prompt = "{$request->text_request} buat 9 hashtag media sosial yang relevan dan trending sesuai dengan produk ({$detailProduk->nama_produk}), deskripsi produk{$detailProduk->deskripsi_produk}. Gunakan bahasa Indonesia yang santai, menarik perhatian, serta dapat memancing interaksi audiens. Hasilkan setiap variasi dalam format list 1. 2. 3. dengan setiap hashtag pada baris baru, 9 baris hastag saja";
 
@@ -454,11 +469,10 @@ class AIController extends Controller
         $now = now()->year;
         $response = Http::get("https://dayoffapi.vercel.app/api?year={$now}");
     
-        if ($response->successful()) {
-            $data = $response->json();
-            return $data;
-        } else {
-            return ['error' => 'Error'];
+        if ($response->successful() && is_array($response->json())) {
+            return $response->json();
         }
+
+        return [];
     }
 }

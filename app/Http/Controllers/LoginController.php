@@ -43,6 +43,16 @@ class LoginController extends Controller
                     return redirect()->route('superadmin.dashboard');
                 }elseif(auth()->user()->role == 2){
                     return redirect()->route('admin.dashboard');
+                }elseif(auth()->user()->role == 3 || auth()->user()->role == 4){
+                    if(auth()->user()->verification == 'unverified'){
+                        Auth::guard('web')->logout();
+                        return redirect()->route('login')->with('fail', 'Akun Anda belum terverifikasi, hubungi admin untuk memverifikasi akun');
+                    }
+
+                    $prefix = auth()->user()->role == 3 ? 'umkm' : 'marketer';
+                    $bpa = BrandPersonalityAakerModel::where('created_by', auth()->user()->id)->first();
+
+                    return redirect($bpa ? "/{$prefix}/beranda" : "/{$prefix}/welcome");
                 }else{
                     return back();
                 }

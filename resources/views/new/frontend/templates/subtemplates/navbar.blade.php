@@ -15,10 +15,10 @@
           <a class="nav-link" style="color: #FB36FF !important;" href="#">BERANDA</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="color: #ffffff !important;" href="{{ route('login') }}">PERSONA UMKM</a>
+          <a class="nav-link" style="color: #ffffff !important;" href="{{ route('login') }}">UMKM</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="color: #ffffff !important;" href="{{ route('login') }}">AI <span class="badge bg-white text-dark">NEW</span></a>
+          <a class="nav-link" style="color: #ffffff !important;" href="{{ route('login') }}">MARKETER</a>
         </li>
       </ul>
       <div class="d-none d-sm-none d-md-none d-lg-flex gap-2">

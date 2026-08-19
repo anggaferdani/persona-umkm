@@ -7,42 +7,101 @@
 $(document).ready(function() {
     var itemsPerPage = 3;
     var $contentContainer = $('#content-container');
-    var $pagination = $('#pagination');
     var $percentageLabel = $('#percentage-label');
     var $content = $contentContainer.find('.content');
+    var $btnNext = $('.btn-next-step');
+    var $btnPrev = $('.btn-prev-step');
+    var $form = $contentContainer.closest('form');
 
     var numItems = $content.length;
     var numPages = Math.ceil(numItems / itemsPerPage);
+    var currentPage = 1;
+    var requiredModal;
 
-    // Initialize the pagination links
-    for (var i = 1; i <= numPages; i++) {
-        $pagination.append('<a href="#" class="page-link">' + i + '</a>');
-    }
+    goToPage(1);
 
-    // Show the first page of content
-    $content.slice(0, itemsPerPage).show();
-
-    // Display the percentage label
-    updatePercentageLabel(1, numPages);
-
-    // Handle pagination click event
-    $pagination.on('click', '.page-link', function(event) {
+    $btnNext.on('click', function(event) {
         event.preventDefault();
-        var page = $(this).text();
+        if (!currentPageIsValid()) {
+            showRequiredModal();
+            return;
+        }
+        if (currentPage < numPages) {
+            goToPage(currentPage + 1);
+        }
+    });
+
+    $btnPrev.on('click', function(event) {
+        event.preventDefault();
+        if (currentPage > 1) {
+            goToPage(currentPage - 1);
+        }
+    });
+
+    // Guard the final submit too, in case the last page still has gaps
+    $form.on('submit', function(event) {
+        if (!currentPageIsValid()) {
+            event.preventDefault();
+            showRequiredModal();
+        }
+    });
+
+    function goToPage(page) {
+        currentPage = page;
         $content.hide();
         var startIndex = (page - 1) * itemsPerPage;
         var endIndex = startIndex + itemsPerPage;
         $content.slice(startIndex, endIndex).show();
         updatePercentageLabel(page, numPages);
-    });
 
-   
-    
+        // No "next" beyond the last page: hide/disable it there instead of a dead click
+        $btnPrev.toggleClass('d-none', page <= 1);
+        $btnNext.toggleClass('d-none', page >= numPages);
+    }
+
+    // Validates only the fields visible on the current page, so hidden
+    // pages never block submission with an unfocusable native error
+    function currentPageIsValid() {
+        var startIndex = (currentPage - 1) * itemsPerPage;
+        var endIndex = startIndex + itemsPerPage;
+        var $pageContent = $content.slice(startIndex, endIndex);
+        var valid = true;
+
+        $pageContent.find('.is-invalid').removeClass('is-invalid');
+
+        var seenRadioNames = {};
+        $pageContent.find('input[type="radio"][required]').each(function() {
+            var name = $(this).attr('name');
+            if (seenRadioNames[name]) return;
+            seenRadioNames[name] = true;
+
+            if ($pageContent.find('input[name="' + name + '"]:checked').length === 0) {
+                valid = false;
+                $pageContent.find('input[name="' + name + '"]').addClass('is-invalid');
+            }
+        });
+
+        $pageContent.find('select[required]').each(function() {
+            if (!$(this).val()) {
+                valid = false;
+                $(this).addClass('is-invalid');
+            }
+        });
+
+        return valid;
+    }
+
+    function showRequiredModal() {
+        if (!requiredModal) {
+            requiredModal = new bootstrap.Modal(document.getElementById('modalRequiredKuisioner'));
+        }
+        requiredModal.show();
+    }
+
     // Function to update the percentage label
     function updatePercentageLabel(currentPage, totalPages) {
         let percentage = ((currentPage / totalPages) * 100);
-        
-        console.log(percentage)
+
         $percentageLabel.text( '(' + percentage + '%)' );
         $(".percentage-bro").text( percentage + '%') ;
         document.getElementById('progress-bar-top').style.width = percentage + '%';
@@ -90,7 +149,7 @@ $(document).ready(function() {
         </div>
        </div>
       @if(Auth::user()->role == 3)
-       <form action="{{ url('/umkm/kuisioner/store') }}" method="post">
+       <form action="{{ url('/umkm/kuisioner/store') }}" method="post" novalidate>
         @csrf
             <div class="container">
                 <p class="fw-bold text-center">Kerjakan Sesuai Kepribadian Diri Anda</p>
@@ -456,16 +515,20 @@ $(document).ready(function() {
                 </div>
                     </div>
                 </div>
-                <div id="pagination" class="d-flex gap-3">
-                   
+                <div class="btn-next d-flex justify-content-center gap-3 mt-3">
+                    <button type="button" class="btn btn-outline-secondary d-none btn-prev-step d-flex align-items-center gap-2 justify-content-center py-sm-3 py-2 px-5">Sebelumnya</button>
+                    <button type="button" class="btn bg-blue d-flex align-items-center gap-2 justify-content-center py-sm-3 py-2 px-5 btn-next-step">
+                        <p class="mb-0">Selanjutnya</p>
+                        <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+                    </button>
                 </div>
-                    
+
                 </div>
-                
+
             </div>
         </form>
         @elseif(Auth::user()->role == 4)
-        <form action="{{ url('/marketer/kuisioner/store') }}" method="post">
+        <form action="{{ url('/marketer/kuisioner/store') }}" method="post" novalidate>
         @csrf
             <div class="container">
                 <p class="fw-bold text-center">Kerjakan Sesuai Kepribadian Diri Anda</p>
@@ -831,15 +894,32 @@ $(document).ready(function() {
                 </div>
                     </div>
                 </div>
-                <div id="pagination" class="d-flex gap-3">
-                   
+                <div class="btn-next d-flex justify-content-center gap-3 mt-3">
+                    <button type="button" class="btn btn-outline-secondary d-none btn-prev-step d-flex align-items-center gap-2 justify-content-center py-sm-3 py-2 px-5">Sebelumnya</button>
+                    <button type="button" class="btn bg-blue d-flex align-items-center gap-2 justify-content-center py-sm-3 py-2 px-5 btn-next-step">
+                        <p class="mb-0">Selanjutnya</p>
+                        <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+                    </button>
                 </div>
-                    
+
                 </div>
-                
+
             </div>
         </form>
         @endif
+    <div class="modal fade" id="modalRequiredKuisioner" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-4">
+                    <p class="fw-bold mb-1">Lengkapi Jawaban</p>
+                    <p class="mb-0">Mohon isi semua pertanyaan wajib pada halaman ini sebelum melanjutkan.</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0 pt-0">
+                    <button type="button" class="btn bg-blue text-white px-4" data-bs-dismiss="modal">Oke</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="FooterKuisioner" style="padding-top: 12.5rem;">
         @include('NewPagesTemplate.Footer')
     </div>
