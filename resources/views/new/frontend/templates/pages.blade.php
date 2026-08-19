@@ -33,7 +33,7 @@
           <div class="fs-1 fw-bold lh-1 text-center m-auto mb-4 mb-md-4 mb-lg-5 col-12 col-md-10" style="color: #2388FF;">Sebuah Media Baru Untuk Menyajikan Ide Untuk Brand UMKM</div>
           <div class="text-center m-auto mb-4 mb-md-4 mb-lg-5 col-12 col-md-7">Membuat Foto , Tagline, dan Copywriting yang kekinian. Tidak diperlukan keahlian desain atau pengkodean.</div>
           <div class="text-center">
-            <a href="" class="btn rounded-pill px-5 py-3" style="background: linear-gradient(to right, #210253, #EC5AEF); border: none; color: white;"><i class="fa-solid fa-arrow-right"></i> TEST PERSONALITY</a>
+            <a href="{{ route('login') }}" class="btn rounded-pill px-5 py-3" style="background: linear-gradient(to right, #210253, #EC5AEF); border: none; color: white;">TEST PERSONALITY</a>
           </div>
         </div>
         <div class="row g-3 mb-5 py-3 py-md-5">
@@ -61,7 +61,7 @@
           </div>
           <div class="col-12 col-md-6 order-2 order-md-1">
             <div class="fs-3 fw-bold lh-sm mb-2" style="color: #2388FF;">Digital Marketing untuk UMKM</div>
-            <div class="lh-sm">Lorem ipsum dolor sit amet consectetur. Nibh vehicula vitae varius massa sit velit. Mattis arcu in molestie aliquet. Et libero arcu erat nisi tincidunt. Eget egestas.</div>
+            <div class="lh-sm">Bantu UMKM naik kelas lewat pemasaran digital yang tepat sasaran, mulai dari konten promosi hingga strategi menjangkau lebih banyak calon pelanggan secara online.</div>
           </div>
         </div>
         <div class="row g-3 align-items-center mb-2 mb-md-5 py-4">
@@ -72,7 +72,7 @@
           </div>
           <div class="col-12 col-md-6 order-2 order-md-2">
             <div class="fs-3 fw-bold lh-sm mb-2" style="color: #2388FF;">Strategi Pemasaran Digital</div>
-            <div class="lh-sm">Lorem ipsum dolor sit amet consectetur. Nibh vehicula vitae varius massa sit velit. Mattis arcu in molestie aliquet. Et libero arcu erat nisi tincidunt. Eget egestas.</div>
+            <div class="lh-sm">Susun strategi pemasaran yang terarah berdasarkan karakter dan tujuan bisnis Anda, sehingga setiap promosi lebih efektif dan efisien.</div>
           </div>
         </div>
         <div class="row g-3 align-items-center mb-2 mb-md-5 py-4">
@@ -83,7 +83,7 @@
           </div>
           <div class="col-12 col-md-6 order-2 order-md-1">
             <div class="fs-3 fw-bold lh-sm mb-2" style="color: #2388FF;">Pemasaran Sosial Media</div>
-            <div class="lh-sm">Lorem ipsum dolor sit amet consectetur. Nibh vehicula vitae varius massa sit velit. Mattis arcu in molestie aliquet. Et libero arcu erat nisi tincidunt. Eget egestas.</div>
+            <div class="lh-sm">Optimalkan kehadiran brand UMKM di media sosial dengan konten yang menarik dan konsisten agar lebih dekat dengan audiens.</div>
           </div>
         </div>
         <div class="row g-3 align-items-center mb-2 mb-md-5 py-4">
@@ -94,7 +94,7 @@
           </div>
           <div class="col-12 col-md-6 order-2 order-md-2">
             <div class="fs-3 fw-bold lh-sm mb-2" style="color: #2388FF;">Marketplace Bagi Para Marketer</div>
-            <div class="lh-sm">Lorem ipsum dolor sit amet consectetur. Nibh vehicula vitae varius massa sit velit. Mattis arcu in molestie aliquet. Et libero arcu erat nisi tincidunt. Eget egestas.</div>
+            <div class="lh-sm">Wadah bagi para marketer untuk terhubung dengan pelaku UMKM dan menawarkan jasa pemasaran sesuai kebutuhan mereka.</div>
           </div>
         </div>
         <div class="row g-3 align-items-center mb-2 mb-md-5 py-4">
@@ -105,7 +105,7 @@
           </div>
           <div class="col-12 col-md-6 order-2 order-md-1">
             <div class="fs-3 fw-bold lh-sm mb-2" style="color: #2388FF;">Branding Berdasarkan Persona</div>
-            <div class="lh-sm">Lorem ipsum dolor sit amet consectetur. Nibh vehicula vitae varius massa sit velit. Mattis arcu in molestie aliquet. Et libero arcu erat nisi tincidunt. Eget egestas.</div>
+            <div class="lh-sm">Bangun identitas brand yang khas dan konsisten berdasarkan hasil tes persona, sehingga citra bisnis Anda lebih mudah diingat pelanggan.</div>
           </div>
         </div>
         <div class="row g-3 align-items-center mb-2 mb-md-5 py-4">
@@ -116,7 +116,7 @@
           </div>
           <div class="col-12 col-md-6 order-2 order-md-2">
             <div class="fs-3 fw-bold lh-sm mb-2" style="color: #2388FF;">Pemasaran Digital Berbasis Neuromarketing</div>
-            <div class="lh-sm">Lorem ipsum dolor sit amet consectetur. Nibh vehicula vitae varius massa sit velit. Mattis arcu in molestie aliquet. Et libero arcu erat nisi tincidunt. Eget egestas.</div>
+            <div class="lh-sm">Manfaatkan pendekatan neuromarketing untuk memahami psikologi konsumen, sehingga strategi promosi lebih persuasif dan tepat sasaran.</div>
           </div>
         </div>
         <div class="row g-3 align-items-center py-4">
@@ -127,7 +127,7 @@
           </div>
           <div class="col-12 col-md-6 order-2 order-md-1">
             <div class="fs-3 fw-bold lh-sm mb-2" style="color: #2388FF;">Aplikasi dengan Artificial Intelegent ( AI )</div>
-            <div class="lh-sm">Lorem ipsum dolor sit amet consectetur. Nibh vehicula vitae varius massa sit velit. Mattis arcu in molestie aliquet. Et libero arcu erat nisi tincidunt. Eget egestas.</div>
+            <div class="lh-sm">Ditenagai teknologi AI untuk membantu membuat foto produk, tagline, dan copywriting secara instan tanpa perlu keahlian desain.</div>
           </div>
         </div>
       </div>
